@@ -1,7 +1,4 @@
-using UnityEngine;
-using static UnityEditor.Progress;
-
 public interface IEnhancablePerk
 {
-    void Enhance(Perk perk);
+    void Enhance(Perk.Testing.Perk perk);
 }
