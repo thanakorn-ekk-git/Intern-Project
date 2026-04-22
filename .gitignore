@@ -97,4 +97,7 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
-.vsconfig
+
+# Visual Studio cache directory and files
+*.vsconfig
+*.slnx
