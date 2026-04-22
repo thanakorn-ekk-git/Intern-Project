@@ -11,18 +11,21 @@ public class GameManager : MonoBehaviour
         {
             DestroyImmediate(gameObject);
         }
-        else { DontDestroyOnLoad(gameObject); }
+        else 
+        { 
+            DontDestroyOnLoad(gameObject); 
+        }
     }
     public void NewGame()
     {
         // TODO : load game scene with new player data
-        sceneManager.EnterGamplay();
+        sceneManager.EnterGameplayScene();
         // TODO : initialize new player data and game state
     }
     public void LoadGame()
     {
         // TODO : load game scene where player saved with saved player data
-        sceneManager.EnterGamplay();
+        sceneManager.EnterGameplayScene();
     }
     public void SaveGame()
     {
