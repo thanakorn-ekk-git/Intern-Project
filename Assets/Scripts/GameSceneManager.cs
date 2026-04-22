@@ -7,4 +7,9 @@ public class GameSceneManager : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+    public void EnterGamplay()
+    {
+        // SceneManager.LoadScene(GameplayScene);
+
+    }
 }

@@ -11,23 +11,22 @@ public class GameManager : MonoBehaviour
         {
             DestroyImmediate(gameObject);
         }
+        else { DontDestroyOnLoad(gameObject); }
     }
-
-    //Options
     public void NewGame()
     {
         // TODO : load game scene with new player data
-        sceneManager.LoadScene("GameScene");
+        sceneManager.EnterGamplay();
         // TODO : initialize new player data and game state
     }
     public void LoadGame()
     {
-        // TODO: load game scene where player saved with saved player data
-        sceneManager.LoadScene("GameScene");
+        // TODO : load game scene where player saved with saved player data
+        sceneManager.EnterGamplay();
     }
     public void SaveGame()
     {
-        // TODO: save player and game state data(current level, player stats)
+        // TODO : save player and game state data(current level, player stats)
     }
     public void RestartGame()
     {
@@ -54,60 +53,4 @@ public class GameManager : MonoBehaviour
     {
         // TODO : resume time and hide pause menu
     }
-
-    ///Game Events(Player)
-    public void OnPlayerDeath()
-    {
-        // TODO : show game over screen with restart and main menu options
-    }
-    public void OnPlayerLevelUp()
-    {
-        // TODO : notify player of level up and show 2 options of skills to choose from
-    }
-    public void SelectSkill()
-    {
-        // TODO : VVVVV
-        // if (active skills >2 )
-        // { ReplaceSkill() }
-        // else { AddSkill() }
-    }
-    public void ActivatePerk()
-    {
-        // TODO : activate perk effect 
-    }
-    public void EnhancePerk()
-    {
-        // TODO : enhance perk effect
-    }
-    public void RestAtHub()
-    {
-        // TODO : restore player health and mana, reset cooldowns, set respawn point
-    }
-
-    //Game Events(Level)
-    public void OnLevelBossDeath()
-    {
-        // TODO : next level gate opens, show navigation hint to next level
-    }
-    public void OnEnterMonsterRoom()
-    {
-        // TODO : spawn enemies and trigger combat state
-    }
-    public void OnEnterTreasureRoom()
-    {
-        // TODO : spawn enemies and trigger treasure room state
-        // if (enemies are cleared)
-        // { SpawnTreasure(); }
-    }
-    public void OnEnterBossRoom()
-    {
-        // TODO : spawn boss and trigger boss fight state
-        // if (Boss.isAlive == true)
-        // { Player.cannotExit = true }
-    }
-    public void OnEnterHub()
-    {
-        // TODO : trigger hub state(set to passive state)
-    }
-
 }
