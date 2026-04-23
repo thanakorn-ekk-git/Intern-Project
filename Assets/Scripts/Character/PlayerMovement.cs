@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Character {
     public class PlayerMovement : CharacterMovement {
-        bool isPlayer = false;
         private Camera playerCam;
 
         [Range(0.1f, 50f), SerializeField] protected float jumpForce = 5f;
@@ -11,7 +10,6 @@ namespace Character {
 
         protected override void Awake() {
             base.Awake();
-            isPlayer = true;
             playerCam = Camera.main;
         }
 
@@ -21,8 +19,10 @@ namespace Character {
         }
 
         private void PlayerInput() {
-            float x = Input.GetAxisRaw("Horizontal");
-            float z = Input.GetAxisRaw("Vertical");
+            var kbMove = InputManager.KeyBoardMove;
+
+            float x = kbMove.x;
+            float z = kbMove.y;
 
             Vector3 direction = new Vector3(x, 0f, z);
 
@@ -48,18 +48,18 @@ namespace Character {
                 Move(Vector3.zero);
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftShift)) 
+            if (Input.GetKeyDown(InputManager.Sprint)) 
             {
                 moveSpeedMultiplier = 2f;
             }
-            else if (Input.GetKeyUp(KeyCode.LeftShift)) 
+            else if (Input.GetKeyUp(InputManager.Sprint)) 
             { 
                 moveSpeedMultiplier = 1f;
             }
 
             if (jumpRemainForce <= 1f) 
             {
-                if (Input.GetKeyDown(KeyCode.Space)) 
+                if (Input.GetKeyDown(InputManager.Jump)) 
                 {
                     jumpRemainForce = jumpForce;
                 }
