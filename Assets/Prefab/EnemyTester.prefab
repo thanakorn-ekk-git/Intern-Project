@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5062881093170202601}
-  - component: {fileID: 2294951363256762837}
   - component: {fileID: 6780434682621360526}
   - component: {fileID: 4404040013614320656}
   - component: {fileID: 1521292332375802484}
@@ -37,26 +36,6 @@ Transform:
   - {fileID: 3356973713282955658}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 189.5, z: 0}
---- !u!114 &2294951363256762837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1496386394286246599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74b9374e8d8a0cf4eb9a0aa8ee0f6a44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterMovement
-  groundChecker: {fileID: 9174693714259610386}
-  moveSpeed: 5
-  moveSpeedMultiplier: 1
-  gravityForce: 9.81
-  jumpForce: 5
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &6780434682621360526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a14fb2efc97f9f45a374c65a1b853dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIMovement
+  moveSpeed: 5
+  moveSpeedMultiplier: 1
+  jumpForce: 5
+  gravityMult: 1
   targetPos: {fileID: 0}
 --- !u!143 &4404040013614320656
 CharacterController:
