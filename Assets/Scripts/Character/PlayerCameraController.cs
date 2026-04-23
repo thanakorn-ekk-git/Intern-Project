@@ -1,30 +1,32 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerCameraController : MonoBehaviour
-{
-    public Transform playerPos;
-    public float mouseSensitivity = 100f;
-
-    float xRotation = 0f;
-    float yRotation = 0f;
-    void Start()
+namespace Character { 
+    public class PlayerCameraController : MonoBehaviour
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
+        public Transform playerPos;
+        public float mouseSensitivity = 100f;
 
-    void LateUpdate()
-    {
-        transform.position = playerPos.position;
+        float xRotation = 0f;
+        float yRotation = 0f;
+        void Start()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
 
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        void LateUpdate()
+        {
+            transform.position = playerPos.position;
 
-        yRotation += mouseX;
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -80f, 80f);
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+            yRotation += mouseX;
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -80f, 80f);
+
+            transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        }
     }
 }
