@@ -8,4 +8,6 @@ public static class InputManager
 
     public static float mouseSensitivity = 100f;
     public static Vector2 MouseMove => new Vector2(Input.GetAxis("Mouse X") * mouseSensitivity, Input.GetAxis("Mouse Y") * mouseSensitivity);
+
+    public static KeyCode Attack = KeyCode.Mouse0;
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6780434682621360526}
   - component: {fileID: 4404040013614320656}
   - component: {fileID: 1521292332375802484}
+  - component: {fileID: 5671757354047529791}
   m_Layer: 0
   m_Name: EnemyTester
   m_TagString: Enemy
@@ -50,7 +51,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AIMovement
   moveSpeed: 5
   moveSpeedMultiplier: 1
-  jumpForce: 5
   gravityMult: 1
   targetPos: {fileID: 0}
 --- !u!143 &4404040013614320656
@@ -100,6 +100,19 @@ NavMeshAgent:
   m_BaseOffset: 0.9
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5671757354047529791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496386394286246599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135b4bcd7674df74da00541832bc7887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Attack.Health
+  maxHealth: 100
 --- !u!1 &2432060970203219125
 GameObject:
   m_ObjectHideFlags: 0
