@@ -4,7 +4,7 @@ namespace Character {
     public class PlayerMovement : CharacterMovement {
         private Camera playerCam;
 
-        [Range(0.1f, 50f), SerializeField] protected float jumpForce = 5f;
+        [Range(0.1f, 100f), SerializeField] protected float jumpForce = 5f;
         [Range(0.1f, 50f), SerializeField] protected float jumpAcc = 2.5f;
         private float jumpRemainForce = 0f;
 
