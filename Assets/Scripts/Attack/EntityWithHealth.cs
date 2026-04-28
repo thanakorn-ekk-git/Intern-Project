@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Attack
 {
-    public class Health : MonoBehaviour
+    public class EntityWithHealth : MonoBehaviour
     {
         [Range(0.1f, 200f), SerializeField] public float maxHealth = 100f;
         private float currentHealth;
@@ -12,7 +12,7 @@ namespace Attack
             currentHealth = maxHealth;
         }
 
-        public void TakeDamage()
+        public void TakeDamage(Attacker attacker)
         {
             Die();
         }

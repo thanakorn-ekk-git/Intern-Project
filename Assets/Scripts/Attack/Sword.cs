@@ -4,11 +4,15 @@ namespace Attack
 {
     public class Sword : MonoBehaviour
     {
-        Collider swordCollider;
+        [SerializeField] private Collider swordCollider;
+
+        private Attacker attacker;
+
         void Start()
         {
             swordCollider = gameObject.GetComponent<Collider>();
             swordCollider.enabled = false;
+            attacker = gameObject.GetComponentInParent<Attacker>();
         }
 
         void Update()
@@ -17,7 +21,10 @@ namespace Attack
         }
         private void OnTriggerEnter(Collider other)
         {
-            other.GetComponent<Health>()?.TakeDamage();
+            if (other.TryGetComponent<EntityWithHealth>(out var health))
+            {
+                health.TakeDamage(attacker);
+            }
             print(other.gameObject.name);
         }
         public void ActivateCollider()

@@ -1,12 +1,9 @@
-using Character;
-using System;
-using System.Net.NetworkInformation;
 using UnityEngine;
 
 namespace Attack
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerAttackSystem : MonoBehaviour
+    public class Attacker : MonoBehaviour
     {
 
         public GameObject playerSword;
@@ -16,16 +13,12 @@ namespace Attack
         private CharacterController charController;
         private Vector3 impactVector = Vector3.zero;
 
-        [Range(0.1f, 50f), SerializeField] public float dashForce = 10f;
-        [Range(0.1f, 10f), SerializeField] public float drag = 5f;
+        [Range(0.1f, 50f), SerializeField] private float dashForce = 10f;
+        [Range(0.1f, 10f), SerializeField] private float drag = 5f;
 
         private void Awake()
         {
             charController = GetComponent<CharacterController>();
-        }
-        void Start()
-        {
-
         }
         void Update()
         {

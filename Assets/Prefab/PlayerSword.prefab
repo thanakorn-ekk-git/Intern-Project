@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8811023507073755220}
   - component: {fileID: 7687191447578367158}
   - component: {fileID: 5092130463649652905}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784cdf4bf83a5b84cb9c964b6692b28d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Attack.Sword
+  swordCollider: {fileID: 0}
 --- !u!1 &1066737149040046057
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +133,7 @@ GameObject:
   - component: {fileID: 5210859197100879961}
   - component: {fileID: 4113298491376463363}
   - component: {fileID: 342029426110877061}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +223,7 @@ GameObject:
   - component: {fileID: 5379784723886257937}
   - component: {fileID: 7912031333584997148}
   - component: {fileID: 1049694551016670685}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,7 +313,7 @@ GameObject:
   - component: {fileID: 6568726493865645586}
   - component: {fileID: 1832960244135429150}
   - component: {fileID: 8268902799107665029}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +403,7 @@ GameObject:
   - component: {fileID: 269492946496848902}
   - component: {fileID: 1602409663026376018}
   - component: {fileID: 6192953881024249650}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
