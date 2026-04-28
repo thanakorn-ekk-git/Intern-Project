@@ -5,8 +5,7 @@ namespace Attack
     public class Sword : MonoBehaviour
     {
         [SerializeField] private Collider swordCollider;
-
-        private Attacker attacker;
+        [SerializeField] private Attacker attacker;
 
         void Start()
         {

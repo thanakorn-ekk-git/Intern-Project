@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 2177480231582755074}
   - component: {fileID: 7208826956018371319}
   - component: {fileID: 693522960136318909}
+  - component: {fileID: 3524985556869798192}
   - component: {fileID: 1927341105943244167}
   m_Layer: 0
   m_Name: PlayerTester
@@ -170,6 +171,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3524985556869798192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2311219321750180179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a166371c1eb14f44a9b7b475754875b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  attacker: {fileID: 1927341105943244167}
 --- !u!114 &1927341105943244167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d0398ad9940b0847aaf402ad73d9e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Attack.PlayerAttackSystem
-  playerSword: {fileID: 3140259653572922320}
+  weaponAnimator: {fileID: 6266168536355863268}
+  charController: {fileID: 693522960136318909}
   dashForce: 10
   drag: 5
 --- !u!1 &3334880356629108708
@@ -385,13 +400,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
---- !u!1 &3140259653572922320 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 515272533322471776, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
-  m_PrefabInstance: {fileID: 3220896339907252912}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5905591859462444281 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9026916411241760329, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
+  m_PrefabInstance: {fileID: 3220896339907252912}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6266168536355863268 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8811023507073755220, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
   m_PrefabInstance: {fileID: 3220896339907252912}
   m_PrefabAsset: {fileID: 0}

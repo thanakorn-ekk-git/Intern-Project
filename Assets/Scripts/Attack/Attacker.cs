@@ -7,7 +7,6 @@ namespace Attack
     public class Attacker : MonoBehaviour
     {
         [SerializeField] private Animator weaponAnimator;
-        public GameObject weapon;
 
         [SerializeField] private CharacterController charController;
         private Vector3 impactVector = Vector3.zero;
@@ -20,14 +19,6 @@ namespace Attack
         {
             charController = GetComponent<CharacterController>();
         }
-        void Update()
-        {
-            if (InputManager.Attack)
-            {
-                Attack();
-                StartCoroutine(AttackImpactCoroutine(2.0f));
-            }
-        }
 
         private void AttackImpact()
         {
@@ -39,7 +30,7 @@ namespace Attack
             charController.Move(impactVector * Time.deltaTime);
         }
 
-        IEnumerator AttackImpactCoroutine(float duration)
+        public IEnumerator AttackImpactCoroutine(float duration)
         {
             AttackImpact();
             yield return new WaitForSeconds(duration);
@@ -49,7 +40,9 @@ namespace Attack
         public void Attack()
         {
             impactVector = transform.forward * dashForce;
-            weapon.GetComponent<Animator>().SetTrigger("AttackTrig");
+
+            const string ANIMATION_ATTACK_TRIGGER = "AttackTrig";
+            weaponAnimator.SetTrigger(ANIMATION_ATTACK_TRIGGER);
         }
         private void HitImpact()
         {
