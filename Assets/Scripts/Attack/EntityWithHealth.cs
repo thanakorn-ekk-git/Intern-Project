@@ -5,7 +5,7 @@ namespace Attack
     public class EntityWithHealth : MonoBehaviour
     {
         // TODO : Add health value
-            public void TakeDamage(Attacker attacker)
+        public void TakeDamage(Attacker attacker)
         {
             Die();
         }

@@ -11,7 +11,6 @@ namespace Attack
         {
             swordCollider = gameObject.GetComponent<Collider>();
             swordCollider.enabled = false;
-            attacker = gameObject.GetComponentInParent<Attacker>();
         }
 
         private void OnTriggerEnter(Collider other)
