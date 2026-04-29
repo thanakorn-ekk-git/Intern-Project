@@ -2,7 +2,9 @@ using System;
 using UnityEngine;
 
 namespace Character {
+
     [RequireComponent(typeof(CharacterController))]
+
     public abstract class CharacterMovement : MonoBehaviour {
         protected CharacterController charController;
 

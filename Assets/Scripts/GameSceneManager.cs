@@ -1,10 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameSceneManager : MonoBehaviour
+namespace GameManagement
 {
-    public void EnterGameplayScene()
+    public class GameSceneManager : MonoBehaviour
     {
-        // SceneManager.LoadScene(GameplayScene);
+        [SerializeField] private string gameplayScene = "HubRoomScene";
+
+        public void EnterGameplayScene()
+        {
+            SceneManager.LoadScene(gameplayScene);
+        }
     }
 }

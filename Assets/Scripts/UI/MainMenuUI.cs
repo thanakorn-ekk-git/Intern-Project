@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using GameManagement;
 
 namespace MainMenu
 {
     public class MainMenuUI : MonoBehaviour
     {
+        [SerializeField] private GameManager gameManager;
+
         [SerializeField] private Button newGame;
         [SerializeField] private Button continueGame;
         [SerializeField] private Button settings;
@@ -13,19 +17,24 @@ namespace MainMenu
         void AssignButton()
         {
             newGame.onClick.AddListener(NewGame);
+            newGame.GetComponentInChildren<TextMeshProUGUI>().text = "New Game";
             continueGame.onClick.AddListener(ContinueGame);
+            continueGame.GetComponentInChildren<TextMeshProUGUI>().text = "Continue";
             settings.onClick.AddListener(Settings);
+            settings.GetComponentInChildren<TextMeshProUGUI>().text = "Settings";
             exitGame.onClick.AddListener(ExitGame);
+            exitGame.GetComponentInChildren<TextMeshProUGUI>().text = "Exit";
         }
 
         private void Start()
         {
             AssignButton();
+            gameManager = GameManager.Instance;
         }
 
         private void NewGame()
         {
-            // TODO : Implement new game
+            gameManager.NewGame();
         }
         private void ContinueGame()
         {
