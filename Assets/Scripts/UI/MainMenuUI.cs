@@ -14,22 +14,26 @@ namespace MainMenu
         [SerializeField] private Button settings;
         [SerializeField] private Button exitGame;
 
+        [SerializeField] private TextMeshProUGUI newGameTxt;
+        [SerializeField] private TextMeshProUGUI continueGameTxt;
+        [SerializeField] private TextMeshProUGUI settingsTxt;
+        [SerializeField] private TextMeshProUGUI exitGameTxt;
+
         void AssignButton()
         {
             newGame.onClick.AddListener(NewGame);
-            newGame.GetComponentInChildren<TextMeshProUGUI>().text = "New Game";
+            newGameTxt.text = "New Game";
             continueGame.onClick.AddListener(ContinueGame);
-            continueGame.GetComponentInChildren<TextMeshProUGUI>().text = "Continue";
+            continueGameTxt.text = "Continue";
             settings.onClick.AddListener(Settings);
-            settings.GetComponentInChildren<TextMeshProUGUI>().text = "Settings";
+            settingsTxt.text = "Settings";
             exitGame.onClick.AddListener(ExitGame);
-            exitGame.GetComponentInChildren<TextMeshProUGUI>().text = "Exit";
+            exitGameTxt.text = "Exit";
         }
 
         private void Start()
         {
             AssignButton();
-            gameManager = GameManager.Instance;
         }
 
         private void NewGame()
