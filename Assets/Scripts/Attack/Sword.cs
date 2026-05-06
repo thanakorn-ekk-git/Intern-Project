@@ -4,30 +4,33 @@ namespace Attack
 {
     public class Sword : MonoBehaviour
     {
-        [SerializeField] private Collider swordCollider;
-        [SerializeField] private Attacker attacker;
+        [SerializeField] private protected Collider weaponCollider;
+        [SerializeField] private protected Attacker attacker;
 
         void Start()
         {
-            swordCollider = gameObject.GetComponent<Collider>();
-            swordCollider.enabled = false;
+            weaponCollider = gameObject.GetComponent<Collider>();
+            weaponCollider.enabled = false;
         }
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent<EntityWithHealth>(out var health))
             {
-                health.TakeDamage(attacker);
+                if (attacker != null)
+                {
+                    health.TakeDamage(attacker);
+                }
             }
         }
 
         public void ActivateCollider()
         {
-            swordCollider.enabled = true;
+            weaponCollider.enabled = true;
         }
         public void DeactivateCollider()
         {
-            swordCollider.enabled = false;
+            weaponCollider.enabled = false;
         }
     }
 }

@@ -7,9 +7,13 @@ namespace Character {
     [RequireComponent(typeof(NavMeshAgent))]
 
     public class AIMovement : CharacterMovement {
-        [SerializeField] private Transform targetPos;
 
+        public Transform targetPos;
+
+        public NavMeshAgent Agent => agent;
         private NavMeshAgent agent;
+
+        public bool canMove = true;
 
         protected override void Awake() {
             base.Awake();
@@ -22,7 +26,7 @@ namespace Character {
 
         protected override void Update() {
             base.Update();
-            if (targetPos == null)
+            if (targetPos == null || !canMove)
                 return;
             agent.SetDestination(targetPos.position);
             agent.nextPosition = transform.position;

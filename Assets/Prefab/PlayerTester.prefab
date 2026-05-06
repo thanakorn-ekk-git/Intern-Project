@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 693522960136318909}
   - component: {fileID: 3524985556869798192}
   - component: {fileID: 1927341105943244167}
+  - component: {fileID: 8655835529595175987}
   m_Layer: 0
   m_Name: PlayerTester
   m_TagString: Player
@@ -200,6 +201,18 @@ MonoBehaviour:
   charController: {fileID: 693522960136318909}
   dashForce: 10
   drag: 5
+--- !u!114 &8655835529595175987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2311219321750180179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135b4bcd7674df74da00541832bc7887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Attack.EntityWithHealth
 --- !u!1 &3334880356629108708
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,6 +368,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSword
       objectReference: {fileID: 0}
+    - target: {fileID: 5092130463649652905, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
+      propertyPath: attacker
+      value: 
+      objectReference: {fileID: 1927341105943244167}
+    - target: {fileID: 5092130463649652905, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
+      propertyPath: weaponCollider
+      value: 
+      objectReference: {fileID: 8595762160425912187}
     - target: {fileID: 9026916411241760329, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.632
@@ -408,5 +429,10 @@ Transform:
 --- !u!95 &6266168536355863268 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8811023507073755220, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
+  m_PrefabInstance: {fileID: 3220896339907252912}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8595762160425912187 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6627227186470933963, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
   m_PrefabInstance: {fileID: 3220896339907252912}
   m_PrefabAsset: {fileID: 0}
