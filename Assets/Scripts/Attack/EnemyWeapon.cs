@@ -1,19 +1,18 @@
 using Enemy;
+using Attack;
 using UnityEngine;
 
-namespace Attack
+namespace Enemy
 {
     public class EnemyWeapon : Sword
     {
-        void Start()
+        protected override void OnTriggerEnter(Collider other)
         {
-            weaponCollider = gameObject.GetComponent<Collider>();
-            weaponCollider.enabled = false;
-        }
-
-        void Update()
-        {
-
+            other.TryGetComponent<EntityWithHealth>(out var otherEntity);
+            if (otherEntity != null && selfEntity.TeamID != otherEntity.TeamID) 
+            {
+                Debug.Log("EnemyWeapon collided with " + other.name);   
+            }
         }
     }
 }

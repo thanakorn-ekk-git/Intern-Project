@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135b4bcd7674df74da00541832bc7887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Attack.EntityWithHealth
+  teamID: 0
 --- !u!1 &3334880356629108708
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +373,10 @@ PrefabInstance:
       propertyPath: attacker
       value: 
       objectReference: {fileID: 1927341105943244167}
+    - target: {fileID: 5092130463649652905, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
+      propertyPath: selfEntity
+      value: 
+      objectReference: {fileID: 8655835529595175987}
     - target: {fileID: 5092130463649652905, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
       propertyPath: weaponCollider
       value: 

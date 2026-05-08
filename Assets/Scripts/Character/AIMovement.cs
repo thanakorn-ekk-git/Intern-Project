@@ -8,12 +8,12 @@ namespace Character {
 
     public class AIMovement : CharacterMovement {
 
-        public Transform targetPos;
+        [SerializeField] private Transform targetPos;
 
         public NavMeshAgent Agent => agent;
         private NavMeshAgent agent;
 
-        public bool canMove = true;
+        private bool canMove = true;
 
         protected override void Awake() {
             base.Awake();
@@ -41,6 +41,15 @@ namespace Character {
             }
         }
 
+        public void SetTarget(Transform target) {
+            targetPos = target;
+        }
+
+        public void SetDestination(Vector3 destination) {
+            targetPos = null;
+            agent.SetDestination(destination);
+
+        }
         protected override void ApplyMovement() {
             base.ApplyMovement();
             ResetInputDirection();

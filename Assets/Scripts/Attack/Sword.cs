@@ -4,20 +4,21 @@ namespace Attack
 {
     public class Sword : MonoBehaviour
     {
+        [SerializeField] protected EntityWithHealth selfEntity;
+
         [SerializeField] private protected Collider weaponCollider;
         [SerializeField] private protected Attacker attacker;
 
         void Start()
         {
-            weaponCollider = gameObject.GetComponent<Collider>();
             weaponCollider.enabled = false;
         }
 
-        private void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<EntityWithHealth>(out var health))
+            if (attacker != null)
             {
-                if (attacker != null)
+                if (other.TryGetComponent<EntityWithHealth>(out var health))
                 {
                     health.TakeDamage(attacker);
                 }

@@ -56,7 +56,6 @@ MonoBehaviour:
   moveSpeedMultiplier: 1
   gravityMult: 1
   targetPos: {fileID: 2177480231582755074, guid: 1d007f12d0920a04594bc3557ddccb7a, type: 3}
-  canMove: 1
 --- !u!143 &4404040013614320656
 CharacterController:
   m_ObjectHideFlags: 0
@@ -116,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135b4bcd7674df74da00541832bc7887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Attack.Health
+  teamID: 1
 --- !u!114 &4462080889411687701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,11 +128,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03fed6fb44d2c924b83acc7d4835f886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehavior
+  currentState: 0
+  aiMovement: {fileID: 0}
   targetPos: {fileID: 2177480231582755074, guid: 1d007f12d0920a04594bc3557ddccb7a, type: 3}
+  attacker: {fileID: 54938928479017813}
+  checkStateInterval: 0.2
   viewDistance: 50
   heightOffset: 0.3
-  attacker: {fileID: 54938928479017813}
   attackRange: 2
+  attackCooldown: 2
+  minMaxAttackRanRange: 0
 --- !u!114 &54938928479017813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,6 +440,10 @@ PrefabInstance:
       propertyPath: attacker
       value: 
       objectReference: {fileID: 54938928479017813}
+    - target: {fileID: 3672423910380474416, guid: 485f096d6ea6fda498df75d6824e3c16, type: 3}
+      propertyPath: selfEntity
+      value: 
+      objectReference: {fileID: 5671757354047529791}
     - target: {fileID: 3672423910380474416, guid: 485f096d6ea6fda498df75d6824e3c16, type: 3}
       propertyPath: weaponCollider
       value: 
