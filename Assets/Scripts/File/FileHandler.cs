@@ -1,7 +1,7 @@
-using UnityEngine;
-using System.IO;
+using Data;
 using SaveGame;
-using Character;
+using System.IO;
+using UnityEngine;
 
 namespace FileManagement
 {
@@ -23,7 +23,7 @@ namespace FileManagement
                 if (Directory.Exists(fullPath))
                     Directory.Delete(fullPath);
                 
-                JsonSaveHandler.JsonSave(fullPath, new Data());
+                JsonSaveHandler.JsonSave(fullPath, new PlayerData());
             } 
             catch (IOException error)
             { 

@@ -1,10 +1,10 @@
 using UnityEngine;
 using Newtonsoft.Json;
 
-namespace Character
+namespace Data
 {
     [JsonObject]
-    public class Data
+    public class PlayerData
     {
         [JsonProperty] private string name = "Hero";
         [JsonProperty] private PlayerLevel level = new PlayerLevel();

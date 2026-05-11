@@ -1,14 +1,14 @@
+using Data;
 using Newtonsoft.Json;
 using System.IO;
 using System.Text;
-using Character;
 using UnityEngine;
 
 namespace SaveGame
 {
     public static class JsonSaveHandler
     {
-        public static void JsonSave(string fullFilePath, Data player)
+        public static void JsonSave(string fullFilePath, PlayerData player)
         {
             JsonSerializer serializer = new JsonSerializer();
             serializer.Formatting = Formatting.Indented;
@@ -22,15 +22,15 @@ namespace SaveGame
             }
         }
 
-        public static bool JsonLoad(string fullFilePath, out Data playerData)
+        public static bool JsonLoad(string fullFilePath, out PlayerData playerData)
         {
             JsonSerializer serializer = new JsonSerializer();
             using (StreamReader stream = new StreamReader(fullFilePath))
             {
                 using (JsonReader reader = new JsonTextReader(stream))
                 {
-                    var readed = serializer.Deserialize(stream, typeof(Data));
-                    playerData = readed as Data;
+                    var readed = serializer.Deserialize(stream, typeof(PlayerData));
+                    playerData = readed as PlayerData;
                     playerData.Load();
                 }
             }
