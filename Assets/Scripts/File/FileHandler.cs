@@ -23,14 +23,13 @@ namespace FileManagement
                 if (Directory.Exists(fullPath))
                     Directory.Delete(fullPath);
                 
-                JsonSaveHandler.JsonSave(fullPath, new PlayerData());
+                JsonSaveHandler.JsonSave(fullPath, new Data());
             } 
             catch (IOException error)
             { 
                 Debug.LogError(error);
                 throw error;
             }
-            Debug.Log("Saved.");
         }
         public void Load()
         {
@@ -52,9 +51,6 @@ namespace FileManagement
                 throw error;
             }
             Debug.Log($"Loaded data: {result}");
-
-            // TODO : pull saved data from persistent data path
-            // TODO : implement error handling
         }
     }
 }

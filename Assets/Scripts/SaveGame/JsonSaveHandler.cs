@@ -8,7 +8,7 @@ namespace SaveGame
 {
     public static class JsonSaveHandler
     {
-        public static void JsonSave(string fullFilePath, PlayerData player)
+        public static void JsonSave(string fullFilePath, Data player)
         {
             JsonSerializer serializer = new JsonSerializer();
             serializer.Formatting = Formatting.Indented;
@@ -22,22 +22,19 @@ namespace SaveGame
             }
         }
 
-        public static bool JsonLoad(string fullFilePath, out PlayerData playerData)
+        public static bool JsonLoad(string fullFilePath, out Data playerData)
         {
             JsonSerializer serializer = new JsonSerializer();
             using (StreamReader stream = new StreamReader(fullFilePath))
             {
                 using (JsonReader reader = new JsonTextReader(stream))
                 {
-                    var readed = serializer.Deserialize(stream, typeof(PlayerData));
-                    playerData = readed as PlayerData;
+                    var readed = serializer.Deserialize(stream, typeof(Data));
+                    playerData = readed as Data;
                     playerData.Load();
                 }
             }
             return true;
-            // TODO : pull saved data from persistent data path and deserialize game data
-            // TODO : apply loaded game setting
-            // TODO : apply loaded data to player data (player name, level, health, status, inventory, etc.)
         }
     }
 }
