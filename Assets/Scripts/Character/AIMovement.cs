@@ -8,7 +8,7 @@ namespace Character {
 
     public class AIMovement : CharacterMovement {
 
-        [SerializeField] private Transform targetPos;
+        private Vector3 targetPos;
 
         public NavMeshAgent Agent => agent;
         private NavMeshAgent agent;
@@ -26,9 +26,11 @@ namespace Character {
 
         protected override void Update() {
             base.Update();
-            if (targetPos == null || !canMove)
+
+            if (!canMove)
                 return;
-            agent.SetDestination(targetPos.position);
+
+            agent.SetDestination(targetPos);
             agent.nextPosition = transform.position;
 
             Vector3 moveDirection = agent.desiredVelocity.normalized;
@@ -37,19 +39,14 @@ namespace Character {
                 Move(new Vector3(moveDirection.x, 0, moveDirection.z));
             } else {
                 Move(Vector3.zero);
-                LookAtTarget(targetPos.position);
+                LookAtTarget(targetPos);
             }
         }
 
-        public void SetTarget(Transform target) {
-            targetPos = target;
+        public void SetTarget(Vector3 worldPosition) {
+            targetPos = worldPosition;
         }
 
-        public void SetDestination(Vector3 destination) {
-            targetPos = null;
-            agent.SetDestination(destination);
-
-        }
         protected override void ApplyMovement() {
             base.ApplyMovement();
             ResetInputDirection();

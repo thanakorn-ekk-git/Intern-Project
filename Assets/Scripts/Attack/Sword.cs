@@ -18,9 +18,9 @@ namespace Attack
         {
             if (attacker != null)
             {
-                if (other.TryGetComponent<EntityWithHealth>(out var health))
+                if (other.TryGetComponent<EntityWithHealth>(out var otherEntity) && otherEntity.TeamID != selfEntity.TeamID)
                 {
-                    health.TakeDamage(attacker);
+                    otherEntity.TakeDamage(attacker);
                 }
             }
         }
@@ -32,6 +32,11 @@ namespace Attack
         public void DeactivateCollider()
         {
             weaponCollider.enabled = false;
+        }
+
+        protected virtual void OnAttackEnd()
+        {
+            // TODO : handle attack end event
         }
     }
 }

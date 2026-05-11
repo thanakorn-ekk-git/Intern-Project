@@ -6,13 +6,17 @@ namespace Enemy
 {
     public class EnemyWeapon : Sword
     {
+        [SerializeField] private EnemyBehavior enemy;
         protected override void OnTriggerEnter(Collider other)
         {
-            other.TryGetComponent<EntityWithHealth>(out var otherEntity);
-            if (otherEntity != null && selfEntity.TeamID != otherEntity.TeamID) 
-            {
-                Debug.Log("EnemyWeapon collided with " + other.name);   
-            }
+            base.OnTriggerEnter(other);
+        }
+
+        protected override void OnAttackEnd()
+        {
+            base.OnAttackEnd();
+            enemy.PerformRetreat();
+            Debug.Log("Attack End!");
         }
     }
 }

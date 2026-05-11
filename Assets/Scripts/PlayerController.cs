@@ -18,7 +18,6 @@ namespace Player
             if (InputManager.Attack)
             {
                 attacker.Attack();
-                StartCoroutine(attacker.AttackImpactCoroutine(2.0f));
             }
         }
     }

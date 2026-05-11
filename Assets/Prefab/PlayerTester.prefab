@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4451182588233481145}
   - component: {fileID: 4279555809951949954}
   - component: {fileID: 6576611650586520337}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 3524985556869798192}
   - component: {fileID: 1927341105943244167}
   - component: {fileID: 8655835529595175987}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerTester
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7940456504575233727}
   - component: {fileID: 5508793982957757933}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 3278653622432864155}
   - component: {fileID: 1934074552219872475}
   - component: {fileID: 8353493215198299259}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

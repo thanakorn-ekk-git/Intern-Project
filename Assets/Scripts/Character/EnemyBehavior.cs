@@ -1,21 +1,17 @@
 using Attack;
 using Character;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AdaptivePerformance;
-using static Enemy.EnemyBehavior;
 
 namespace Enemy
 {
     public class EnemyBehavior : MonoBehaviour
     {
-        public enum EnemyState
+        private enum State
         {
-            Idle, Chasing, Attacking, Restarting
+            Idle, Chase, Attack, Restart, Retreat
         }
-        [SerializeField] private EnemyState currentState = EnemyState.Idle;
+
+        [SerializeField] private State currentState = State.Idle;
 
         [SerializeField] private AIMovement aiMovement;
         [SerializeField] private Transform targetPos;
@@ -28,20 +24,16 @@ namespace Enemy
         [SerializeField] private float heightOffset = 0.3f;
 
         [SerializeField] private float attackRange = 2f;
+        [SerializeField] private float retreatRange;
         [SerializeField] private float attackCooldown = 2f;
         private float lastAttackTime;
-        [SerializeField] private float minMaxAttackRanRange;
+        [SerializeField] private LayerMask entity, ground;
 
-        private Vector3 retreatPos;
+        [SerializeField] private GameObject retreatPos;
 
         private float distanceToPlayer;
 
         private Vector3 origin;
-
-        private void Start()
-        {
-            aiMovement = GetComponent<AIMovement>();
-        }
 
         private void Update()
         {
@@ -53,103 +45,94 @@ namespace Enemy
             checkStateTimer += Time.deltaTime;
             if(checkStateTimer >= checkStateInterval)
             {
-                ChangeState();
+                UpdateState();
                 checkStateTimer = 0f;
             }
-
-            EnemyAction();
+            TakeAction();
         }
 
-        private void ChangeState()
+        private void UpdateState()
         {
-            if (currentState == EnemyState.Restarting)
+            if (currentState == State.Retreat)
             {
                 return;
             }
-
-            if(distanceToPlayer <= attackRange)
+            else if(distanceToPlayer <= attackRange)
             {
-                currentState = EnemyState.Attacking;
+                currentState = State.Attack;
                 return;
             }
-            else if (TargetOnSight())
+            else if (IsPlayerOnSight())
             {
-                currentState = EnemyState.Chasing;
+                currentState = State.Chase;
             }
-            else
+            else if(!IsPlayerOnSight())
             {
-                aiMovement.SetTarget(null);
-                currentState = EnemyState.Idle;
+                aiMovement.SetTarget(Vector3.zero);
+                currentState = State.Idle;
             }
         }
 
-        private void EnemyAction()
+        private void TakeAction()
         {
             switch (currentState)
             {
-                case EnemyState.Idle:
+                case State.Idle:
                     break;
-                case EnemyState.Chasing:
-                    TargetOnSight();
-                    aiMovement.SetTarget(targetPos);
+                case State.Chase:
+                    IsPlayerOnSight();
+                    aiMovement.SetTarget(targetPos.position);
                     break;
-                case EnemyState.Attacking:
+                case State.Attack:
                     if (Time.time >= lastAttackTime + attackCooldown)
                     {
                         PerformAttack();
                     }
                     break;
-                case EnemyState.Restarting:
-                    if(aiMovement.Agent.remainingDistance <= aiMovement.Agent.stoppingDistance)
+                case State.Retreat:
+                    if (aiMovement.Agent.remainingDistance <= aiMovement.Agent.stoppingDistance)
                     {
-                        currentState = EnemyState.Idle;
+                        currentState = State.Idle;
                     }
                     break;
             }
         }
 
-        private bool TargetOnSight()
+        private bool IsPlayerOnSight()
         {
             origin =  new Vector3 (transform.position.x, transform.position.y + heightOffset, transform.position.z);
             Vector3 targetWithOffset = new Vector3 (targetPos.position.x, targetPos.position.y + heightOffset, targetPos.position.z);
-
             Vector3 directionToPlayer = (targetWithOffset - origin).normalized;
 
-            Debug.DrawRay(origin, directionToPlayer * viewDistance, Color.green);
+            RaycastHit raycastResult;
+            LayerMask groundAndEntity = ground | entity;
 
-            RaycastHit raycast;
-            if (Physics.Raycast(origin, directionToPlayer, out raycast, viewDistance))
+            if (Physics.Raycast(origin, directionToPlayer, out raycastResult, viewDistance, groundAndEntity) 
+                && raycastResult.collider.CompareTag(Tags.Player))
             {
-                if (raycast.collider.CompareTag("Player"))
-                {
-                    return true;
-                }
+                return true;
             }
             return false;
         }
         void PerformAttack()
         {
-            aiMovement.SetTarget(null);
+            aiMovement.SetTarget(Vector3.zero);
             attacker.Attack();
-            StartCoroutine(attacker.AttackImpactCoroutine(2.0f));
             lastAttackTime = Time.time;
-
-            ResetAttack();
         }
 
-        private void ResetAttack()
+        public void PerformRetreat()
         {
-            float randX = UnityEngine.Random.Range(-minMaxAttackRanRange, minMaxAttackRanRange);
-            float randZ = UnityEngine.Random.Range(-minMaxAttackRanRange, minMaxAttackRanRange);
-            Vector3 randomPoint = new Vector3(targetPos.position.x + randX,
-                                                targetPos.position.y + 5f,
-                                                targetPos.position.z + randZ);
+            const float raycastHeight = 10f;
+            Vector3 randRadius = Random.insideUnitCircle * retreatRange;
+            Vector3 randPoint = new Vector3(transform.position.x + randRadius.x
+                , 0 + raycastHeight
+                , transform.position.z + randRadius.y);
 
-            if(Physics.Raycast(randomPoint, Vector3.down, out RaycastHit hit, 10f))
+            if (Physics.Raycast(randPoint, Vector3.down, out RaycastHit hit, raycastHeight, ground))
             {
-                retreatPos = hit.point;
-                aiMovement.SetDestination(retreatPos);
-                currentState = EnemyState.Restarting;
+                aiMovement.SetTarget(hit.point);
+                currentState = State.Retreat;
             }
         }
     }

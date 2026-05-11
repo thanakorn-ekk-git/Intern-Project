@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Attack
@@ -13,7 +14,6 @@ namespace Attack
 
         [Range(0.1f, 50f), SerializeField] private float dashForce = 10f;
         [Range(0.1f, 10f), SerializeField] private float drag = 5f;
-
 
         private void Awake()
         {
@@ -39,11 +39,15 @@ namespace Attack
 
         public void Attack()
         {
+            StartCoroutine(AttackImpactCoroutine(2.0f));
+
             impactVector = transform.forward * dashForce;
 
             const string ANIMATION_ATTACK_TRIGGER = "AttackTrig";
             weaponAnimator.SetTrigger(ANIMATION_ATTACK_TRIGGER);
         }
+
+
         private void HitImpact()
         {
             // TODO : add shake effect to player
