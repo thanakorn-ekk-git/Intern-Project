@@ -28,8 +28,8 @@ namespace Data
         [JsonObject]
         public class PlayerLevel 
         { 
-            [JsonProperty] public int level = 1;
-            [JsonProperty] public int exp = 0;
+            [JsonProperty] private int level = 1;
+            [JsonProperty] private int exp = 0;
 
             public override string ToString()
             {
@@ -40,12 +40,12 @@ namespace Data
         [JsonObject]
         public class PlayerStats
         {
-            [JsonProperty] public int health = 100;
-            [JsonProperty] public int mana = 50;
-            [JsonProperty] public int strength = 0;
-            [JsonProperty] public int dexity = 0;
-            [JsonProperty] public int defence = 0;
-            [JsonProperty] public int intelligence = 0;
+            [JsonProperty] private int health = 100;
+            [JsonProperty] private int mana = 50;
+            [JsonProperty] private int strength = 0;
+            [JsonProperty] private int dexity = 0;
+            [JsonProperty] private int defence = 0;
+            [JsonProperty] private int intelligence = 0;
 
             public override string ToString()
             {
