@@ -16,7 +16,6 @@ namespace Enemy
         {
             base.OnAttackEnd();
             enemy.PerformRetreat();
-            Debug.Log("Attack End!");
         }
     }
 }
