@@ -43,13 +43,13 @@ namespace Data
             [JsonProperty] private int health = 100;
             [JsonProperty] private int mana = 50;
             [JsonProperty] private int strength = 0;
-            [JsonProperty] private int dexity = 0;
+            [JsonProperty] private int dexterity = 0;
             [JsonProperty] private int defence = 0;
             [JsonProperty] private int intelligence = 0;
 
             public override string ToString()
             {
-                return $"Health = {health}\nMana = {mana}\nStrength = {strength}\nDexterity = {dexity}\nDefence = {defence}\nIntelligence = {intelligence}";
+                return $"Health = {health}\nMana = {mana}\nStrength = {strength}\nDexterity = {dexterity}\nDefence = {defence}\nIntelligence = {intelligence}";
             }
         }
     }
