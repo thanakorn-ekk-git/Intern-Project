@@ -1,5 +1,6 @@
 using UnityEngine;
 using Newtonsoft.Json;
+using GameManagement;
 
 namespace Data
 {
@@ -17,6 +18,11 @@ namespace Data
 
         public void Load()
         {
+            GameplayUI gameplayUI  = GameplayUI.Instance;
+            GameManager.Instance.ApplyPlayerData(stats);
+
+            gameplayUI.heroName = name;
+            gameplayUI.UpdateUI(level);
             // TODO : apply loaded data to player data (player name, level, health, status, inventory, etc.)
         }
 
@@ -33,23 +39,32 @@ namespace Data
 
             public override string ToString()
             {
-                return $"Level: {level} {exp}";
+                return $"Level: {level}\nExp: {exp}";
             }
         }
 
         [JsonObject]
         public class PlayerStats
         {
+            public int Health => health;
             [JsonProperty] private int health = 100;
+            public int Mana => mana;
             [JsonProperty] private int mana = 50;
+            public int AtkDamage => atkDamage;
+            [JsonProperty] private int atkDamage = 0;
+            public int Strength => strength;
             [JsonProperty] private int strength = 0;
+            public int Dexterity => dexterity;
             [JsonProperty] private int dexterity = 0;
+            public int Defence => defence;
             [JsonProperty] private int defence = 0;
+            public int Intelligence => intelligence;
             [JsonProperty] private int intelligence = 0;
+
 
             public override string ToString()
             {
-                return $"Health = {health}\nMana = {mana}\nStrength = {strength}\nDexterity = {dexterity}\nDefence = {defence}\nIntelligence = {intelligence}";
+                return $"Health = {health}\nMana = {mana}\nAtkDamage = {atkDamage}\nStrength = {strength}\nDexterity = {dexterity}\nDefence = {defence}\nIntelligence = {intelligence}";
             }
         }
     }

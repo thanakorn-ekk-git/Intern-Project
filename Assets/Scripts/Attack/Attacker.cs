@@ -6,6 +6,9 @@ namespace Attack
     [RequireComponent(typeof(CharacterController))]
     public class Attacker : MonoBehaviour
     {
+        public int Damage => damage;
+        [SerializeField] private int damage = 10;
+
         [SerializeField] private Animator weaponAnimator;
 
         [SerializeField] private CharacterController charController;

@@ -23,7 +23,7 @@ namespace FileManagement
                 if (Directory.Exists(fullPath))
                     Directory.Delete(fullPath);
                 
-                JsonSaveHandler.JsonSave(fullPath, new PlayerData());
+                JsonSaveHandler.JsonSave(fullPath, new CharacterData());
             } 
             catch (IOException error)
             { 
@@ -41,7 +41,7 @@ namespace FileManagement
 
                 if (File.Exists(fullPath))
                 {
-                    JsonSaveHandler.JsonLoad(fullPath, out var playerData);
+                    JsonSaveHandler.JsonLoad(fullPath, out var charData);
                     result = File.ReadAllText(fullPath);
                 }
             }

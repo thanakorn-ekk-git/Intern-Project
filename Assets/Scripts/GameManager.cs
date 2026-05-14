@@ -1,3 +1,4 @@
+using Attack;
 using UnityEngine;
 
 namespace GameManagement
@@ -6,6 +7,7 @@ namespace GameManagement
     {
         public static GameManager Instance;
         [SerializeField] private GameSceneManager sceneManager;
+        [SerializeField] private GameObject player;
 
         private void Awake()
         {
@@ -58,6 +60,20 @@ namespace GameManagement
         public void ResumeGame()
         {
             // TODO : resume time and hide pause menu
+        }
+
+        public void ApplyPlayerData(Data.PlayerData.PlayerStats stats)
+        {
+            if(player.TryGetComponent<EntityWithHealth>(out var entityHealth))
+            {
+                entityHealth.health = stats.Health;
+            }
+            if (player.TryGetComponent<Attacker>(out var self))
+            {
+                // TODO : apply player attack damage
+            }
+
+            // TODO : apply other stats to player character
         }
     }
 }
