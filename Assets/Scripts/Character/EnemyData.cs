@@ -1,7 +1,5 @@
 using Newtonsoft.Json;
-using NUnit.Framework;
-using UnityEngine;
-using static Data.PlayerData;
+using System.Collections.Generic;
 
 namespace Data
 {
@@ -12,12 +10,13 @@ namespace Data
     [JsonObject]
     public class EnemyData
     {
-        [JsonProperty] private string name = "Enemy";
         [JsonProperty] private string id = "0000";
         [JsonProperty] private EnemyType enemyType;
+        [JsonProperty] private float physicalSize = 1f;
+        [JsonProperty] private int hordeSize = 1;
 
         [JsonProperty] private EnemyStats stats = new EnemyStats();
-        [JsonProperty] private EnemyRewards rewards = new EnemyRewards();
+        [JsonProperty] private List<EnemyReward> rewards = new List<EnemyReward>();
 
         [JsonObject]
         public class EnemyStats
@@ -35,12 +34,11 @@ namespace Data
         }
 
         [JsonObject]
-        public class EnemyRewards
+        public class EnemyReward
         {
             [JsonProperty] private int expDrop;
             [JsonProperty] private int goldDrop;
             // TODO : add item drop [JsonProperty] private List<Item> itemDrop = new List<Item>();
         }
-
     }
 }
