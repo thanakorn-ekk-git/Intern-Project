@@ -1,7 +1,5 @@
 using Newtonsoft.Json;
-using NUnit.Framework;
-using UnityEngine;
-using static Data.PlayerData;
+using System.Xml.Serialization;
 
 namespace Data
 {
@@ -19,11 +17,16 @@ namespace Data
         [JsonProperty] private EnemyStats stats = new EnemyStats();
         [JsonProperty] private EnemyRewards rewards = new EnemyRewards();
 
+        public void Load()
+        {
+
+        }
+
         [JsonObject]
         public class EnemyStats
         {
             [JsonProperty] private int maxHealth;
-            [JsonProperty] private int attackPower;
+            [JsonProperty] private int atkDamage;
             [JsonProperty] private int defense;
             [JsonProperty] private float moveSpeed;
 
@@ -31,7 +34,6 @@ namespace Data
             [JsonProperty] private float attackRange;
             [JsonProperty] private float detectionRange;
             [JsonProperty] private float knockbackResistant;
-
         }
 
         [JsonObject]

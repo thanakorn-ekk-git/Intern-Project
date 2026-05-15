@@ -1,4 +1,5 @@
 using Attack;
+using Character;
 using UnityEngine;
 
 namespace GameManagement
@@ -64,13 +65,9 @@ namespace GameManagement
 
         public void ApplyPlayerData(Data.PlayerData.PlayerStats stats)
         {
-            if(player.TryGetComponent<EntityWithHealth>(out var entityHealth))
+            if (player.TryGetComponent<PlayerAttribute>(out var playerAttributes))
             {
-                entityHealth.health = stats.Health;
-            }
-            if (player.TryGetComponent<Attacker>(out var self))
-            {
-                // TODO : apply player attack damage
+                playerAttributes.ApplyPlayerData(stats);
             }
 
             // TODO : apply other stats to player character

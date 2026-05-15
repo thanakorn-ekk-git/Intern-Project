@@ -17,7 +17,8 @@ namespace Attack
         {
             if (other.TryGetComponent<EntityWithHealth>(out var health))
             {
-                health.TakeDamage(attacker);
+                DamageInfo damageInfo = new DamageInfo(attacker.CalculateDamage(),attacker );
+                health.TakeDamage(damageInfo);
             }
         }
 

@@ -1,3 +1,4 @@
+using Character;
 using System.Collections;
 using UnityEngine;
 
@@ -6,9 +7,7 @@ namespace Attack
     [RequireComponent(typeof(CharacterController))]
     public class Attacker : MonoBehaviour
     {
-        public int Damage => damage;
-        [SerializeField] private int damage = 10;
-
+        [SerializeField] private GameObject self;
         [SerializeField] private Animator weaponAnimator;
 
         [SerializeField] private CharacterController charController;
@@ -17,10 +16,22 @@ namespace Attack
         [Range(0.1f, 50f), SerializeField] private float dashForce = 10f;
         [Range(0.1f, 10f), SerializeField] private float drag = 5f;
 
-
         private void Awake()
         {
             charController = GetComponent<CharacterController>();
+        }
+
+        public int CalculateDamage()
+        {
+            if (self.TryGetComponent<PlayerAttribute>(out var playerAttribute))
+            {
+                return playerAttribute.AtkDamage + playerAttribute.Strength;
+            }
+            else if(self.TryGetComponent<EnemyAttribute>(out var enemyAttribute))
+            {
+                return enemyAttribute.AtkDamage;
+            }
+            return 0;
         }
 
         private void AttackImpact()
@@ -38,7 +49,6 @@ namespace Attack
             AttackImpact();
             yield return new WaitForSeconds(duration);
         }
-
 
         public void Attack()
         {
