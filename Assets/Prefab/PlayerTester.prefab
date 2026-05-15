@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4451182588233481145}
   - component: {fileID: 4279555809951949954}
   - component: {fileID: 6576611650586520337}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,8 @@ GameObject:
   - component: {fileID: 693522960136318909}
   - component: {fileID: 3524985556869798192}
   - component: {fileID: 1927341105943244167}
-  m_Layer: 0
+  - component: {fileID: 8655835529595175987}
+  m_Layer: 6
   m_Name: PlayerTester
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -200,6 +201,19 @@ MonoBehaviour:
   charController: {fileID: 693522960136318909}
   dashForce: 10
   drag: 5
+--- !u!114 &8655835529595175987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2311219321750180179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 135b4bcd7674df74da00541832bc7887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Attack.EntityWithHealth
+  teamID: 0
 --- !u!1 &3334880356629108708
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7940456504575233727}
   - component: {fileID: 5508793982957757933}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +278,7 @@ GameObject:
   - component: {fileID: 3278653622432864155}
   - component: {fileID: 1934074552219872475}
   - component: {fileID: 8353493215198299259}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,6 +369,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSword
       objectReference: {fileID: 0}
+    - target: {fileID: 5092130463649652905, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
+      propertyPath: attacker
+      value: 
+      objectReference: {fileID: 1927341105943244167}
+    - target: {fileID: 5092130463649652905, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
+      propertyPath: selfEntity
+      value: 
+      objectReference: {fileID: 8655835529595175987}
+    - target: {fileID: 5092130463649652905, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
+      propertyPath: weaponCollider
+      value: 
+      objectReference: {fileID: 8595762160425912187}
     - target: {fileID: 9026916411241760329, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.632
@@ -408,5 +434,10 @@ Transform:
 --- !u!95 &6266168536355863268 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8811023507073755220, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
+  m_PrefabInstance: {fileID: 3220896339907252912}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8595762160425912187 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 6627227186470933963, guid: 1cd82875dbbadda48b64cef073b0235a, type: 3}
   m_PrefabInstance: {fileID: 3220896339907252912}
   m_PrefabAsset: {fileID: 0}

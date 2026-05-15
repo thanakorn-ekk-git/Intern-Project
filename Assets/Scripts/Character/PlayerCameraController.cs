@@ -17,6 +17,9 @@ namespace Character {
 
         void LateUpdate()
         {
+            if(playerPos == null) 
+                return;
+
             transform.position = playerPos.position;
 
             float mouseX = InputManager.MouseMove.x * Time.deltaTime;

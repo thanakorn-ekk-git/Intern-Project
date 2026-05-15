@@ -5,7 +5,12 @@ namespace GameManagement
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
-        [SerializeField] private GameSceneManager sceneManager;
+        private GameSceneManager sceneManager;
+
+        public LayerMask LayerEntity => entity;
+        public LayerMask LayerGround => ground;
+        public LayerMask LayerEntityAndGround => entityAndGround;
+        [SerializeField] private LayerMask ground, entity, entityAndGround;
 
         private void Awake()
         {
