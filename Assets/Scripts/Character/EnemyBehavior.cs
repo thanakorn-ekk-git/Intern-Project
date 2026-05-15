@@ -27,7 +27,6 @@ namespace Enemy
         [SerializeField] private float retreatRange;
         [SerializeField] private float attackCooldown = 2f;
         private float lastAttackTime;
-        [SerializeField] private LayerMask entity, ground;
 
         [SerializeField] private GameObject retreatPos;
 
@@ -105,7 +104,7 @@ namespace Enemy
             Vector3 directionToPlayer = (targetWithOffset - origin).normalized;
 
             RaycastHit raycastResult;
-            LayerMask groundAndEntity = ground | entity;
+            LayerMask groundAndEntity = GameManager.Instance.LayerEntityAndGround;
 
             if (Physics.Raycast(origin, directionToPlayer, out raycastResult, viewDistance, groundAndEntity) 
                 && raycastResult.collider.CompareTag(Tags.Player))
@@ -129,7 +128,7 @@ namespace Enemy
                 , 0 + raycastHeight
                 , transform.position.z + randRadius.y);
 
-            if (Physics.Raycast(randPoint, Vector3.down, out RaycastHit hit, raycastHeight, ground))
+            if (Physics.Raycast(randPoint, Vector3.down, out RaycastHit hit, raycastHeight, GameManager.Instance.LayerGround))
             {
                 aiMovement.SetTarget(hit.point);
                 currentState = State.Retreat;

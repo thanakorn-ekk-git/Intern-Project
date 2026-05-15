@@ -4,6 +4,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     private GameSceneManager sceneManager;
+
+    public LayerMask LayerEntity => entity;
+    public LayerMask LayerGround => ground;
+    public LayerMask LayerEntityAndGround => entityAndGround;
+    [SerializeField] private LayerMask ground, entity, entityAndGround;
+
     private void Awake()
     {
         Instance ??= this;
