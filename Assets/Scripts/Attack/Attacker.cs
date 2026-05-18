@@ -43,11 +43,15 @@ namespace Attack
 
         public void Attack()
         {
+            StartCoroutine(AttackImpactCoroutine(2.0f));
+
             impactVector = transform.forward * dashForce;
 
             const string ANIMATION_ATTACK_TRIGGER = "AttackTrig";
             weaponAnimator.SetTrigger(ANIMATION_ATTACK_TRIGGER);
         }
+
+
         private void HitImpact()
         {
             // TODO : add shake effect to player

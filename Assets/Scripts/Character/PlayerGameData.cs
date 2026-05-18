@@ -43,6 +43,8 @@ namespace Data
         [JsonObject]
         public class PlayerStats
         {
+            public int MaxHealth => maxHealth;
+            [JsonProperty] private int maxHealth = 100;
             public int Health => health;
             [JsonProperty] private int health = 100;
             public int Mana => mana;
@@ -57,11 +59,14 @@ namespace Data
             [JsonProperty] private int defence = 0;
             public int Intelligence => intelligence;
             [JsonProperty] private int intelligence = 0;
+            [JsonProperty] private float critRate = 0;
+            [JsonProperty] private float critStrength = 0;
 
 
             public override string ToString()
             {
-                return $"Health = {health}\nMana = {mana}\nAtkDamage = {atkDamage}\nStrength = {strength}\nDexterity = {dexterity}\nDefence = {defence}\nIntelligence = {intelligence}";
+                return $"Max Health = {maxHealth}\nMana = {mana}\nStrength = {strength}\nDexterity = {dexterity}\n" +
+                    $"Defence = {defence}\nIntelligence = {intelligence}\nCrit Rate = {critRate}\nCrit Strength = {critStrength}";
             }
         }
     }
