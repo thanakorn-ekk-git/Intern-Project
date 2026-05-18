@@ -15,10 +15,10 @@ namespace Attack
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<EntityWithHealth>(out var health))
+            if (other.TryGetComponent<EntityWithHealth>(out var defender))
             {
-                DamageInfo damageInfo = new DamageInfo(attacker.CalculateDamage(),attacker );
-                health.TakeDamage(damageInfo);
+                AttackEventData damageInfo = new AttackEventData(attacker, defender);
+                defender.TakeDamage(damageInfo);
             }
         }
 

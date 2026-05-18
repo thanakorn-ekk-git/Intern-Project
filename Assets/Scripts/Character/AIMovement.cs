@@ -1,7 +1,5 @@
 using UnityEngine;
-using Unity.AI;
 using UnityEngine.AI;
-using System;
 
 namespace Character {
     [RequireComponent(typeof(NavMeshAgent))]

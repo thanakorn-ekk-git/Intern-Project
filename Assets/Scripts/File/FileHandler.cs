@@ -23,7 +23,7 @@ namespace FileManagement
                 if (Directory.Exists(fullPath))
                     Directory.Delete(fullPath);
                 
-                JsonSaveHandler.JsonSave(fullPath, new CharacterData());
+                JsonSaveHandler.JsonSave(fullPath, new CharacterGameData());
             } 
             catch (IOException error)
             { 

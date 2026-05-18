@@ -1,11 +1,9 @@
-using UnityEngine;
 using Newtonsoft.Json;
-using GameManagement;
 
 namespace Data
 {
     [JsonObject]
-    public class PlayerData
+    public class PlayerGameData
     {
         [JsonProperty] private string name = "Hero";
         [JsonProperty] private PlayerLevel level = new PlayerLevel();
@@ -19,7 +17,6 @@ namespace Data
         public void Load()
         {
             GameplayUI gameplayUI  = GameplayUI.Instance;
-            GameManager.Instance.ApplyPlayerData(stats);
 
             gameplayUI.heroName = name;
             gameplayUI.UpdateUI(level);

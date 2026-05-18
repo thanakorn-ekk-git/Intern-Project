@@ -3,30 +3,32 @@ using UnityEngine;
 
 namespace Attack
 {
-    public class EntityWithHealth : MonoBehaviour
+    public class EntityWithHealth : MonoBehaviour, ICanDefend
     {
-        [SerializeField] private GameObject self;
-        public int health = 100;
-        public void TakeDamage(DamageInfo dmgInfo)
+        private IContainAttributes attributes;
+
+        public int MaxHealth = 100;
+        public int CurrentHealth = 0;
+        [SerializeField] private int defense;
+
+        public int Defense => defense;
+
+        public void Setup(IContainAttributes attributes)
         {
-            if(self.TryGetComponent<PlayerAttribute>(out var player))
-            {
-                int damageCalculated = dmgInfo.Damage - player.Defense;
-                
-                health -= (dmgInfo.Damage - player.Defense);
-            }
-            else if (self.TryGetComponent<EnemyAttribute>(out var enemy))
-            {
-                health -= dmgInfo.Damage;
-            }
-            
-            if (health <= 0)
+            this.attributes = attributes;
+            this.MaxHealth = attributes.MaxHealth;
+        }
+
+        public void TakeDamage(AttackEventData attackData)
+        {
+            CurrentHealth -= Mathf.Max(1, attackData.Damage);
+            if (CurrentHealth <= 0)
             {
                 Die();
             }
         }
 
-        private void Die()
+        protected virtual void Die()
         {
             Destroy(gameObject);
         }

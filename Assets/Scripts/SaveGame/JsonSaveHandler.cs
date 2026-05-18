@@ -6,7 +6,7 @@ namespace SaveGame
 {
     public static class JsonSaveHandler
     {
-        public static void JsonSave(string fullFilePath, CharacterData charData)
+        public static void JsonSave(string fullFilePath, CharacterGameData charData)
         {
             JsonSerializer serializer = new JsonSerializer();
             serializer.Formatting = Formatting.Indented;
@@ -14,21 +14,20 @@ namespace SaveGame
             {
                 using (JsonWriter writer = new JsonTextWriter(stream))
                 {
-                    charData.Save();
                     serializer.Serialize(writer, charData);
                 }
             }
         }
 
-        public static bool JsonLoad(string fullFilePath, out CharacterData charData)
+        public static bool JsonLoad(string fullFilePath, out CharacterGameData charData)
         {
             JsonSerializer serializer = new JsonSerializer();
             using (StreamReader stream = new StreamReader(fullFilePath))
             {
                 using (JsonReader reader = new JsonTextReader(stream))
                 {
-                    var readed = serializer.Deserialize(stream, typeof(CharacterData));
-                    charData = readed as CharacterData;
+                    var readed = serializer.Deserialize(stream, typeof(CharacterGameData));
+                    charData = readed as CharacterGameData;
                     charData.Load();
                 }
             }

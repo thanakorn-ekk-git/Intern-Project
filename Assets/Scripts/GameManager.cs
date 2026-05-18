@@ -1,5 +1,4 @@
-using Attack;
-using Character;
+using Data;
 using UnityEngine;
 
 namespace GameManagement
@@ -8,7 +7,7 @@ namespace GameManagement
     {
         public static GameManager Instance;
         [SerializeField] private GameSceneManager sceneManager;
-        [SerializeField] private GameObject player;
+        [SerializeField] private CharacterGameData characterData;
 
         private void Awake()
         {
@@ -21,6 +20,8 @@ namespace GameManagement
             {
                 DontDestroyOnLoad(gameObject);
             }
+
+            characterData.Load();
         }
         public void NewGame()
         {
@@ -61,16 +62,6 @@ namespace GameManagement
         public void ResumeGame()
         {
             // TODO : resume time and hide pause menu
-        }
-
-        public void ApplyPlayerData(Data.PlayerData.PlayerStats stats)
-        {
-            if (player.TryGetComponent<PlayerAttribute>(out var playerAttributes))
-            {
-                playerAttributes.ApplyPlayerData(stats);
-            }
-
-            // TODO : apply other stats to player character
         }
     }
 }

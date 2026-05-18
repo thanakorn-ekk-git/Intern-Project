@@ -20,7 +20,7 @@ public class GameplayUI : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-    public void UpdateUI(Data.PlayerData.PlayerLevel level)
+    public void UpdateUI(Data.PlayerGameData.PlayerLevel level)
     {
         heroNameUI.text = heroName;
         curLevelUI.text = level.ToString();

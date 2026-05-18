@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-using System.Xml.Serialization;
+using Character;
 
 namespace Data
 {
@@ -8,7 +8,7 @@ namespace Data
     }
 
     [JsonObject]
-    public class EnemyData
+    public class EnemyGameData
     {
         [JsonProperty] private string name = "Enemy";
         [JsonProperty] private string id = "0000";
@@ -23,7 +23,7 @@ namespace Data
         }
 
         [JsonObject]
-        public class EnemyStats
+        public class EnemyStats : ICanAttack, ICanDefend
         {
             [JsonProperty] private int maxHealth;
             [JsonProperty] private int atkDamage;
@@ -34,6 +34,11 @@ namespace Data
             [JsonProperty] private float attackRange;
             [JsonProperty] private float detectionRange;
             [JsonProperty] private float knockbackResistant;
+
+            public int AtkDamage => atkDamage;
+            public int Strength => 0;
+
+            public int Defense => defense;
         }
 
         [JsonObject]

@@ -5,9 +5,13 @@ using UnityEngine;
 namespace Attack
 {
     [RequireComponent(typeof(CharacterController))]
-    public class Attacker : MonoBehaviour
+    public class Attacker : MonoBehaviour, ICanAttack
     {
-        [SerializeField] private GameObject self;
+        [SerializeField] private int atkDamage;
+        [SerializeField] private int strength;
+        public int AtkDamage => atkDamage;
+        public int Strength => strength;
+
         [SerializeField] private Animator weaponAnimator;
 
         [SerializeField] private CharacterController charController;
@@ -19,19 +23,6 @@ namespace Attack
         private void Awake()
         {
             charController = GetComponent<CharacterController>();
-        }
-
-        public int CalculateDamage()
-        {
-            if (self.TryGetComponent<PlayerAttribute>(out var playerAttribute))
-            {
-                return playerAttribute.AtkDamage + playerAttribute.Strength;
-            }
-            else if(self.TryGetComponent<EnemyAttribute>(out var enemyAttribute))
-            {
-                return enemyAttribute.AtkDamage;
-            }
-            return 0;
         }
 
         private void AttackImpact()
