@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Attack
 {
     [RequireComponent(typeof(CharacterController))]
-    public class Attacker : MonoBehaviour, ICanAttack
+    public class Attacker : MonoBehaviour, IAttackable
     {
         [SerializeField] private int atkDamage;
         [SerializeField] private int strength;

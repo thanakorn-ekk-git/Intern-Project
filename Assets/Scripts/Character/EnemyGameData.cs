@@ -23,7 +23,7 @@ namespace Data
         }
 
         [JsonObject]
-        public class EnemyStats : ICanAttack, ICanDefend
+        public class EnemyStats : IAttackable, IDefendable
         {
             [JsonProperty] private int maxHealth;
             [JsonProperty] private int atkDamage;

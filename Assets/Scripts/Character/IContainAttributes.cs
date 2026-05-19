@@ -10,12 +10,12 @@ namespace Character
         int Defense { get; }
         int Intelligence { get; }
     }
-    public interface ICanAttack
+    public interface IAttackable
     {
         int AtkDamage { get; }
         int Strength { get; }
     }
-    public interface ICanDefend
+    public interface IDefendable
     {
         int Defense { get; }
     }

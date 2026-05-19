@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Attack
 {
     public class AttackEventData
@@ -8,7 +10,7 @@ namespace Attack
 
         public AttackEventData(Attacker attacker, EntityWithHealth defender)
         {
-            Damage = (attacker.AtkDamage - defender.Defense);
+            Damage = Mathf.Max(1, attacker.AtkDamage - defender.Defense);
             this.Attacker = attacker;
             this.Defender = defender;
         }

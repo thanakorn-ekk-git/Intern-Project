@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Attack
 {
-    public class EntityWithHealth : MonoBehaviour, ICanDefend
+    public class EntityWithHealth : MonoBehaviour, IDefendable
     {
         private IContainAttributes attributes;
 
@@ -21,7 +21,7 @@ namespace Attack
 
         public void TakeDamage(AttackEventData attackData)
         {
-            CurrentHealth -= Mathf.Max(1, attackData.Damage);
+            CurrentHealth -= attackData.Damage;
             if (CurrentHealth <= 0)
             {
                 Die();
