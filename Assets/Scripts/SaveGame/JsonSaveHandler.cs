@@ -28,7 +28,6 @@ namespace SaveGame
                 {
                     var readed = serializer.Deserialize(stream, typeof(CharacterGameData));
                     charData = readed as CharacterGameData;
-                    charData.Load();
                 }
             }
             return true;

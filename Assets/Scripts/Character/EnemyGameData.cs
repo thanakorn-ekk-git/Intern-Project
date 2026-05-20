@@ -1,5 +1,10 @@
-using Newtonsoft.Json;
+using Attack;
 using Character;
+using Enemy;
+using Newtonsoft.Json;
+using Player;
+using System.Diagnostics;
+using UnityEngine;
 
 namespace Data
 {
@@ -10,15 +15,25 @@ namespace Data
     [JsonObject]
     public class EnemyGameData
     {
-        [JsonProperty] private string name = "Enemy";
         [JsonProperty] private string id = "0000";
         [JsonProperty] private EnemyType enemyType;
 
         [JsonProperty] private EnemyStats stats = new EnemyStats();
         [JsonProperty] private EnemyRewards rewards = new EnemyRewards();
 
-        public void Load()
+        public void Load(EnemyGameData data)
         {
+            id = data.id;
+            enemyType = data.enemyType;
+            stats = data.stats;
+            rewards = data.rewards;
+
+            var tmpEnemy = GameObject.FindFirstObjectByType<EnemyBehavior>();
+            if (tmpEnemy.TryGetComponent<Attacker>(out var attacker) && tmpEnemy.TryGetComponent<EntityWithHealth>(out var defender))
+            {
+                attacker.SetData(stats.AtkDamage, stats.Strength);
+                defender.SetData(stats.Defense);
+            }
 
         }
 

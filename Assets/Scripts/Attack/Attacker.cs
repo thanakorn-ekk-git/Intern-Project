@@ -51,6 +51,11 @@ namespace Attack
             weaponAnimator.SetTrigger(ANIMATION_ATTACK_TRIGGER);
         }
 
+        public void SetData(int damage, int strength)
+        {
+            atkDamage = damage;
+            this.strength = strength;
+        }
 
         private void HitImpact()
         {

@@ -7,16 +7,15 @@ namespace Attack
     {
         private IContainAttributes attributes;
 
-        public int MaxHealth = 100;
+        private int MaxHealth = 100;
         public int CurrentHealth = 0;
         [SerializeField] private int defense;
 
         public int Defense => defense;
 
-        public void Setup(IContainAttributes attributes)
+        public void SetData(int defense)
         {
-            this.attributes = attributes;
-            this.MaxHealth = attributes.MaxHealth;
+            this.defense = defense;
         }
 
         public void TakeDamage(AttackEventData attackData)

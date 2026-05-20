@@ -1,4 +1,7 @@
+using Attack;
 using Newtonsoft.Json;
+using Player;
+using UnityEngine;
 
 namespace Data
 {
@@ -14,13 +17,18 @@ namespace Data
             // TODO : pull player's data to be serialized (player name, level, health, status, inventory, etc.)
         }
 
-        public void Load()
+        public void Load(PlayerGameData data)
         {
-            GameplayUI gameplayUI  = GameplayUI.Instance;
+            name = data.name;
+            level = data.level;
+            stats = data.stats;
 
-            gameplayUI.heroName = name;
-            gameplayUI.UpdateUI(level);
-            // TODO : apply loaded data to player data (player name, level, health, status, inventory, etc.)
+            var tmpPlayer = GameObject.FindFirstObjectByType<PlayerController>();
+            if (tmpPlayer.TryGetComponent<Attacker>( out var attacker) && tmpPlayer.TryGetComponent<EntityWithHealth>(out var defender))
+            { 
+                attacker.SetData(stats.AtkDamage, stats.Strength);
+                defender.SetData(stats.Defense);
+            }
         }
 
         public override string ToString()
@@ -55,8 +63,8 @@ namespace Data
             [JsonProperty] private int strength = 0;
             public int Dexterity => dexterity;
             [JsonProperty] private int dexterity = 0;
-            public int Defence => defence;
-            [JsonProperty] private int defence = 0;
+            public int Defense => defense;
+            [JsonProperty] private int defense = 0;
             public int Intelligence => intelligence;
             [JsonProperty] private int intelligence = 0;
             [JsonProperty] private float critRate = 0;
@@ -66,7 +74,7 @@ namespace Data
             public override string ToString()
             {
                 return $"Max Health = {maxHealth}\nMana = {mana}\nStrength = {strength}\nDexterity = {dexterity}\n" +
-                    $"Defence = {defence}\nIntelligence = {intelligence}\nCrit Rate = {critRate}\nCrit Strength = {critStrength}";
+                    $"Defense = {defense}\nIntelligence = {intelligence}\nCrit Rate = {critRate}\nCrit Strength = {critStrength}";
             }
         }
     }

@@ -8,9 +8,10 @@ namespace Data
         [JsonProperty] private PlayerGameData player = new PlayerGameData();
         [JsonProperty] private EnemyGameData enemy = new EnemyGameData();
 
-        public void Load() 
+        public void Load(CharacterGameData characterData) 
         { 
-            player.Load();
+            player.Load(characterData.player);
+            enemy.Load(characterData.enemy);
         }
     }
 }

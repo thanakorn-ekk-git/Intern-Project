@@ -7,8 +7,8 @@ namespace GameManagement
     {
         public static GameManager Instance;
 
-        [SerializeField] private GameSceneManager sceneManager;
-        [SerializeField] private CharacterGameData characterData;
+        private GameSceneManager sceneManager;
+        private CharacterGameData characterData;
 
         public LayerMask LayerEntity => entity;
         public LayerMask LayerGround => ground;
@@ -25,9 +25,9 @@ namespace GameManagement
             else
             {
                 DontDestroyOnLoad(gameObject);
-            }
 
-            characterData.Load();
+                LoadCharacterData(new CharacterGameData());
+            }
         }
         public void NewGame()
         {
@@ -68,6 +68,12 @@ namespace GameManagement
         public void ResumeGame()
         {
             // TODO : resume time and hide pause menu
+        }
+
+        public void LoadCharacterData(CharacterGameData data)
+        {
+            characterData = data;
+            characterData.Load(characterData);
         }
     }
 }
