@@ -8,7 +8,6 @@ namespace Data
     [JsonObject]
     public class PlayerGameData
     {
-        [JsonProperty] private string name = "Hero";
         [JsonProperty] private PlayerLevel level = new PlayerLevel();
         [JsonProperty] private PlayerStats stats = new PlayerStats();
 
@@ -19,7 +18,6 @@ namespace Data
 
         public void Load(PlayerGameData data)
         {
-            name = data.name;
             level = data.level;
             stats = data.stats;
 
@@ -33,7 +31,7 @@ namespace Data
 
         public override string ToString()
         {
-            return $"{GetType()} {name} {level} {stats}";
+            return $"{GetType()} {level} {stats}";
         }
 
         [JsonObject]

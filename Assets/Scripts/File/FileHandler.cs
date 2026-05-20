@@ -8,20 +8,22 @@ namespace FileManagement
 {
     public class FileHandler : MonoBehaviour
     {
-        public const string SaveFolderName = "GameData";
-        public const string SaveGameName = "CharacterSaveData";
-        public const string SaveGameExtension = ".json";
+        public const string GameDataFolderName = "GameData";
+        public const string GameDataFileName = "main_data";
+        public const string GameDataFullName = GameDataFolderName + GameDataFileName;
+
+        public const string SaveGameName = "main_save";
+        public const string SaveGameExtension = ".sav";
         public const string SaveGameFullName = SaveGameName + SaveGameExtension;
 
         public void Save()
         {
             try
             {
-                var folderPath = Path.Combine(Application.dataPath, SaveFolderName);
-                var fullPath = Path.Combine(folderPath, SaveGameFullName);
+                var fullPath = Path.Combine(Application.persistentDataPath, SaveGameFullName);
 
-                if (!Directory.Exists(folderPath))
-                    Directory.CreateDirectory(folderPath);
+                if (!Directory.Exists(Application.persistentDataPath))
+                    Directory.CreateDirectory(Application.persistentDataPath);
 
                 if (Directory.Exists(fullPath))
                     Directory.Delete(fullPath);
@@ -34,20 +36,19 @@ namespace FileManagement
                 throw error;
             }
         }
-        public void Load()
+        public void LoadSaveData()
         {
             var result = string.Empty;
 
             try
             {
-                var folderPath = Path.Combine(Application.dataPath, SaveFolderName);
-                var fullPath = Path.Combine(folderPath, SaveGameFullName);
+                var fullPath = Path.Combine(Application.persistentDataPath, SaveGameFullName);
 
                 if (File.Exists(fullPath))
                 {
                     JsonSaveHandler.JsonLoad(fullPath, out var charData);
                     result = File.ReadAllText(fullPath);
-                    GameManager.Instance.LoadCharacterData(charData);
+                    GameManager.Instance.LoadSaveData(charData);
                 }
             }
             catch (IOException error)
@@ -56,6 +57,26 @@ namespace FileManagement
                 throw error;
             }
             Debug.Log($"Loaded data: {result}");
+        }
+
+        public bool LoadGameData( out CharacterGameData charData)
+        {
+            var Result = string.Empty;
+
+            var fullPath = Path.Combine(Application.dataPath, GameDataFullName);
+
+            if (File.Exists(fullPath))
+            {
+                JsonSaveHandler.JsonLoad(fullPath, out var CharData);
+                Result = File.ReadAllText(fullPath);
+                charData = CharData;
+                return true;
+            }
+            else
+            {
+                charData = null;
+                return false;
+            }
         }
     }
 }

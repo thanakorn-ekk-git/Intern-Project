@@ -1,28 +1,19 @@
 using TMPro;
 using UnityEngine;
 
-public class GameplayUI : MonoBehaviour
+namespace UI
 {
-    public static GameplayUI Instance;
-    [SerializeField] private TextMeshProUGUI heroNameUI, curLevelUI;
+    public class GameplayUI : MonoBehaviour
+    {
+        [SerializeField] private TextMeshProUGUI heroNameUI, curLevelUI;
 
-    public string heroName = string.Empty;
-    public string curLevel;
-    private void Awake()
-    {
-        Instance ??= this;
-        if (this != Instance)
+        public string heroName { get; private set; } = string.Empty;
+        public string curLevel { get; private set; }
+
+        public void UpdateUI(Data.PlayerGameData.PlayerLevel level)
         {
-            DestroyImmediate(gameObject);
+            heroNameUI.text = heroName;
+            curLevelUI.text = level.ToString();
         }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-    }
-    public void UpdateUI(Data.PlayerGameData.PlayerLevel level)
-    {
-        heroNameUI.text = heroName;
-        curLevelUI.text = level.ToString();
     }
 }

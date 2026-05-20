@@ -1,19 +1,25 @@
+using MainMenu;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+namespace UI
 {
-    public static UIManager Instance;
-
-    private void Awake()
+    public class UIManager : MonoBehaviour
     {
-        Instance ??= this;
-        if (this != Instance)
+        public static UIManager Instance;
+        private GameplayUI gameplayUI;
+        private MainMenuUI mainMenuUI;
+
+        private void Awake()
         {
-            DestroyImmediate(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
+            Instance ??= this;
+            if (this != Instance)
+            {
+                DestroyImmediate(gameObject);
+            }
+            else
+            {
+                DontDestroyOnLoad(gameObject);
+            }
         }
     }
 }

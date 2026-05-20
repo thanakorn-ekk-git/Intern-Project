@@ -1,4 +1,6 @@
 using Data;
+using FileManagement;
+using UI;
 using UnityEngine;
 
 namespace GameManagement
@@ -7,6 +9,9 @@ namespace GameManagement
     {
         public static GameManager Instance;
 
+        [SerializeField] UIManager uiManager;
+
+        private FileHandler fileHandler;
         private GameSceneManager sceneManager;
         private CharacterGameData characterData;
 
@@ -26,7 +31,10 @@ namespace GameManagement
             {
                 DontDestroyOnLoad(gameObject);
 
-                LoadCharacterData(new CharacterGameData());
+                if (fileHandler.LoadGameData(out var charData))
+                {
+                    LoadGameData(string.Empty, charData);
+                }
             }
         }
         public void NewGame()
@@ -39,6 +47,7 @@ namespace GameManagement
         {
             // TODO : load game scene where player saved with saved player data
             sceneManager.EnterGameplayScene();
+            fileHandler.LoadSaveData();
         }
         public void SaveGame()
         {
@@ -70,10 +79,13 @@ namespace GameManagement
             // TODO : resume time and hide pause menu
         }
 
-        public void LoadCharacterData(CharacterGameData data)
+        public void LoadGameData(string loadResult, CharacterGameData charData)
         {
-            characterData = data;
-            characterData.Load(characterData);
+            characterData.Load(charData);
+        }
+        public void LoadSaveData(CharacterGameData charData)
+        {
+
         }
     }
 }

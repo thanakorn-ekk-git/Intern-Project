@@ -21,7 +21,7 @@ namespace FileManagement
 
                 if (GUILayout.Button("Load"))
                 {
-                    script.Load();
+                    script.LoadSaveData();
                 }
             }
         }

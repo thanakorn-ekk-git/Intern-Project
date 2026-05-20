@@ -7,9 +7,9 @@ namespace Attack
     {
         private IContainAttributes attributes;
 
-        private int MaxHealth = 100;
-        public int CurrentHealth = 0;
-        [SerializeField] private int defense;
+        private int maxHealth = 100;
+        private int currentHealth = 0;
+        private int defense;
 
         public int Defense => defense;
 
@@ -20,8 +20,8 @@ namespace Attack
 
         public void TakeDamage(AttackEventData attackData)
         {
-            CurrentHealth -= attackData.Damage;
-            if (CurrentHealth <= 0)
+            currentHealth -= attackData.Damage;
+            if (currentHealth <= 0)
             {
                 Die();
             }

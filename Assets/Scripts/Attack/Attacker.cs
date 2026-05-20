@@ -7,10 +7,8 @@ namespace Attack
     [RequireComponent(typeof(CharacterController))]
     public class Attacker : MonoBehaviour, IAttackable
     {
-        [SerializeField] private int atkDamage;
-        [SerializeField] private int strength;
-        public int AtkDamage => atkDamage;
-        public int Strength => strength;
+        public int AtkDamage { get; private set; }
+        public int Strength {  get; private set; }
 
         [SerializeField] private Animator weaponAnimator;
 
@@ -51,10 +49,10 @@ namespace Attack
             weaponAnimator.SetTrigger(ANIMATION_ATTACK_TRIGGER);
         }
 
-        public void SetData(int damage, int strength)
+        public void SetData(int newDamage, int newStrength)
         {
-            atkDamage = damage;
-            this.strength = strength;
+            AtkDamage = newDamage;
+            Strength = newStrength;
         }
 
         private void HitImpact()
