@@ -18,8 +18,8 @@ namespace Data
         [JsonProperty] private string id = "0000";
         [JsonProperty] private EnemyType enemyType;
 
-        [JsonProperty] private EnemyStats stats = new EnemyStats();
-        [JsonProperty] private EnemyRewards rewards = new EnemyRewards();
+        [JsonProperty] public EnemyStats stats { get; private set; } = new EnemyStats();
+        [JsonProperty] public EnemyRewards rewards { get; private set; } = new EnemyRewards();
 
         public void Load(EnemyGameData data)
         {
@@ -27,40 +27,32 @@ namespace Data
             enemyType = data.enemyType;
             stats = data.stats;
             rewards = data.rewards;
-
-            var tmpEnemy = GameObject.FindFirstObjectByType<EnemyBehavior>();
-            if (tmpEnemy.TryGetComponent<Attacker>(out var attacker) && tmpEnemy.TryGetComponent<EntityWithHealth>(out var defender))
-            {
-                attacker.SetData(stats.AtkDamage, stats.Strength);
-                defender.SetData(stats.Defense);
-            }
-
         }
 
         [JsonObject]
         public class EnemyStats : IAttackable, IDefendable
         {
-            [JsonProperty] private int maxHealth;
-            [JsonProperty] private int atkDamage;
-            [JsonProperty] private int defense;
-            [JsonProperty] private float moveSpeed;
+            [JsonProperty] public int maxHealth { get; private set; }
+            [JsonProperty] public int atkDamage { get; private set; }
+            [JsonProperty] public int defense { get; private set; }
+            [JsonProperty] public float moveSpeed { get; private set; }
 
-            [JsonProperty] private float attackSpeed;
-            [JsonProperty] private float attackRange;
-            [JsonProperty] private float detectionRange;
-            [JsonProperty] private float knockbackResistant;
+            [JsonProperty] public float attackSpeed { get; private set; }
+            [JsonProperty] public float attackRange { get; private set; }
+            [JsonProperty] public float detectionRange { get; private set; }
+            [JsonProperty] public float knockbackResistant { get; private set; }
 
-            public int AtkDamage => atkDamage;
-            public int Strength => 0;
-
-            public int Defense => defense;
+            const int zeroValueForUnusedStat = 0;
+            public int AtkDamage => zeroValueForUnusedStat;
+            public int Strength => zeroValueForUnusedStat;
+            public int Defense => zeroValueForUnusedStat;
         }
 
         [JsonObject]
         public class EnemyRewards
         {
-            [JsonProperty] private int expDrop;
-            [JsonProperty] private int goldDrop;
+            [JsonProperty] public int expDrop { get; private set; }
+            [JsonProperty] public int goldDrop { get; private set; }
             // TODO : add item drop [JsonProperty] private List<Item> itemDrop = new List<Item>();
         }
 

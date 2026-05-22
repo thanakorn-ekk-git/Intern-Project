@@ -24,8 +24,8 @@ namespace Data
             var tmpPlayer = GameObject.FindFirstObjectByType<PlayerController>();
             if (tmpPlayer.TryGetComponent<Attacker>( out var attacker) && tmpPlayer.TryGetComponent<EntityWithHealth>(out var defender))
             { 
-                attacker.SetData(stats.AtkDamage, stats.Strength);
-                defender.SetData(stats.Defense);
+                attacker.SetData(stats.atkDamage, stats.strength);
+                defender.SetData(stats.defense, stats.maxHealth);
             }
         }
 
@@ -49,24 +49,16 @@ namespace Data
         [JsonObject]
         public class PlayerStats
         {
-            public int MaxHealth => maxHealth;
-            [JsonProperty] private int maxHealth = 100;
-            public int Health => health;
-            [JsonProperty] private int health = 100;
-            public int Mana => mana;
-            [JsonProperty] private int mana = 50;
-            public int AtkDamage => atkDamage;
-            [JsonProperty] private int atkDamage = 0;
-            public int Strength => strength;
-            [JsonProperty] private int strength = 0;
-            public int Dexterity => dexterity;
-            [JsonProperty] private int dexterity = 0;
-            public int Defense => defense;
-            [JsonProperty] private int defense = 0;
-            public int Intelligence => intelligence;
-            [JsonProperty] private int intelligence = 0;
-            [JsonProperty] private float critRate = 0;
-            [JsonProperty] private float critStrength = 0;
+            [JsonProperty] public int maxHealth { get; private set; } = 100;
+            [JsonProperty] public int health { get; private set; } = 100;
+            [JsonProperty] public int mana { get; private set; } = 50;
+            [JsonProperty] public int atkDamage { get; private set; } = 0;
+            [JsonProperty] public int strength { get; private set; } = 0;
+            [JsonProperty] public int dexterity { get; private set; } = 0;
+            [JsonProperty] public int defense { get; private set; } = 0;
+            [JsonProperty] public int intelligence { get; private set; } = 0;
+            [JsonProperty] public float critRate { get; private set; } = 0;
+            [JsonProperty] public float critStrength { get; private set; } = 0;
 
 
             public override string ToString()

@@ -13,9 +13,11 @@ namespace Attack
 
         public int Defense => defense;
 
-        public void SetData(int defense)
+        public void SetData(int defense, int maxHealth)
         {
+            this.maxHealth = maxHealth;
             this.defense = defense;
+            currentHealth = this.maxHealth;
         }
 
         public void TakeDamage(AttackEventData attackData)
