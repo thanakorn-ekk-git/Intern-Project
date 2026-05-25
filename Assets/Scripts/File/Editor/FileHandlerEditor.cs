@@ -1,8 +1,7 @@
-using FileManagement;
 using UnityEditor;
 using UnityEngine;
 
-namespace FileManagement
+namespace Services
 {
     [CustomEditor(typeof(FileHandler))]
     public class FileHandlerEditor : Editor

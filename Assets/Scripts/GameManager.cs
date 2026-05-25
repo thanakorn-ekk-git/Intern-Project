@@ -5,6 +5,7 @@ namespace GameManagement
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
+        public GameData.GameData GameData { get; private set; }
         private GameSceneManager sceneManager;
 
         public LayerMask LayerEntity => entity;
@@ -18,12 +19,23 @@ namespace GameManagement
             if (this != Instance)
             {
                 DestroyImmediate(gameObject);
+                return;
             }
             else
             {
                 DontDestroyOnLoad(gameObject);
             }
+
+            LoadGameData();
         }
+
+        private void LoadGameData()
+        {
+            GameData = new GameData.GameData();
+            GameData.LoadItemGameData();
+            GameData.LoadCharacterGameData();
+        }
+
         public void NewGame()
         {
             // TODO : load game scene with new player data
