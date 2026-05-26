@@ -20,7 +20,7 @@ namespace Services
 
                 if (GUILayout.Button("Load"))
                 {
-                    script.Load();
+                    script.LoadSaveData();
                 }
             }
         }

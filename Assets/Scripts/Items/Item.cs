@@ -6,20 +6,21 @@ namespace Items
     {
         [SerializeField] private string itemID;
 
-        private ItemGameData data;
+        public ItemGameData Data { get; private set; }
 
         private void Start()
         {
-            if(!GameData.GameData.Instance.TryGetItem(itemID, out data))
+            if(!GameData.GameData.Instance.TryGetItem(itemID, out var data))
             {
                 Debug.LogError("No item with this id found :" + itemID);
                 Destroy(gameObject);
                 return;
             }
+            Data = data;
         }
         public void Setup(ItemGameData item)
         {
-           this.data = item;
+           this.Data = item;
         }
     }
 }

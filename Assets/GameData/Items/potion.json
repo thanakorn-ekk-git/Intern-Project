@@ -1,4 +1,20 @@
 {
-	"id": "0001",
-	"price" :  10
+	"ID": "0001",
+	"Price": 10
 }
+
+//JsonReaderException: Error parsing boolean value. Path '', line 1, position 1.
+//Newtonsoft.Json.JsonTextReader.ParseFalse () (at <761cf2a144514d2291a678c334d49e9b>:0)
+//Newtonsoft.Json.JsonTextReader.ParseValue () (at <761cf2a144514d2291a678c334d49e9b>:0)
+//Newtonsoft.Json.JsonTextReader.Read () (at <761cf2a144514d2291a678c334d49e9b>:0)
+//Newtonsoft.Json.JsonReader.ReadAndMoveToContent () (at <761cf2a144514d2291a678c334d49e9b>:0)
+//Newtonsoft.Json.JsonReader.ReadForType (Newtonsoft.Json.Serialization.JsonContract contract, System.Boolean hasConverter) (at <761cf2a144514d2291a678c334d49e9b>:0)
+//Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize (Newtonsoft.Json.JsonReader reader, System.Type objectType, System.Boolean checkAdditionalContent) (at <761cf2a144514d2291a678c334d49e9b>:0)
+//Newtonsoft.Json.JsonSerializer.DeserializeInternal (Newtonsoft.Json.JsonReader reader, System.Type objectType) (at <761cf2a144514d2291a678c334d49e9b>:0)
+//Newtonsoft.Json.JsonSerializer.Deserialize (Newtonsoft.Json.JsonReader reader, System.Type objectType) (at <761cf2a144514d2291a678c334d49e9b>:0)
+//Newtonsoft.Json.JsonSerializer.Deserialize (System.IO.TextReader reader, System.Type objectType) (at <761cf2a144514d2291a678c334d49e9b>:0)
+//Services.FileHandler.LoadGameData[T] (System.String filePath, System.Object& obj) (at Assets/Scripts/File/FileHandler.cs:94)
+//Services.FileHandler.LoadItemJson (System.String filePath, Items.ItemGameData& item) (at Assets/Scripts/File/FileHandler.cs:107)
+//GameData.GameData.LoadItemGameData () (at Assets/Scripts/GameData/GameData.cs:24)
+//GameManagement.GameManager.LoadGameData () (at Assets/Scripts/GameManager.cs:44)
+//GameManagement.GameManager.Awake () (at Assets/Scripts/GameManager.cs:38)

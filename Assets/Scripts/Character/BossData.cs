@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Data
 {
     [JsonObject]
-    public class BossData : EnemyData
+    public class BossData : EnemyGameData
     {
         [JsonProperty] private List<SkillData> skills = new List<SkillData>();
         [JsonProperty] private string activeArea = "boss_room";

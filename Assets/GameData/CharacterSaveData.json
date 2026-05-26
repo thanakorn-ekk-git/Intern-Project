@@ -1,0 +1,50 @@
+{
+  "player": {
+    "name": "Hero",
+    "level": {
+      "level": 1,
+      "exp": 0
+    },
+    "stats": {
+      "maxHealth": 100,
+      "health": 100,
+      "mana": 50,
+      "atkDamage": 0,
+      "strength": 0,
+      "dexterity": 0,
+      "defense": 0,
+      "intelligence": 0,
+      "critRate": 0.0,
+      "critStrength": 0.0,
+      "MaxHealth": 100,
+      "Health": 100,
+      "Mana": 50,
+      "AtkDamage": 0,
+      "Strength": 0,
+      "Dexterity": 0,
+      "Defense": 0,
+      "Intelligence": 0
+    }
+  },
+  "enemy": {
+    "id": "0000",
+    "enemyType": 0,
+    "stats": {
+      "maxHealth": 0,
+      "atkDamage": 0,
+      "defense": 0,
+      "moveSpeed": 0.0,
+      "attackSpeed": 0.0,
+      "attackRange": 0.0,
+      "detectionRange": 0.0,
+      "knockbackResistant": 0.0,
+      "AtkDamage": 0,
+      "Strength": 0,
+      "Defense": 0
+    },
+    "rewards": {
+      "expDrop": 0,
+      "goldDrop": 0
+    }
+  }
+}

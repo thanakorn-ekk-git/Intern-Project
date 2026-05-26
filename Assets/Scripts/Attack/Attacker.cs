@@ -1,11 +1,15 @@
+using Character;
 using System.Collections;
 using UnityEngine;
 
 namespace Attack
 {
     [RequireComponent(typeof(CharacterController))]
-    public class Attacker : MonoBehaviour
+    public class Attacker : MonoBehaviour, IAttackable
     {
+        public int AtkDamage { get; private set; }
+        public int Strength {  get; private set; }
+
         [SerializeField] private Animator weaponAnimator;
 
         [SerializeField] private CharacterController charController;
@@ -35,7 +39,6 @@ namespace Attack
             yield return new WaitForSeconds(duration);
         }
 
-
         public void Attack()
         {
             StartCoroutine(AttackImpactCoroutine(2.0f));
@@ -46,6 +49,11 @@ namespace Attack
             weaponAnimator.SetTrigger(ANIMATION_ATTACK_TRIGGER);
         }
 
+        public void SetData(int newDamage, int newStrength)
+        {
+            AtkDamage = newDamage;
+            Strength = newStrength;
+        }
 
         private void HitImpact()
         {

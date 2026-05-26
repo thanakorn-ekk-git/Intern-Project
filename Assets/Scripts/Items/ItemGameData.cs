@@ -7,14 +7,14 @@ namespace Items {
         public static string Path => System.IO.Path.Combine(GameData.GameData.Instance.GameDataPath, "Items");
 
         [JsonProperty] public string ID { get; private set; }
-        [JsonProperty] public int price { get; private set; }
+        [JsonProperty] public int Price { get; private set; }
 
         [JsonConstructor]
         public ItemGameData() { }
 
         public override string ToString()
         {
-            return nameof(ItemGameData) + ":" + ID;
+            return $"{nameof(ItemGameData)}:{ID}\nPrice: {Price}";
         }
     }
 }

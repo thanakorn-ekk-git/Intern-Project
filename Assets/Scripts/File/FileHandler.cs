@@ -1,16 +1,23 @@
-using Data;
+using Character;
 using Newtonsoft.Json;
 using SaveGame;
 using System.IO;
 using UnityEngine;
+using System.Linq;
 
 namespace Services
 {
     public class FileHandler : MonoBehaviour
     {
+        public const string GameDataFolderName = "GameData";
+        public const string GameDataFileName = "main_data";
+        public const string GameDataFullName = GameDataFolderName + GameDataFileName;
+
         public const string SaveGameName = "main_save";
         public const string SaveGameExtension = ".sav";
         public const string SaveGameFullName = SaveGameName + SaveGameExtension;
+
+        public const string JsonExtension = ".json";
 
         public void Save()
         {
@@ -24,7 +31,7 @@ namespace Services
                 if (Directory.Exists(fullPath))
                     Directory.Delete(fullPath);
                 
-                JsonSaveHandler.JsonSave(fullPath, new PlayerData());
+                JsonSaveHandler.JsonSave(fullPath, new CharacterGameData());
             } 
             catch (IOException error)
             { 
@@ -32,7 +39,7 @@ namespace Services
                 throw error;
             }
         }
-        public void Load()
+        public void LoadSaveData()
         {
             var result = string.Empty;
 
@@ -42,8 +49,9 @@ namespace Services
 
                 if (File.Exists(fullPath))
                 {
-                    JsonSaveHandler.JsonLoad(fullPath, out var playerData);
+                    JsonSaveHandler.JsonLoad(fullPath, out var charData);
                     result = File.ReadAllText(fullPath);
+                    GameManagement.GameManager.Instance.LoadSaveData(charData);
                 }
             }
             catch (IOException error)
@@ -54,18 +62,21 @@ namespace Services
             Debug.Log($"Loaded data: {result}");
         }
 
-        public static string[] GetAllFileNames(string directoryPath)
+        public static string[] GetAllFileNames(string directoryPath, string extension)
         {
+
             try
             {
                 if (!Directory.Exists(directoryPath))
                 {
-                    Debug.LogError(directoryPath + "is not found!");
+                    Debug.LogError(directoryPath + " is not found!");
                     return System.Array.Empty<string>();
                 }
 
                 string[] files = Directory.GetFiles(directoryPath);
-                return files;
+                
+                return files.Where(str=>Path.GetExtension(str)==extension).ToArray();
+                
             }
             catch (IOException error)
             {
@@ -87,12 +98,12 @@ namespace Services
                 {
                     JsonSerializer serializer = new();
                     obj = serializer.Deserialize(fileReader, typeof(T));
-
                     return true;
                 }
             }
             catch (IOException error)
             {
+                obj = default;
                 Debug.LogError(error);
                 throw error;
             }
@@ -104,11 +115,31 @@ namespace Services
             return result;
         }
 
-        public static bool LoadCharacterJson(string filePath, out Character.CharacterGameData character)
+        public static bool LoadCharacterJson(string filePath, out CharacterGameData character)
         {
-            var result = LoadGameData<Character.CharacterGameData>(filePath, out var obj);
-            character = obj as Character.CharacterGameData;
+            var result = LoadGameData<CharacterGameData>(filePath, out var obj);
+            character = obj as CharacterGameData;
             return result;
+        }
+
+        public bool LoadGameData(out CharacterGameData charData)
+        {
+            var Result = string.Empty;
+
+            var fullPath = Path.Combine(Application.dataPath, GameDataFullName);
+
+            if (File.Exists(fullPath))
+            {
+                JsonSaveHandler.JsonLoad(fullPath, out var CharData);
+                Result = File.ReadAllText(fullPath);
+                charData = CharData;
+                return true;
+            }
+            else
+            {
+                charData = null;
+                return false;
+            }
         }
     }
 }
