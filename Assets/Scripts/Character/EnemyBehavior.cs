@@ -2,7 +2,6 @@ using Attack;
 using Character;
 using Data;
 using GameManagement;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 namespace Enemy
@@ -40,7 +39,7 @@ namespace Enemy
         [SerializeField] private string enemyID;
         private EnemyGameData myEnemyData;
 
-        public void Initialize(EnemyGameData data)
+        public void SetUp(EnemyGameData data)
         {
             myEnemyData = data;
 

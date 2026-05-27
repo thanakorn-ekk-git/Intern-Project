@@ -1,6 +1,5 @@
 using Character;
 using Services;
-using UI;
 using UnityEngine;
 
 namespace GameManagement
@@ -9,10 +8,10 @@ namespace GameManagement
     {
         public static GameManager Instance;
 
-        [SerializeField] UIManager uiManager;
 
         private FileHandler fileHandler;
         public GameData.GameData GameData { get; private set; }
+        public UI.UIManager UIManager { get; private set; }
 
         private CharacterGameData characterData;
         private GameSceneManager sceneManager;

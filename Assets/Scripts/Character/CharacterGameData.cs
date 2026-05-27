@@ -46,7 +46,7 @@ namespace Character
     [JsonObject]
     public class ItemDrop
     {
-        [JsonProperty] public string ItemID;
+        [JsonProperty] public string ItemID { get; private set; }
         [JsonProperty] public int Amount { get; private set; } = 1;
 
         [JsonIgnore] public Items.ItemGameData Item { get; private set; }

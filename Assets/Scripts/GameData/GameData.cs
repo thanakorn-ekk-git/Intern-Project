@@ -22,7 +22,6 @@ namespace GameData
             var log = new System.Text.StringBuilder();
             foreach (var fileName in FileHandler.GetAllFileNames(global::Items.ItemGameData.Path, FileHandler.JsonExtension))
             {
-                Debug.Log(fileName);
                 FileHandler.LoadItemJson(fileName, out var item);
                 log.AppendLine($"Loaded item ID {item.ID} at {fileName}");
                 items.Add(item.ID, item);
@@ -40,7 +39,6 @@ namespace GameData
             var log = new System.Text.StringBuilder();
             foreach (var fileName in FileHandler.GetAllFileNames(global::Character.CharacterGameData.Path, FileHandler.JsonExtension))
             {
-                //Debug.Log(fileName);
                 FileHandler.LoadCharacterJson(fileName, out var character);
                 log.AppendLine($"Loaded character ID {character.ID} at {fileName}");
                 charData.Add(character.ID, character);

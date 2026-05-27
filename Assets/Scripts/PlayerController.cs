@@ -1,5 +1,7 @@
-using UnityEngine;
 using Attack;
+using System;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using UnityEngine;
 
 namespace Player
 {
@@ -19,6 +21,15 @@ namespace Player
             {
                 attacker.Attack();
             }
+        }
+        public void Load()
+        {
+        }
+
+        public static PlayerController GetPlayer()
+        {
+            var tmpPlayer = GameObject.FindFirstObjectByType<PlayerController>();
+            return tmpPlayer;
         }
     }
 }

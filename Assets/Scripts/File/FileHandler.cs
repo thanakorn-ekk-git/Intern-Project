@@ -121,25 +121,5 @@ namespace Services
             character = obj as CharacterGameData;
             return result;
         }
-
-        public bool LoadGameData(out CharacterGameData charData)
-        {
-            var Result = string.Empty;
-
-            var fullPath = Path.Combine(Application.dataPath, GameDataFullName);
-
-            if (File.Exists(fullPath))
-            {
-                JsonSaveHandler.JsonLoad(fullPath, out var CharData);
-                Result = File.ReadAllText(fullPath);
-                charData = CharData;
-                return true;
-            }
-            else
-            {
-                charData = null;
-                return false;
-            }
-        }
     }
 }

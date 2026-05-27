@@ -11,22 +11,18 @@ namespace Data
         [JsonProperty] private PlayerLevel level = new PlayerLevel();
         [JsonProperty] private PlayerStats stats = new PlayerStats();
 
-        public void Save()
-        {
-            // TODO : pull player's data to be serialized (player name, level, health, status, inventory, etc.)
-        }
-
         public void Load(PlayerGameData data)
         {
             level = data.level;
             stats = data.stats;
 
-            var tmpPlayer = GameObject.FindFirstObjectByType<PlayerController>();
-            if (tmpPlayer.TryGetComponent<Attacker>( out var attacker) && tmpPlayer.TryGetComponent<EntityWithHealth>(out var defender))
-            { 
+            var tmpPlayer = PlayerController.GetPlayer();
+            if (tmpPlayer.TryGetComponent<Attacker>(out var attacker) && tmpPlayer.TryGetComponent<EntityWithHealth>(out var defender))
+            {
                 attacker.SetData(stats.atkDamage, stats.strength);
                 defender.SetData(stats.defense, stats.maxHealth);
             }
+
         }
 
         public override string ToString()
