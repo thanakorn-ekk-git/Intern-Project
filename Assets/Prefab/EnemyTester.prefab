@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5671757354047529791}
   - component: {fileID: 4462080889411687701}
   - component: {fileID: 54938928479017813}
+  - component: {fileID: 1794892403469254551}
   m_Layer: 6
   m_Name: EnemyTester
   m_TagString: Enemy
@@ -56,7 +57,6 @@ MonoBehaviour:
   moveSpeed: 5
   moveSpeedMultiplier: 1
   gravityMult: 1
-  targetPos: {fileID: 2177480231582755074, guid: 1d007f12d0920a04594bc3557ddccb7a, type: 3}
 --- !u!143 &4404040013614320656
 CharacterController:
   m_ObjectHideFlags: 0
@@ -116,7 +116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 135b4bcd7674df74da00541832bc7887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Attack.Health
-  teamID: 1
 --- !u!114 &4462080889411687701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,13 +138,8 @@ MonoBehaviour:
   attackRange: 2
   retreatRange: 0
   attackCooldown: 2
-  entity:
-    serializedVersion: 2
-    m_Bits: 64
-  ground:
-    serializedVersion: 2
-    m_Bits: 8
   retreatPos: {fileID: 5736406708673591047}
+  enemyID: 
 --- !u!114 &54938928479017813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +156,19 @@ MonoBehaviour:
   charController: {fileID: 4404040013614320656}
   dashForce: 10
   drag: 5
+--- !u!114 &1794892403469254551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496386394286246599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab7214947f54a64d81b1cde68c23edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Character.Enemy
+  id: 
 --- !u!1 &2432060970203219125
 GameObject:
   m_ObjectHideFlags: 0
