@@ -1,21 +1,25 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Character
 {
     public class EnemySpawnPoint : MonoBehaviour
     {
-        [SerializeField] private GameObject prefab;
-        public string EnemyToSpawnID => enemyToSpawnID;
-        [SerializeField] public string enemyToSpawnID;
-        public void SpawnEnemy(string id)
+        public string EnemyNameToSpawn => enemyNameToSpawn;
+        [SerializeField] private string enemyNameToSpawn;
+        public void SpawnEnemy(string prefabName)
         {
-            GameData.GameData.Instance.TryGetCharacter(id, out var data);
-            GameObject spawnedEnemy = Instantiate(prefab, gameObject.transform.position, Quaternion.identity);
-            spawnedEnemy.GetComponent<Enemy>().SetID(id);
-            CharacterGameData charData = spawnedEnemy.GetComponent<CharacterGameData>();
-            charData = data;
+            string resourcePath = $"Prefabs/Enemies/{prefabName}";
 
+            var prefab = Resources.Load<GameObject>(resourcePath);
+            if(prefab == null )
+            {
+                Debug.LogError($"Prefab not found! error at: Resources/{resourcePath}");
+                return;
+            }
+            var spawnedEnemy = GameObject.Instantiate(prefab, gameObject.transform.position, Quaternion.identity);
+            spawnedEnemy.name = prefabName;
+
+            // TODO : add SetID() logics so enemy can be initialized correctly
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Character
                 var script = target as EnemySpawnPoint;
                 if (GUILayout.Button("Spawn"))
                 {
-                    script.SpawnEnemy(script.EnemyToSpawnID);
+                    script.SpawnEnemy(script.EnemyNameToSpawn);
                 }
             }
         }
