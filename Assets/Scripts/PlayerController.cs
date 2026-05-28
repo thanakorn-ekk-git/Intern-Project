@@ -1,7 +1,6 @@
 using Attack;
-using System;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using static Data.PlayerGameData;
 
 namespace Player
 {
@@ -26,10 +25,13 @@ namespace Player
         {
         }
 
-        public static PlayerController GetPlayer()
+        public static void SetComponentData(PlayerStats stats)
         {
-            var tmpPlayer = GameObject.FindFirstObjectByType<PlayerController>();
-            return tmpPlayer;
+            if (gameObject.TryGetComponent<Attacker>(out var outAttacker) && gameObject.TryGetComponent<EntityWithHealth>(out var outDefender))
+            {
+                outAttacker.SetData(stats.atkDamage, stats.strength);
+                outDefender.SetData(stats.defense, stats.maxHealth);
+            }
         }
     }
 }

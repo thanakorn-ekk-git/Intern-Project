@@ -16,13 +16,7 @@ namespace Data
             level = data.level;
             stats = data.stats;
 
-            var tmpPlayer = PlayerController.GetPlayer();
-            if (tmpPlayer.TryGetComponent<Attacker>(out var attacker) && tmpPlayer.TryGetComponent<EntityWithHealth>(out var defender))
-            {
-                attacker.SetData(stats.atkDamage, stats.strength);
-                defender.SetData(stats.defense, stats.maxHealth);
-            }
-
+            var player = PlayerController.SetComponentData(stats);
         }
 
         public override string ToString()
