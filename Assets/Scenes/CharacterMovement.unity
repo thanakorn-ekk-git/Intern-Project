@@ -1140,6 +1140,50 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 506cd94e662e04f4d89622d12cad54d8, type: 2}
   m_BuildHeightMesh: 0
+--- !u!1 &1034074008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1034074010}
+  - component: {fileID: 1034074009}
+  m_Layer: 0
+  m_Name: EnemySpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1034074009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034074008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1061e78dd292c404d89fd4543c8166e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Character.EnemySpawnPoint
+--- !u!4 &1034074010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034074008}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 44.56265, y: 9.00871, z: -17.40064}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1148606672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1747,7 +1791,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd287a9287545474e82675a80dec2fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManagement.GameManager
-  uiManager: {fileID: 0}
   ground:
     serializedVersion: 2
     m_Bits: 8
@@ -1927,15 +1970,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2177480231582755074, guid: 1d007f12d0920a04594bc3557ddccb7a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 28.471075
+      value: 29.513117
       objectReference: {fileID: 0}
     - target: {fileID: 2177480231582755074, guid: 1d007f12d0920a04594bc3557ddccb7a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.8299994
+      value: 7.0299997
       objectReference: {fileID: 0}
     - target: {fileID: 2177480231582755074, guid: 1d007f12d0920a04594bc3557ddccb7a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.522036
+      value: 8.242282
       objectReference: {fileID: 0}
     - target: {fileID: 2177480231582755074, guid: 1d007f12d0920a04594bc3557ddccb7a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1994,6 +2037,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyTester
       objectReference: {fileID: 0}
+    - target: {fileID: 1794892403469254551, guid: a766adfab71f7f74486a95b6e8715f36, type: 3}
+      propertyPath: id
+      value: 0001
+      objectReference: {fileID: 0}
     - target: {fileID: 4462080889411687701, guid: a766adfab71f7f74486a95b6e8715f36, type: 3}
       propertyPath: targetPos
       value: 
@@ -2045,29 +2092,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1496386394286246599, guid: a766adfab71f7f74486a95b6e8715f36, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3464409167093415173}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a766adfab71f7f74486a95b6e8715f36, type: 3}
---- !u!1 &3464409167093415172 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1496386394286246599, guid: a766adfab71f7f74486a95b6e8715f36, type: 3}
-  m_PrefabInstance: {fileID: 3464409167093415171}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3464409167093415173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3464409167093415172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab7214947f54a64d81b1cde68c23edf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Character.Enemy
-  id: 0001
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2082,3 +2108,4 @@ SceneRoots:
   - {fileID: 1366980622}
   - {fileID: 685153753}
   - {fileID: 3464409167093415171}
+  - {fileID: 1034074010}
