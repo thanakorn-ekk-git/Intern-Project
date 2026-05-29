@@ -1,0 +1,57 @@
+{
+  "Perk": {
+    "perk_echo_blow": {
+      "ID": "0003",
+      "Name": "Echo Blow",
+      "Description": "A strike that creates an echo effect, damaging nearby enemies.",
+      "Tag":[ "attack" ],
+      "IsEnhanceable": true,
+      "EnhancementLevels": [
+        {
+          "Level": 1,
+          "EnhancementCost": "0",
+          "Modifiers": [
+            {
+              "StatType": "Damage",
+              "Value": 10
+            },
+            {
+              "StatType": "Duration",
+              "Value": 5
+            },
+            {
+              "StatType": "Cooldown",
+              "Value": 5
+            },
+            {
+              "StatType": "Radius",
+              "Value": 5
+            }
+          ]
+        },
+        {
+          "Level": 2,
+          "EnhancementCost": "2",
+          "Modifiers": [
+            {
+              "StatType": "Damage",
+              "Value": 15
+            },
+            {
+              "StatType": "Duration",
+              "Value": 5
+            },
+            {
+              "StatType": "Cooldown",
+              "Value": 5
+            },
+            {
+              "StatType": "Radius",
+              "Value": 10
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
