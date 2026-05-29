@@ -1,0 +1,79 @@
+{
+  "Perk": {
+    "perk_last_breath": {
+      "ID": "0009",
+      "Name": "Last Breath",
+      "Description": "Become temporarily immortal upon fatal damage. All damage taken during this time is stored and dealt back to you over period of time after the effect ends.",
+      "Tag": [ "defense", "utility" ],
+      "IsEnhanceable": true,
+      "EnhancementLevels": [
+        {
+          "Level": 1,
+          "EnhancementCost": "0",
+          "Modifiers": [
+            {
+              "StatType": "Cooldown",
+              "Value": 20
+            },
+            {
+              "StatType": "Duration",
+              "Value": 3.0
+            },
+            {
+              "StatType": "DamageTakenDuration", 
+              "Value": 5.0
+            },
+            {
+              "StatType": "DamageTakenPercentage",
+              "Value": 1.0
+            }
+          ]
+        },
+        {
+          "Level": 2,
+          "EnhancementCost": "1",
+          "Modifiers": [
+            {
+              "StatType": "Cooldown",
+              "Value": 20
+            },
+            {
+              "StatType": "Duration",
+              "Value": 6.0
+            },
+            {
+              "StatType": "DamageTakenDuration",
+              "Value": 4.0
+            },
+            {
+              "StatType": "DamageTakenPercentage",
+              "Value": 0.9
+            }
+          ]
+        },
+        {
+          "Level": 3,
+          "EnhancementCost": "3",
+          "Modifiers": [
+            {
+              "StatType": "Cooldown",
+              "Value": 20
+            },
+            {
+              "StatType": "Duration",
+              "Value": 7.0
+            },
+            {
+              "StatType": "DamageTakenDuration",
+              "Value": 5.0
+            },
+            {
+              "StatType": "DamageTakenPercentage",
+              "Value": 0.75
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "Perk": {
+    "perk_stone_shield": {
+      "ID": "0005",
+      "Name": "Stone Shield",
+      "Description": "Create shields of stone floating around user that blocks incoming attacks.",
+      "Tag": [ "defense" ],
+      "IsEnhanceable": true,
+      "EnhancementLevels": [
+        {
+          "Level": 1,
+          "EnhancementCost": "0",
+          "Modifiers": [
+            {
+              "StatType": "Cooldown",
+              "Value": 12
+            },
+            {
+              "StatType": "Duration",
+              "Value": 7.0
+            },
+            {
+              "StatType": "Radius",
+              "Value": 5.0
+            },
+            {
+              "StatType": "Amount",
+              "Value": 3.0
+            },
+            {
+              "StatType": "Layer",
+              "Value": 1.0
+            }
+          ]
+        },
+        {
+          "Level": 2,
+          "EnhancementCost": "1",
+          "Modifiers": [
+            {
+              "StatType": "Cooldown",
+              "Value": 12
+            },
+            {
+              "StatType": "Duration",
+              "Value": 7.0
+            },
+            {
+              "StatType": "Radius",
+              "Value": 5.0
+            },
+            {
+              "StatType": "Amount",
+              "Value": 5.0
+            },
+            {
+              "StatType": "Layer",
+              "Value": 1.0
+            }
+          ]
+        },
+        {
+          "Level": 3,
+          "EnhancementCost": "3",
+          "Modifiers": [
+            {
+              "StatType": "Cooldown",
+              "Value": 12
+            },
+            {
+              "StatType": "Duration",
+              "Value": 7.0
+            },
+            {
+              "StatType": "Radius",
+              "Value": 7.0
+            },
+            {
+              "StatType": "Amount",
+              "Value": 7.0
+            },
+            {
+              "StatType": "Layer",
+              "Value": 2.0
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

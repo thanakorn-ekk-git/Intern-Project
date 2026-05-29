@@ -1,0 +1,79 @@
+{
+  "Perk": {
+    "perk_fire_dash": {
+      "ID": "0001",
+      "Name": "Fire Dash",
+      "Description": "Dash forward, leaving a trail of fire that damages enemies.",
+      "Tag": [ "attack", "movement" ],
+      "IsEnhanceable": true,
+      "EnhancementLevels": [
+        {
+          "Level": 1,
+          "EnhancementCost": "0",
+          "Modifiers": [
+            {
+              "StatType": "Damage",
+              "Value": 10
+            },
+            {
+              "StatType": "TrailDamage",
+              "Value": 2
+            },
+            {
+              "StatType": "Duration",
+              "Value": 3
+            },
+            {
+              "StatType": "Cooldown",
+              "Value": 5
+            }
+          ]
+        },
+        {
+          "Level": 2,
+          "EnhancementCost": "1",
+          "Modifiers": [
+            {
+              "StatType": "Damage",
+              "Value": 15
+            },
+            {
+              "StatType": "TrailDamage",
+              "Value": 3
+            },
+            {
+              "StatType": "Duration",
+              "Value": 4
+            },
+            {
+              "StatType": "Cooldown",
+              "Value": 4
+            }
+          ]
+        },
+        {
+          "Level": 3,
+          "EnhancementCost": "2",
+          "Modifiers": [
+            {
+              "StatType": "Damage",
+              "Value": 20
+            },
+            {
+              "StatType": "TrailDamage",
+              "Value": 4
+            },
+            {
+              "StatType": "Duration",
+              "Value": 5
+            },
+            {
+              "StatType": "Cooldown",
+              "Value": 3
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
