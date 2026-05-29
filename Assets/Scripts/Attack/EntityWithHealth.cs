@@ -1,18 +1,35 @@
+using Character;
 using UnityEngine;
 
 namespace Attack
 {
-    public class EntityWithHealth : MonoBehaviour
+    public class EntityWithHealth : MonoBehaviour, IDefendable
     {
-        public int TeamID => teamID;
-        [SerializeField] private int teamID = 0;
-        // TODO : Add health value
-        public void TakeDamage(Attacker attacker)
+        private IContainAttributes attributes;
+
+        private int maxHealth = 100;
+        private int currentHealth = 0;
+        private int defense;
+
+        public int Defense => defense;
+
+        public void SetData(int defense, int maxHealth)
         {
-            Die();
+            this.maxHealth = maxHealth;
+            this.defense = defense;
+            currentHealth = this.maxHealth;
         }
 
-        private void Die()
+        public void TakeDamage(AttackEventData attackData)
+        {
+            currentHealth -= attackData.Damage;
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+        }
+
+        protected virtual void Die()
         {
             Destroy(gameObject);
         }

@@ -1,3 +1,5 @@
+using Character;
+using Services;
 using UnityEngine;
 
 namespace GameManagement
@@ -5,6 +7,13 @@ namespace GameManagement
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
+
+
+        private FileHandler fileHandler;
+        public GameData.GameData GameData { get; private set; }
+        public UI.UIManager UIManager { get; private set; }
+
+        private CharacterGameData characterData;
         private GameSceneManager sceneManager;
 
         public LayerMask LayerEntity => entity;
@@ -18,12 +27,24 @@ namespace GameManagement
             if (this != Instance)
             {
                 DestroyImmediate(gameObject);
+                return;
             }
             else
             {
                 DontDestroyOnLoad(gameObject);
             }
+
+            LoadGameData();
         }
+
+        private void LoadGameData()
+        {
+            GameData = new GameData.GameData();
+            GameData.LoadItemGameData();
+            GameData.LoadCharacterGameData();
+
+        }
+
         public void NewGame()
         {
             // TODO : load game scene with new player data
@@ -34,6 +55,7 @@ namespace GameManagement
         {
             // TODO : load game scene where player saved with saved player data
             sceneManager.EnterGameplayScene();
+            fileHandler.LoadSaveData();
         }
         public void SaveGame()
         {
@@ -63,6 +85,15 @@ namespace GameManagement
         public void ResumeGame()
         {
             // TODO : resume time and hide pause menu
+        }
+
+        public void LoadGameData(string loadResult, CharacterGameData charData)
+        {
+            characterData.Load(charData);
+        }
+        public void LoadSaveData(CharacterGameData charData)
+        {
+
         }
     }
 }

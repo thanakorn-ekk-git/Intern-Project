@@ -16,12 +16,10 @@ namespace Attack
 
         protected virtual void OnTriggerEnter(Collider other)
         {
-            if (attacker != null)
+            if (other.TryGetComponent<EntityWithHealth>(out var defender))
             {
-                if (other.TryGetComponent<EntityWithHealth>(out var otherEntity) && otherEntity.TeamID != selfEntity.TeamID)
-                {
-                    otherEntity.TakeDamage(attacker);
-                }
+                AttackEventData damageInfo = new AttackEventData(attacker, defender);
+                defender.TakeDamage(damageInfo);
             }
         }
 

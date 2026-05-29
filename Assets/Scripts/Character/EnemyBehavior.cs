@@ -1,6 +1,7 @@
-using GameManagement;
-using Attack;
+using Attack; 
 using Character;
+using Data;
+using GameManagement;
 using UnityEngine;
 
 namespace Enemy
@@ -34,6 +35,22 @@ namespace Enemy
         private float distanceToPlayer;
 
         private Vector3 origin;
+
+        [SerializeField] private string enemyID;
+        private EnemyGameData myEnemyData;
+
+        public void SetUp(EnemyGameData data)
+        {
+            myEnemyData = data;
+
+            if (TryGetComponent<Attacker>(out var attacker) && TryGetComponent<EntityWithHealth>(out var defender))
+            {
+                const int zeroStrengthForEnemy = 0;
+                attacker.SetData(myEnemyData.Stats.AtkDamage, zeroStrengthForEnemy);
+                defender.SetData(myEnemyData.Stats.Defense, myEnemyData.Stats.MaxHealth);
+            }
+
+        }
 
         private void Update()
         {

@@ -1,0 +1,20 @@
+{
+	"ID": "0001",
+	"Enemy": {
+		"EnemyType": 0,
+		"Stats": {
+			"MaxHealth": 15,
+			"AtkDamage": 5,
+			"Defense": 0,
+			"MoveSpeed": 6.0,
+			"AttackSpeed": 1.0,
+			"AttackRange": 3.0,
+			"DetectionRange": 20.0,
+			"KnockbackResistant": 0.0
+		},
+		"Rewards": {
+			"ExpDrop": 5,
+			"GoldDrop": 5
+		}
+	}
+}
