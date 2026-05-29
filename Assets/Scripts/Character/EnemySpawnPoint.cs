@@ -19,7 +19,7 @@ namespace Character
             var spawnedEnemy = GameObject.Instantiate(prefab, gameObject.transform.position, Quaternion.identity);
             spawnedEnemy.name = prefabName;
 
-            // TODO : add SetID() logics so enemy can be initialized correctly
+            // TODO : add SetID() logics so enemy can be initialized rcorrectly
         }
     }
 }
