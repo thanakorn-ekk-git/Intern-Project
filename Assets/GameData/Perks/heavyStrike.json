@@ -1,49 +1,43 @@
 {
-  "Perk": {
-    "perk_heavy_strike": {
-      "ID": "0002",
-      "Name": "Heavy Strike",
-      "Description": "A powerful strike that deals significant damage to a single enemy.",
-      "Tag": [ "attack" ],
-      "IsEnhanceable": true,
-      "EnhancementLevels": [
+  "Name": "Heavy Strike",
+  "Description": "A powerful strike that deals significant damage to a single enemy.",
+  "Tag": [ "attack" ],
+  "Levels": [
+    {
+      "Level": 1,
+      "EnhancementCost": 1,
+      "Modifiers": [
         {
-          "Level": 1,
-          "EnhancementCost": "0",
-          "Modifiers": [
-            {
-              "StatType": "Damage",
-              "Value": 20
-            },
-            {
-              "StatType": "Duration",
-              "Value": 5
-            },
-            {
-              "StatType": "Cooldown",
-              "Value": 5
-            }
-          ]
+          "StatType": "Damage",
+          "Value": 20
         },
         {
-          "Level": 2,
-          "EnhancementCost": "1",
-          "Modifiers": [
-            {
-              "StatType": "Damage",
-              "Value": 30
-            },
-            {
-              "StatType": "Duration",
-              "Value": 5
-            },
-            {
-              "StatType": "Cooldown",
-              "Value": 5
-            }
-          ]
+          "StatType": "Duration",
+          "Value": 5
+        },
+        {
+          "StatType": "Cooldown",
+          "Value": 5
+        }
+      ]
+    },
+    {
+      "Level": 2,
+      "EnhancementCost": 2,
+      "Modifiers": [
+        {
+          "StatType": "Damage",
+          "Value": 30
+        },
+        {
+          "StatType": "Duration",
+          "Value": 5
+        },
+        {
+          "StatType": "Cooldown",
+          "Value": 5
         }
       ]
     }
-  }
+  ]
 }

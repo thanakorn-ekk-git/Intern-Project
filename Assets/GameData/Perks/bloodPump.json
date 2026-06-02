@@ -1,67 +1,61 @@
 {
-  "Perk": {
-    "perk_blood_pump": {
-      "ID": "0008",
-      "Name": "Blood Pump",
-      "Description": "Buff user overall performance by consuming health points.",
-      "Tag": [ "buff" ],
-      "IsEnhanceable": true,
-      "EnhancementLevels": [
+  "Name": "Blood Pump",
+  "Description": "Buff user overall performance by consuming health points.",
+  "Tag": [ "buff" ],
+  "Levels": [
+    {
+      "Level": 1,
+      "EnhancementCost": 1,
+      "Modifiers": [
         {
-          "Level": 1,
-          "EnhancementCost": "0",
-          "Modifiers": [
-            {
-              "StatType": "Cooldown",
-              "Value": 12
-            },
-            {
-              "StatType": "Duration",
-              "Value": 8.0
-            },
-            {
-              "StatType": "StatBuffPercentage",
-              "Value": 0.2
-            }
-          ]
+          "StatType": "Cooldown",
+          "Value": 12
         },
         {
-          "Level": 2,
-          "EnhancementCost": "1",
-          "Modifiers": [
-            {
-              "StatType": "Cooldown",
-              "Value": 12
-            },
-            {
-              "StatType": "Duration",
-              "Value": 8.0
-            },
-            {
-              "StatType": "StatBuffPercentage",
-              "Value": 0.25
-            }
-          ]
+          "StatType": "Duration",
+          "Value": 8.0
         },
         {
-          "Level": 3,
-          "EnhancementCost": "3",
-          "Modifiers": [
-            {
-              "StatType": "Cooldown",
-              "Value": 12
-            },
-            {
-              "StatType": "Duration",
-              "Value": 8.0
-            },
-            {
-              "StatType": "StatBuffPercentage",
-              "Value": 0.35
-            }
-          ]
+          "StatType": "StatBuffPercentage",
+          "Value": 0.2
+        }
+      ]
+    },
+    {
+      "Level": 2,
+      "EnhancementCost": 2,
+      "Modifiers": [
+        {
+          "StatType": "Cooldown",
+          "Value": 12
+        },
+        {
+          "StatType": "Duration",
+          "Value": 8.0
+        },
+        {
+          "StatType": "StatBuffPercentage",
+          "Value": 0.25
+        }
+      ]
+    },
+    {
+      "Level": 3,
+      "EnhancementCost": 3,
+      "Modifiers": [
+        {
+          "StatType": "Cooldown",
+          "Value": 12
+        },
+        {
+          "StatType": "Duration",
+          "Value": 8.0
+        },
+        {
+          "StatType": "StatBuffPercentage",
+          "Value": 0.35
         }
       ]
     }
-  }
+  ]
 }
