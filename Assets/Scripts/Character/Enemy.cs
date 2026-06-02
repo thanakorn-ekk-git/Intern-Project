@@ -19,6 +19,11 @@ namespace Character
             Data = data;
         }
 
+        public void SetID(string newID)
+        {
+            id = newID;
+        }
+
         private void DropItems()
         {
             foreach(var item in Data.ItemDrops)

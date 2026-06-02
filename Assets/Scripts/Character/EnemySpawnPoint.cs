@@ -4,6 +4,19 @@ namespace Character
 {
     public class EnemySpawnPoint : MonoBehaviour
     {
-        // use for gameobject  searching flag
+        public string EnemyNameToSpawn => enemyNameToSpawn;
+        [SerializeField] private string enemyNameToSpawn;
+        public void SpawnEnemy(string prefabName)
+        {
+            if (!EnemyPrefabManager.Instance.TryGetEnemy(prefabName, out var prefab))
+            {
+                Debug.LogError($"Prefab not found! error at EnemyPrefabManager: {prefabName}");
+                return;
+            }
+            var spawnedEnemy = GameObject.Instantiate(prefab, gameObject.transform.position, Quaternion.identity);
+            spawnedEnemy.name = prefabName;
+
+            // TODO : add SetID() logics so enemy can be initialized correctly
+        }
     }
 }

@@ -1,4 +1,5 @@
 using Attack;
+using Character;
 using UnityEngine;
 
 namespace Enemy
