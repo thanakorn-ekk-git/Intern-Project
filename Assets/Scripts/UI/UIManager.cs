@@ -5,21 +5,9 @@ namespace UI
 {
     public class UIManager : MonoBehaviour
     {
-        public static UIManager Instance;
+        public static UIManager Instance => GameManagement.GameManager.Instance.UIManager;
+
         private GameplayUI gameplayUI;
         private MainMenuUI mainMenuUI;
-
-        private void Awake()
-        {
-            Instance ??= this;
-            if (this != Instance)
-            {
-                DestroyImmediate(gameObject);
-            }
-            else
-            {
-                DontDestroyOnLoad(gameObject);
-            }
-        }
     }
 }

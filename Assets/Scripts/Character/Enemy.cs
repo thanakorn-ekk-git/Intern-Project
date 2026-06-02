@@ -1,3 +1,4 @@
+using Items;
 using UnityEngine;
 
 namespace Character
@@ -30,15 +31,15 @@ namespace Character
                 CreateItemDrop(item.Item, item.Amount);
             }
         }
-
-        private void CreateItemDrop(Items.ItemGameData item, int amount)
+        private void CreateItemDrop(ItemGameData item, int amount)
         {
             for (int i = 0; i < amount; i++)
             {
-                var prefab = Resources.Load<Items.Item>("Items/" + item.ID);
+                var prefab = Item.GetPrefab(item);
                 var go = GameObject.Instantiate(prefab, transform.position, Quaternion.identity);
                 go.Setup(item);
             }
         }
+
     }
 }

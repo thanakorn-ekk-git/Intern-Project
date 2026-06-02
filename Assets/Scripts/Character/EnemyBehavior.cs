@@ -38,7 +38,7 @@ namespace Character
 
         private EnemyGameData myEnemyData;
 
-        public void Initialize(EnemyGameData data)
+        public void SetUp(EnemyGameData data)
         {
             myEnemyData = data;
 

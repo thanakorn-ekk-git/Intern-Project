@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Progress;
 
 namespace Items
 {
@@ -21,6 +22,10 @@ namespace Items
         public void Setup(ItemGameData item)
         {
            this.Data = item;
+        }
+        public static Item GetPrefab(ItemGameData item)
+        {
+            return Resources.Load<Item>("Items/" + item.ID);
         }
     }
 }
