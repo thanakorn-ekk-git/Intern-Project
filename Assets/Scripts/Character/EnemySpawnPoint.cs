@@ -8,7 +8,7 @@ namespace Character
         [SerializeField] private string enemyNameToSpawn;
         public void SpawnEnemy(string prefabName)
         {
-            var prefab = EnemyPrefabManager.Instance.GetEnemyPrefab(prefabName);
+            var prefab = EnemyPrefabManager.Instance.TryGetEnemy(prefabName, out Enemy enemy) ? enemy : null;
             if(prefab == null )
             {
                 Debug.LogError($"Prefab not found! error at EnemyPrefabManager: {prefabName}");

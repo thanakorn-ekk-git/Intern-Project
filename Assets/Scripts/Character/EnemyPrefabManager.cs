@@ -7,30 +7,26 @@ namespace Character
     {
         public static EnemyPrefabManager Instance => GameManagement.GameManager.Instance.enemyPrefabManager;
 
-        [SerializeField] private List<GameObject> enemyPrefabs;
+        [SerializeField] private List<Enemy> prefabs;
 
-        private Dictionary<string, GameObject> prefabDictionary;
+        private Dictionary<string, Enemy> prefabByIDs;
 
-        private void Awake()
+        public bool TryGetEnemy(string id, out Enemy enemy)
         {
-            prefabDictionary = new Dictionary<string, GameObject>();
-
-            foreach (var prefab in enemyPrefabs)
-            {
-                if (prefab!= null && !prefabDictionary.ContainsKey(prefab.name))
-                {
-                    prefabDictionary.Add(prefab.name, prefab);
-                }                
-            }
+            Cache();
+            return prefabByIDs.TryGetValue(id, out enemy);
         }
-
-        public GameObject GetEnemyPrefab(string prefabName)
+        
+        private void Cache()
         {
-            if (prefabDictionary.TryGetValue(prefabName, out var prefab))
+            if (prefabByIDs != null)
             {
-                return prefab;
+                return;
             }
-            return null;
+            foreach (var prefab in prefabs)
+            {
+                prefabByIDs.TryAdd(prefab.name, prefab);
+            }
         }
 
     }
