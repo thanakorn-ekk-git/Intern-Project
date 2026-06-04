@@ -21,11 +21,8 @@ namespace Player
                 attacker.Attack();
             }
         }
-        public void Load()
-        {
-        }
 
-        public static void SetComponentData(PlayerStats stats)
+        public void SetComponentData(PlayerStats stats)
         {
             if (gameObject.TryGetComponent<Attacker>(out var outAttacker) && gameObject.TryGetComponent<EntityWithHealth>(out var outDefender))
             {

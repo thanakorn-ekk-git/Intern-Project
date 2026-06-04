@@ -12,6 +12,7 @@ namespace GameManagement
         private FileHandler fileHandler;
         public GameData.GameData GameData { get; private set; }
         public UI.UIManager UIManager { get; private set; }
+        public EnemyPrefabManager enemyPrefabManager { get; private set; }
 
         private CharacterGameData characterData;
         private GameSceneManager sceneManager;

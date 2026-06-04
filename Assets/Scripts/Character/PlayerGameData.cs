@@ -15,8 +15,6 @@ namespace Data
         {
             level = data.level;
             stats = data.stats;
-
-            var player = PlayerController.SetComponentData(stats);
         }
 
         public override string ToString()

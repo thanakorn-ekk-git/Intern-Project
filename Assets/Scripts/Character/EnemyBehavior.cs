@@ -1,11 +1,11 @@
 using Attack; 
-using Character;
 using Data;
 using GameManagement;
 using UnityEngine;
 
-namespace Enemy
+namespace Character
 {
+    [RequireComponent(typeof(Enemy))]
     public class EnemyBehavior : MonoBehaviour
     {
         private enum State
@@ -36,7 +36,6 @@ namespace Enemy
 
         private Vector3 origin;
 
-        [SerializeField] private string enemyID;
         private EnemyGameData myEnemyData;
 
         public void SetUp(EnemyGameData data)
@@ -49,7 +48,6 @@ namespace Enemy
                 attacker.SetData(myEnemyData.Stats.AtkDamage, zeroStrengthForEnemy);
                 defender.SetData(myEnemyData.Stats.Defense, myEnemyData.Stats.MaxHealth);
             }
-
         }
 
         private void Update()
