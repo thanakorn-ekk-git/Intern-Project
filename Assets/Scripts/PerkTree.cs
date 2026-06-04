@@ -22,9 +22,29 @@ namespace Perk
             perkOut = null;
             return false;
         }
-        public void UnlockPerk()
+        public string WhatPerkIsUnlocked()
         {
+            System.Text.StringBuilder str = new System.Text.StringBuilder();
+            str.AppendLine($"[PerkTree Debug] unloecked: {perks.Count} perk(s)");
 
+            if (perks.Count == 0)
+            {
+                str.AppendLine("No perks unlocked.");
+            }
+            else
+            {
+                foreach (Perk perk in perks)
+                {
+                    if (perk.Data != null)
+                    {
+                        string tags = perk.Data.Tag != null ? string.Join(", ", perk.Data.Tag) : "<no_tags>";
+
+                        str.AppendLine($"Tags: [{tags}]");
+                        str.AppendLine($"Description: {perk.Data.Description}");
+                    }
+                }
+            }
+            return str.ToString();
         }
     }
 }

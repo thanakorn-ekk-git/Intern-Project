@@ -13,6 +13,11 @@ namespace Perk
         public int CurrentLevel { get; private set; } = 1;
         public PerkExcutor Excutor { get; private set; }
 
+        public Perk(PerkData data)
+        {
+            this.data = data;
+        }
+
         public void SetExcutor(PerkExcutor excutor)
         {
             Excutor = excutor;

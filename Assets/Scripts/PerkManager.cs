@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Perk
@@ -10,6 +8,10 @@ namespace Perk
 
         private PerkTree perkTree = new();
 
+        private void Awake()
+        {
+            Debug.Log("PerkManager Awake");
+        }
         public bool TryUnlockPerk(string perkName)
         {
             if (perkTree.PerkExist(perkName, out Perk outPerk))
@@ -20,7 +22,7 @@ namespace Perk
 
             if (GameData.GameData.Instance.TryGetPerk(perkName, out PerkData outData))
             {
-                Perk newPerk = new Perk();
+                Perk newPerk = new Perk(outData);
                 newPerk.isUnlocked = true;
 
                 PerkExcutor excutor = BindExcutor(perkName);
@@ -48,5 +50,7 @@ namespace Perk
                     return null;
             }
         }
+
+        public PerkTree GetPlayerPerkTree() => perkTree;
     }
 }

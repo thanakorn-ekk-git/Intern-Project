@@ -13,7 +13,7 @@ namespace GameManagement
         public GameData.GameData GameData { get; private set; }
         public UI.UIManager UIManager { get; private set; }
         public EnemyPrefabManager EnemyPrefabManager { get; private set; }
-        public Perk.PerkManager PerkManager { get; private set; }
+        public Perk.PerkManager PerkManager { get; private set; } 
 
         private CharacterGameData characterData;
         private GameSceneManager sceneManager;
@@ -35,7 +35,7 @@ namespace GameManagement
             {
                 DontDestroyOnLoad(gameObject);
             }
-
+            PerkManager = GetComponent<Perk.PerkManager>();
             LoadGameData();
         }
 

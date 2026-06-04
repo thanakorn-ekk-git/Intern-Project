@@ -21,13 +21,14 @@
           "Value": 5.0
         },
         {
-          "StatType": "ExplodeAfterDestroyed",
-          "Value": false
-        },
-        {
           "StatType": "ExplodeDamage",
           "Value": 0
         }
+      ],
+      "Properties": {
+          "StatType": "ExplodeAfterDestroyed",
+          "Value": false
+      }
     },
     {
       "Level": 2,
@@ -46,14 +47,14 @@
           "Value": 2.0
         },
         {
-          "StatType": "ExplodeAfterDestroyed",
-          "Value": false
-        },
-        {
           "StatType": "ExplodeDamage",
           "Value": 0
         }
-      ]
+      ],
+      "Properties": {
+        "StatType": "ExplodeAfterDestroyed",
+        "Value": false
+      }
     },
     {
       "Level": 3,
@@ -72,14 +73,14 @@
           "Value": 2.0
         },
         {
-          "StatType": "ExplodeAfterDestroyed",
-          "Value": true
-        },
-        {
           "StatType": "ExplodeDamage",
           "Value": 10.0
         }
-      ]
+      ],
+      "Properties": {
+        "StatType": "ExplodeAfterDestroyed",
+        "Value": true
+      }
     }
   ]
 }

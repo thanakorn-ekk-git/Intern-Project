@@ -27,7 +27,6 @@ namespace GameData
                 log.AppendLine($"Loaded item ID {item.ID} at {fileName}");
                 items.Add(item.ID, item);
             }
-            Debug.Log(log.ToString());
             Debug.Log("Load item data completed");
 
         }
@@ -44,7 +43,6 @@ namespace GameData
                 log.AppendLine($"Loaded character ID {character.ID} at {fileName}");
                 charData.Add(character.ID, character);
             }
-            Debug.Log(log.ToString());
             Debug.Log("Load character data completed");
         }
 
