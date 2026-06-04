@@ -11,6 +11,7 @@ namespace GameData
 
         private Dictionary<string, Items.ItemGameData> items;
         private Dictionary<string, Character.CharacterGameData> charData;
+        private Dictionary<string, Perk.PerkData> perkData;
 
         public string GameDataPath => Path.Combine(Application.dataPath, "GameData");
 
@@ -45,6 +46,21 @@ namespace GameData
             }
             Debug.Log(log.ToString());
             Debug.Log("Load character data completed");
+        }
+
+        public bool TryGetPerk(string name, out Perk.PerkData perk) => perkData.TryGetValue(name, out perk);
+        public void LoadPerkData()
+        {
+            perkData = new();
+            var log = new System.Text.StringBuilder();
+            foreach (var fileName in FileHandler.GetAllFileNames(global::Perk.PerkData.Path, FileHandler.JsonExtension))
+            {
+                FileHandler.LoadPerkJson(fileName, out var perk);
+                log.AppendLine($"Loaded perk ID {perk.Name} at {fileName}");
+                perkData.Add(perk.Name, perk);
+            }
+            Debug.Log(log.ToString());
+            Debug.Log("Load perk data completed");
         }
     }
 }

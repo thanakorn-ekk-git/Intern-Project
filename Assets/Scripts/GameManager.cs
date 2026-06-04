@@ -12,7 +12,8 @@ namespace GameManagement
         private FileHandler fileHandler;
         public GameData.GameData GameData { get; private set; }
         public UI.UIManager UIManager { get; private set; }
-        public EnemyPrefabManager enemyPrefabManager { get; private set; }
+        public EnemyPrefabManager EnemyPrefabManager { get; private set; }
+        public Perk.PerkManager PerkManager { get; private set; }
 
         private CharacterGameData characterData;
         private GameSceneManager sceneManager;
@@ -43,7 +44,7 @@ namespace GameManagement
             GameData = new GameData.GameData();
             GameData.LoadItemGameData();
             GameData.LoadCharacterGameData();
-
+            GameData.LoadPerkData();
         }
 
         public void NewGame()
