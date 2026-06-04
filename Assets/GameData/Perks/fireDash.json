@@ -1,7 +1,8 @@
 {
   "Name": "Fire Dash",
   "Description": "Dash forward, leaving a trail of fire that damages enemies.",
-  "Tag": [ "attack", "movement" ],
+  "Tag": [ "attack", "movement", "fire" ],
+  "ImagePath": "Assets/GameData/Images/Perks/fireDash.png",
   "Levels": [
     {
       "Level": 1,

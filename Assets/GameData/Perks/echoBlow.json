@@ -2,6 +2,8 @@
   "Name": "Echo Blow",
   "Description": "A strike that creates an echo effect, damaging nearby enemies.",
   "Tag": [ "attack" ],
+  "ImagePath": "Assets/GameData/Images/Perks/echoBlow.png",
+  "RequiredPerk": "Heavy Strike",
   "Levels": [
     {
       "Level": 1,
