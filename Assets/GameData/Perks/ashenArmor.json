@@ -1,0 +1,85 @@
+{
+  "Name": "Ashen Armor",
+  "Description": "Create a barrier of ash around the user after eliminating burning enemies.",
+  "Tag": [ "defense", "fire" ],
+  "ImagePath": "Assets/GameData/Images/Perks/ashenArmor.png",
+  "Levels": [
+    {
+      "Level": 1,
+      "EnhancementCost": 1,
+      "Modifiers": [
+        {
+          "StatType": "Cooldown",
+          "Value": 12
+        },
+        {
+          "StatType": "ArmorPoints",
+          "Value": 7.0
+        },
+        {
+          "StatType": "MaxLayer",
+          "Value": 5.0
+        },
+        {
+          "StatType": "ExplodeAfterDestroyed",
+          "Value": false
+        },
+        {
+          "StatType": "ExplodeDamage",
+          "Value": 0
+        }
+    },
+    {
+      "Level": 2,
+      "EnhancementCost": 2,
+      "Modifiers": [
+        {
+          "StatType": "Cooldown",
+          "Value": 12
+        },
+        {
+          "StatType": "ArmorPoints",
+          "Value": 12.0
+        },
+        {
+          "StatType": "MaxLayer",
+          "Value": 2.0
+        },
+        {
+          "StatType": "ExplodeAfterDestroyed",
+          "Value": false
+        },
+        {
+          "StatType": "ExplodeDamage",
+          "Value": 0
+        }
+      ]
+    },
+    {
+      "Level": 3,
+      "EnhancementCost": 3,
+      "Modifiers": [
+        {
+          "StatType": "Cooldown",
+          "Value": 12
+        },
+        {
+          "StatType": "ArmorPoints",
+          "Value": 20.0
+        },
+        {
+          "StatType": "MaxLayer",
+          "Value": 2.0
+        },
+        {
+          "StatType": "ExplodeAfterDestroyed",
+          "Value": true
+        },
+        {
+          "StatType": "ExplodeDamage",
+          "Value": 10.0
+        }
+      ]
+    }
+  ]
+}
