@@ -1,5 +1,10 @@
 {
   "Name": "Blood Recharge",
+  "Position": {
+    "x": 0,
+    "y": 0
+  },
+  "Size": 24.0,
   "Description": "Consume health points to reset all perk cooldowns.",
   "Tag": [ "utility", "blood" ],
   "ImagePath": "Assets/GameData/Images/Perks/bloodRecharge.png",

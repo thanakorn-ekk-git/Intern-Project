@@ -1,5 +1,10 @@
 {
   "Name": "Last Breath",
+  "Position": {
+    "x": 0,
+    "y": 0
+  },
+  "Size": 24.0,
   "Description": "Become temporarily immortal upon fatal damage. All damage taken during this time is stored and dealt back to you over period of time after the effect ends.",
   "Tag": [ "defense", "utility" ],
   "ImagePath": "Assets/GameData/Images/Perks/lastBreath.png",
