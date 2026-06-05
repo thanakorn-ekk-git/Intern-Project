@@ -27,10 +27,6 @@
         {
           "StatType": "Range",
           "Value": 10.0
-        },
-        {
-          "StatType": "ExplodeDamage",
-          "Value": 0.0
         }
       ]
     },
@@ -57,10 +53,6 @@
         {
           "StatType": "Range",
           "Value": 14.0
-        },
-        {
-          "StatType": "ExplodeDamage",
-          "Value": 0.0
         }
       ]
     }

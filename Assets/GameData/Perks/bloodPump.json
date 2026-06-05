@@ -19,6 +19,10 @@
         {
           "StatType": "StatBuffPercentage",
           "Value": 0.2
+        },
+        {
+          "StatType": "BloodCost",
+          "Value": 0.5
         }
       ]
     },
@@ -37,6 +41,10 @@
         {
           "StatType": "StatBuffPercentage",
           "Value": 0.25
+        },
+        {
+          "StatType": "BloodCost",
+          "Value": 0.5
         }
       ]
     },
@@ -55,6 +63,10 @@
         {
           "StatType": "StatBuffPercentage",
           "Value": 0.35
+        },
+        {
+          "StatType": "BloodCost",
+          "Value": 0.5
         }
       ]
     }

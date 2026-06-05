@@ -27,7 +27,7 @@ namespace Services
                     {
                         if (perk.Excutor != null)
                         {
-                            perk.Excutor.OnActive();
+                            perk.Excutor.OnActive(script.PerkNameToUnlock);
                         }
                         else
                         {
@@ -46,7 +46,7 @@ namespace Services
                     {
                         if (perk.Excutor != null)
                         {
-                            perk.Excutor.OnEquipped();
+                            perk.Excutor.OnEquipped(script.PerkNameToUnlock);
                         }
                         else
                         {
@@ -63,11 +63,6 @@ namespace Services
                     script.TryEnhancePerk(script.PerkNameToUnlock);
                 }
 
-                if (GUILayout.Button("Show Unlocked Perks"))
-                {
-                    var tmpPerkTree = script.GetPlayerPerkTree();
-                    Debug.Log(tmpPerkTree.WhatPerkIsUnlocked());
-                }
                 if(GUILayout.Button("Show Perk Stats"))
                 {
                     var tmpPerkTree = script.GetPlayerPerkTree();
@@ -79,6 +74,11 @@ namespace Services
                     {
                         Debug.LogError($"{script.PerkNameToUnlock} is not unlocked!");
                     }
+                }
+                if (GUILayout.Button("Show All Unlocked Perks"))
+                {
+                    var tmpPerkTree = script.GetPlayerPerkTree();
+                    Debug.Log(tmpPerkTree.WhatPerkIsUnlocked());
                 }
             }
         }

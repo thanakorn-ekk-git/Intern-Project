@@ -33,7 +33,7 @@ namespace Perk
                 if(excutor != null)
                 {
                     newPerk.SetExcutor(excutor);
-                    newPerk.Excutor.OnUnlocked();
+                    newPerk.Excutor.OnUnlocked(perkName);
                 }
 
                 perkTree.ActivatePerk(newPerk);
@@ -57,6 +57,14 @@ namespace Perk
                     return gameObject.AddComponent<EchoBlowExcute>();
                 case "Fire Dash":
                     return gameObject.AddComponent<FireDashExcute>();
+                case "Frost Beam":
+                    return gameObject.AddComponent<FrostBeamExcute>();
+                    case "Heavy Strike":
+                    return gameObject.AddComponent<HeavyStrikeExcute>();
+                    case "Last Breath":
+                    return gameObject.AddComponent<LastBreathExcute>();
+                    case "Stone Shield":
+                    return gameObject.AddComponent<StoneShieldExcute>();
                 default: Debug.LogWarning($"No executor found for perk: {perkName}");
                     return null;
             }
@@ -73,7 +81,7 @@ namespace Perk
                         if(perk.CurrentLevel < perk.Data.Levels.Count)
                         {
                             perk.LevelUp();
-                            perk.Excutor.OnEnhance();
+                            perk.Excutor.OnEnhance(perkName);
                             return true;
                         }
                         Debug.LogWarning($"{perkName} is already at max level!");
