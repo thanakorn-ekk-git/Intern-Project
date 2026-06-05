@@ -28,7 +28,7 @@ namespace Perk
                 Perk newPerk = new Perk(outData);
                 newPerk.Unlock();
 
-                PerkExcutor excutor = BindExcutor(perkName);
+                PerkExecutor excutor = BindExcutor(perkName);
 
                 if(excutor != null)
                 {
@@ -43,7 +43,7 @@ namespace Perk
             return false;
         }
 
-        private PerkExcutor BindExcutor(string perkName)
+        private PerkExecutor BindExcutor(string perkName)
         {
             switch (perkName) 
             {

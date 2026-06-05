@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Perk
 {
-    public abstract class PerkExcutor : MonoBehaviour
+    public abstract class PerkExecutor : MonoBehaviour
     {
         public Perk parentPerk;
 
@@ -35,7 +35,7 @@ namespace Perk
         }
     }
 
-    public class AshenArmorExcute : PerkExcutor
+    public class AshenArmorExcute : PerkExecutor
     {
         public override string GetStatValue()
         {
@@ -81,7 +81,7 @@ namespace Perk
             base.OnEnhance("Ashen Armor");
         }
     }
-    public class BloodPumpExcute : PerkExcutor
+    public class BloodPumpExcute : PerkExecutor
     {
         public override string GetStatValue()
         {
@@ -126,7 +126,7 @@ namespace Perk
             base.OnEnhance("Blood Pump");
         }
     }
-    public class BloodRechargeExcute : PerkExcutor
+    public class BloodRechargeExcute : PerkExecutor
     {
         public override string GetStatValue()
         {
@@ -169,7 +169,7 @@ namespace Perk
             base.OnEnhance("Blood Recharge");
         }
     }
-    public class EchoBlowExcute : PerkExcutor
+    public class EchoBlowExcute : PerkExecutor
     {
         public override string GetStatValue()
         {
@@ -213,7 +213,7 @@ namespace Perk
             base.OnEnhance("Echo Blow");
         }
     }
-    public class FireDashExcute : PerkExcutor
+    public class FireDashExcute : PerkExecutor
     {
         public override string GetStatValue()
         {
@@ -257,7 +257,7 @@ namespace Perk
             base.OnEnhance("Fire Dash");
         }
     }
-    public class FrostBeamExcute : PerkExcutor
+    public class FrostBeamExcute : PerkExecutor
     {
         public override string GetStatValue()
         {
@@ -302,7 +302,7 @@ namespace Perk
         }
     }
 
-    public class HeavyStrikeExcute : PerkExcutor
+    public class HeavyStrikeExcute : PerkExecutor
     {
         public override string GetStatValue()
         {
@@ -345,7 +345,7 @@ namespace Perk
         }
     }
 
-    public class LastBreathExcute : PerkExcutor
+    public class LastBreathExcute : PerkExecutor
     {
         public override string GetStatValue()
         {
@@ -388,7 +388,7 @@ namespace Perk
             base.OnEnhance("Last Breath");
         }
     }
-    public class StoneShieldExcute : PerkExcutor
+    public class StoneShieldExcute : PerkExecutor
     {
         public override string GetStatValue()
         {

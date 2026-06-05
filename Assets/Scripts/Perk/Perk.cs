@@ -11,14 +11,14 @@ namespace Perk
         public bool isUnlocked { get; private set; } = false;
 
         public int CurrentLevel { get; private set; } = 1;
-        public PerkExcutor Excutor { get; private set; }
+        public PerkExecutor Excutor { get; private set; }
 
         public Perk(PerkData data)
         {
             this.data = data;
         }
 
-        public void SetExcutor(PerkExcutor excutor)
+        public void SetExcutor(PerkExecutor excutor)
         {
             Excutor = excutor;
             Excutor.Initialize(this);
