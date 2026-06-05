@@ -20,16 +20,17 @@ namespace Perk
             [JsonProperty] public int Level { get; private set; } = 0;
             [JsonProperty] public int EnhancementCost { get; private set; } = 1;
             [JsonProperty] public List<PerkModifiers> Modifiers { get; private set; } = new List<PerkModifiers>();
+            [JsonProperty] public List<PerkProperties> Properties { get; private set; } = new List<PerkProperties>();
         }
         public class PerkModifiers
         {
             [JsonProperty] public string StatType { get; private set; } = string.Empty;
             [JsonProperty] public float Value { get; private set; } = 0f;
         }
-        public class Properties 
+        public class PerkProperties 
         {
-            [JsonProperty] public string PropertyName { get; private set; } = string.Empty;
-            [JsonProperty] public bool PropertyBool { get; private set; } = false;
+            [JsonProperty] public string Property { get; private set; } = string.Empty;
+            [JsonProperty] public bool Value { get; private set; } = false;
         }
 
     }

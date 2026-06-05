@@ -25,7 +25,7 @@ namespace Perk
         public string WhatPerkIsUnlocked()
         {
             System.Text.StringBuilder str = new System.Text.StringBuilder();
-            str.AppendLine($"[PerkTree Debug] unloecked: {perks.Count} perk(s)");
+            str.AppendLine($"[PerkTree Debug] unlocked: {perks.Count} perk(s)");
 
             if (perks.Count == 0)
             {
@@ -38,9 +38,13 @@ namespace Perk
                     if (perk.Data != null)
                     {
                         string tags = perk.Data.Tag != null ? string.Join(", ", perk.Data.Tag) : "<no_tags>";
-
+                        str.AppendLine($"- {perk.Data.Name} (Level: {perk.CurrentLevel})");
                         str.AppendLine($"Tags: [{tags}]");
                         str.AppendLine($"Description: {perk.Data.Description}");
+                    }
+                    if (perks.Count >= 2)
+                    {
+                        str.AppendLine("-----");
                     }
                 }
             }

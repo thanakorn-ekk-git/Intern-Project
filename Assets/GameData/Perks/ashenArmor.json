@@ -18,17 +18,19 @@
         },
         {
           "StatType": "MaxLayer",
-          "Value": 5.0
+          "Value": 5
         },
         {
           "StatType": "ExplodeDamage",
           "Value": 0
         }
       ],
-      "Properties": {
-          "StatType": "ExplodeAfterDestroyed",
+      "Properties": [
+        {
+          "Property": "ExplodeAfterDestroyed",
           "Value": false
-      }
+        }
+      ]
     },
     {
       "Level": 2,
@@ -44,17 +46,19 @@
         },
         {
           "StatType": "MaxLayer",
-          "Value": 2.0
+          "Value": 2
         },
         {
           "StatType": "ExplodeDamage",
           "Value": 0
         }
       ],
-      "Properties": {
-        "StatType": "ExplodeAfterDestroyed",
-        "Value": false
-      }
+      "Properties": [
+        {
+          "Property": "ExplodeAfterDestroyed",
+          "Value": false
+        }
+      ]
     },
     {
       "Level": 3,
@@ -70,17 +74,19 @@
         },
         {
           "StatType": "MaxLayer",
-          "Value": 2.0
+          "Value": 2
         },
         {
           "StatType": "ExplodeDamage",
           "Value": 10.0
         }
       ],
-      "Properties": {
-        "StatType": "ExplodeAfterDestroyed",
-        "Value": true
-      }
+      "Properties": [
+        {
+          "Property": "ExplodeAfterDestroyed",
+          "Value": true
+        }
+      ]
     }
   ]
 }

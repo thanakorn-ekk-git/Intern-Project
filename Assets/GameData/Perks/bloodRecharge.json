@@ -19,10 +19,6 @@
         {
           "StatType": "Cooldown",
           "Value": 1
-        },
-        {
-          "StatType": "Radius",
-          "Value": 5
         }
       ]
     }

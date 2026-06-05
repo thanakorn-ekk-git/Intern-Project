@@ -57,7 +57,6 @@ namespace GameData
                 log.AppendLine($"Loaded perk ID {perk.Name} at {fileName}");
                 perkData.Add(perk.Name, perk);
             }
-            Debug.Log(log.ToString());
             Debug.Log("Load perk data completed");
         }
     }

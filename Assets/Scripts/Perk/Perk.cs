@@ -8,7 +8,7 @@ namespace Perk
         public PerkData Data => data;
         private  PerkData data;
 
-        public bool isUnlocked = false;
+        public bool isUnlocked { get; private set; } = false;
 
         public int CurrentLevel { get; private set; } = 1;
         public PerkExcutor Excutor { get; private set; }
@@ -21,9 +21,35 @@ namespace Perk
         public void SetExcutor(PerkExcutor excutor)
         {
             Excutor = excutor;
-            Excutor.Initailize(this);
+            Excutor.Initialize(this);
+        }
+        
+        public void Unlock()
+        {
+            isUnlocked = true;
+        }
+        public void LevelUp()
+        {
+            CurrentLevel++;
         }
 
+        public string GetLevel()
+        {
+            if (data == null || data.Levels == null)
+            {
+                return "0";
+            }
+
+            var levelData = data.Levels;
+
+            if (levelData != null)
+            {
+                var curLevel = levelData.Find(level => level.Level == CurrentLevel);
+                string str = curLevel != null ? $"{curLevel.Level}/{levelData.Count}" : "0";
+                return str;
+            }
+            return "0";
+        }
         public float GetModifierValue(string statType)
         {
             if (data == null || data.Levels == null)
@@ -41,6 +67,24 @@ namespace Perk
                 }
             }
             return 0f;
+        }
+        public bool GetProperty(string propertyName)
+        {
+            if (data == null || data.Levels == null)
+            {
+                return false;
+            }
+
+            var levelData = data.Levels.Find(level => level.Level == CurrentLevel);
+            if (levelData != null && levelData.Properties != null)
+            {
+                var property = levelData.Properties.Find(p => p.Property == propertyName);
+                if (property != null)
+                {
+                    return property.Value;
+                }
+            }
+            return false;
         }
 
         public string GetTag()
