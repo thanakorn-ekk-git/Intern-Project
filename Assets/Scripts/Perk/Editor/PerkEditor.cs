@@ -1,28 +1,32 @@
 using Perk;
 using UnityEditor;
 using UnityEngine;
+using Player;
 
 namespace Services
 {
-    [CustomEditor(typeof(PerkManager))]
+    [CustomEditor(typeof(PlayerController))]
     public class PerkSystemTester : Editor
     {
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
-            var tempPerk = (PerkManager)target;
+
+            var player = target as PlayerController;
+            if (player == null) return;
 
             if (Application.isPlaying)
             {
-                var script = target as PerkManager;
+                var script = player.PerkManager;
+                if (script == null) return;
 
                 if (GUILayout.Button("Unlock "))
                 {
-                    script.TryUnlockPerk(script.PerkNameToUnlock);
+                    script.TryUnlockPerk(player.PerkNameToUnlock);
                 }
                 if (GUILayout.Button("Activate "))
                 {
-                    if (script.PerkExist(script.PerkNameToUnlock, out Perk.Perk perk))
+                    if (script.PerkExist(player.PerkNameToUnlock, out Perk.Perk perk))
                     {
                         if (perk.Executor != null)
                         {
@@ -30,17 +34,17 @@ namespace Services
                         }
                         else
                         {
-                            Debug.LogError($"{script.PerkNameToUnlock} has invalid executor!");
+                            Debug.LogError($"{player.PerkNameToUnlock} has invalid executor!");
                         }
                     }
                     else
                     {
-                        Debug.LogError($"{script.PerkNameToUnlock} is not unlocked!");
+                        Debug.LogError($"{player.PerkNameToUnlock} is not unlocked!");
                     }
                 }
                 if(GUILayout.Button("Equip"))
                 {
-                    if (script.PerkExist(script.PerkNameToUnlock, out Perk.Perk perk))
+                    if (script.PerkExist(player.PerkNameToUnlock, out Perk.Perk perk))
                     {
                         if (perk.Executor != null)
                         {
@@ -48,22 +52,22 @@ namespace Services
                         }
                         else
                         {
-                            Debug.LogError($"{script.PerkNameToUnlock} has invalid executor!");
+                            Debug.LogError($"{player.PerkNameToUnlock} has invalid executor!");
                         }
                     }
                     else
                     {
-                        Debug.LogError($"{script.PerkNameToUnlock} is not unlocked!");
+                        Debug.LogError($"{player.PerkNameToUnlock} is not unlocked!");
                     }
                 }
                 if (GUILayout.Button("Enhance "))
                 {
-                    script.TryEnhancePerk(script.PerkNameToUnlock);
+                    script.TryEnhancePerk(player.PerkNameToUnlock);
                 }
 
                 if (GUILayout.Button("Show Perk Stats"))
                 {
-                    if (script.PerkExist(script.PerkNameToUnlock, out Perk.Perk perk))
+                    if (script.PerkExist(player.PerkNameToUnlock, out Perk.Perk perk))
                     {
                         if (perk.Executor != null)
                         {
@@ -71,12 +75,12 @@ namespace Services
                         }
                         else
                         {
-                            Debug.LogError($"{script.PerkNameToUnlock} has an invalid or null executor!");
+                            Debug.LogError($"{player.PerkNameToUnlock} has an invalid or null executor!");
                         }
                     }
                     else
                     {
-                        Debug.LogError($"{script.PerkNameToUnlock} is not unlocked!");
+                        Debug.LogError($"{player.PerkNameToUnlock} is not unlocked!");
                     }
                 }
                 if (GUILayout.Button("Show All Unlocked Perks"))

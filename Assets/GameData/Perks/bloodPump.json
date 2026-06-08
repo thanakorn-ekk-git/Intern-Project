@@ -4,7 +4,7 @@
   "Position_y": 0.0,
   "Size": 24.0,
   "Description": "Buff user overall performance by consuming health points.",
-  "Tag": [ "buff", "blood" ],
+  "Tags": [ "buff", "blood" ],
   "ImagePath": "Assets/GameData/Images/Perks/bloodPump.png",
   "Levels": [
     {

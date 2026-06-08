@@ -4,7 +4,7 @@
   "Position_y": 0.0,
   "Size": 24.0,
   "Description": "Fire a beam of frost that freeze first hit enemy and slows nearby enemies",
-  "Tag": [ "attack", "ice" ],
+  "Tags": [ "attack", "ice" ],
   "ImagePath": "Assets/GameData/Images/Perks/frostBeam.png",
   "Levels": [
     {

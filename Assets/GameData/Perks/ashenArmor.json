@@ -4,7 +4,7 @@
   "Position_y": 0.0,
   "Size": 24.0,
   "Description": "Create a barrier m of ash around the user after eliminating burning enemies.",
-  "Tag": [ "defense", "fire" ],
+  "Tags": [ "defense", "fire" ],
   "ImagePath": "Assets/GameData/Images/Perks/ashenArmor.png",
   "Levels": [
     {

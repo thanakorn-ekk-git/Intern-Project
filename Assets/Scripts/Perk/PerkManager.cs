@@ -4,13 +4,18 @@ using UnityEngine;
 
 namespace Perk
 {
-    public class PerkManager : MonoBehaviour 
+    public class PerkManager
     {
         [SerializeField] private PlayerController owner;
         private List<Perk> perks = new List<Perk>();
 
         public string PerkNameToUnlock => perkNameToUnlock;
         [SerializeField] private string perkNameToUnlock;
+
+        public PerkManager(PlayerController owner)
+        {
+            this.owner = owner;
+        }
 
         public bool TryUnlockPerk(string perkName)
         {
@@ -128,7 +133,7 @@ namespace Perk
                 {
                     if (perk.Data != null)
                     {
-                        string tags = perk.Data.Tags != null ? string.Join(", ", perk.Data.Tags) : "<no_tags>";
+                        string tags = perk.Data.Tags != null ? perk.GetTag() : "<no_tags>";
                         str.AppendLine($"- {perk.Data.Name} (Level: {perk.CurrentLevel})");
                         str.AppendLine($"Tags: [{tags}]");
                         str.AppendLine($"Description: {perk.Data.Description}");

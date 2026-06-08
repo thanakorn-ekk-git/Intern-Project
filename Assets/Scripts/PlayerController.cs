@@ -1,4 +1,5 @@
 using Attack;
+using Perk;
 using UnityEngine;
 using static Data.PlayerGameData;
 
@@ -8,10 +9,16 @@ namespace Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private Attacker attacker;
+        public PerkManager PerkManager => perkManager;
+        [SerializeField] private PerkManager perkManager;
+
+        public string PerkNameToUnlock => perkNameToUnlock;
+        [SerializeField] private string perkNameToUnlock;
 
         private void Start()
         {
             attacker = GetComponent<Attacker>();
+            perkManager = new PerkManager(this);
         }
 
         void Update()
