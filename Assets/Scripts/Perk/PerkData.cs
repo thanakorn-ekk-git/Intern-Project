@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-
+using UnityEngine;
 namespace Perk
 {
     [JsonObject]
@@ -9,30 +10,56 @@ namespace Perk
         public static string Path => System.IO.Path.Combine(GameData.GameData.Instance.GameDataPath, "Perks");
 
         [JsonProperty] public string Name { get; private set; } = "<Perk_Name>";
+        [JsonProperty] public float Position_x { get; private set; }
+        [JsonProperty] public float Position_y { get; private set; }
+        [JsonProperty] public float Size { get; private set; }
         [JsonProperty] public string Description { get; private set; } = "<Perk_Description>";
         [JsonProperty] public List<string> Tag { get; private set; } = new List<string>();
         [JsonProperty] public string ImagePath { get; private set; } = "<Image_Path_Error>";
-        [JsonProperty] public string RequiredPerk { get; private set; } = "No Required Perk";
-        [JsonProperty] public List<PerkLevels> Levels { get; private set; } = new List<PerkLevels>();
+        [JsonProperty] public string[] RequiredPerk { get; private set; } = Array.Empty<string>();
+        [JsonProperty] public List<PerkLevel> Levels { get; private set; } = new List<PerkLevel>();
 
-        public class PerkLevels
+
+        private Dictionary<int, PerkLevel> cacheLevel;
+        private bool isCached = false;
+
+        public void Cache()
+        {
+            if (isCached) return;
+            
+            cacheLevel = new Dictionary<int, PerkLevel>();
+            if(Levels != null)
+            {
+                foreach(var level in Levels)
+                {
+                    cacheLevel.Add(level.Level, level);
+                }
+            }
+            isCached = true;
+        }
+
+        public PerkLevel GetLevelData(int level)
+        {
+            Cache();
+
+            if(cacheLevel!=null && cacheLevel.TryGetValue(level, out var levelData))
+            {
+                return levelData;
+            }
+            return null;
+        }
+
+
+        public class PerkLevel
         {
             [JsonProperty] public int Level { get; private set; } = 0;
             [JsonProperty] public int EnhancementCost { get; private set; } = 1;
-            [JsonProperty] public List<PerkModifiers> Modifiers { get; private set; } = new List<PerkModifiers>();
-            [JsonProperty] public List<PerkProperties> Properties { get; private set; } = new List<PerkProperties>();
+            [JsonProperty] public List<PerkModifier> Modifiers { get; private set; } = new List<PerkModifier>();
         }
-        public class PerkModifiers
+        public class PerkModifier
         {
-            [JsonProperty] public string StatType { get; private set; } = string.Empty;
+            [JsonProperty] public Perk.StatType StatType { get; private set; } 
             [JsonProperty] public float Value { get; private set; } = 0f;
         }
-        public class PerkProperties 
-        {
-            [JsonProperty] public string Property { get; private set; } = string.Empty;
-            [JsonProperty] public bool Value { get; private set; } = false;
-        }
-
     }
-
 }

@@ -1,9 +1,7 @@
 {
   "Name": "Frost Beam",
-  "Position": {
-    "x": 0,
-    "y": 0
-  },
+  "Position_x": 0.0,
+  "Position_y": 0.0,
   "Size": 24.0,
   "Description": "Fire a beam of frost that freeze first hit enemy and slows nearby enemies",
   "Tag": [ "attack", "ice" ],

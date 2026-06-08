@@ -1,9 +1,7 @@
 {
   "Name": "Heavy Strike",
-  "Position": {
-    "x": 0,
-    "y": 0
-  },
+  "Position_x": 0.0,
+  "Position_y": 0.0,
   "Size": 24.0,
   "Description": "A powerful strike that deals significant damage to a single enemy.",
   "Tag": [ "attack" ],
@@ -15,15 +13,15 @@
       "Modifiers": [
         {
           "StatType": "Damage",
-          "Value": 20
+          "Value": 20.0
         },
         {
           "StatType": "Duration",
-          "Value": 5
+          "Value": 5.0
         },
         {
           "StatType": "Cooldown",
-          "Value": 5
+          "Value": 5.0
         }
       ]
     },
@@ -33,15 +31,15 @@
       "Modifiers": [
         {
           "StatType": "Damage",
-          "Value": 30
+          "Value": 30.0
         },
         {
           "StatType": "Duration",
-          "Value": 5
+          "Value": 5.0
         },
         {
           "StatType": "Cooldown",
-          "Value": 5
+          "Value": 5.0
         }
       ]
     }

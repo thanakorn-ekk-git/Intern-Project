@@ -1,9 +1,7 @@
 {
   "Name": "Stone Shield",
-  "Position": {
-    "x": 0,
-    "y": 0
-  },
+  "Position_x": 0.0,
+  "Position_y": 0.0,
   "Size": 24.0,
   "Description": "Create shields of stone floating around user that blocks incoming attacks.",
   "Tag": [ "defense", "stone" ],
@@ -15,7 +13,7 @@
       "Modifiers": [
         {
           "StatType": "Cooldown",
-          "Value": 12
+          "Value": 12.0
         },
         {
           "StatType": "Duration",
@@ -41,7 +39,7 @@
       "Modifiers": [
         {
           "StatType": "Cooldown",
-          "Value": 12
+          "Value": 12.0
         },
         {
           "StatType": "Duration",
@@ -67,7 +65,7 @@
       "Modifiers": [
         {
           "StatType": "Cooldown",
-          "Value": 12
+          "Value": 12.0
         },
         {
           "StatType": "Duration",

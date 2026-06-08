@@ -1,9 +1,7 @@
 {
   "Name": "Ashen Armor",
-  "Position": {
-    "x": 0,
-    "y": 0
-  },
+  "Position_x": 0.0,
+  "Position_y": 0.0,
   "Size": 24.0,
   "Description": "Create a barrier m of ash around the user after eliminating burning enemies.",
   "Tag": [ "defense", "fire" ],
@@ -15,7 +13,7 @@
       "Modifiers": [
         {
           "StatType": "Cooldown",
-          "Value": 12
+          "Value": 12.0
         },
         {
           "StatType": "Duration",
@@ -32,13 +30,11 @@
         },
         {
           "StatType": "ExplodeDamage",
-          "Value": 0
-        }
-      ],
-      "Properties": [
+          "Value": 0.0
+        },
         {
-          "Property": "ExplodeAfterDestroyed",
-          "Value": false
+          "StatType": "ExplodeAfterDestroyed",
+          "Value": 0.0
         }
       ]
     },
@@ -64,13 +60,11 @@
         },
         {
           "StatType": "ExplodeDamage",
-          "Value": 0
-        }
-      ],
-      "Properties": [
+          "Value": 0.0
+        },
         {
-          "Property": "ExplodeAfterDestroyed",
-          "Value": false
+          "StatType": "ExplodeAfterDestroyed",
+          "Value": 0.0
         }
       ]
     },
@@ -80,7 +74,7 @@
       "Modifiers": [
         {
           "StatType": "Cooldown",
-          "Value": 12
+          "Value": 12.0
         },
         {
           "StatType": "Duration",
@@ -97,12 +91,10 @@
         {
           "StatType": "ExplodeDamage",
           "Value": 10.0
-        }
-      ],
-      "Properties": [
+        },
         {
-          "Property": "ExplodeAfterDestroyed",
-          "Value": true
+          "StatType": "ExplodeAfterDestroyed",
+          "Value": 1.0
         }
       ]
     }

@@ -1,5 +1,8 @@
 {
   "Name": "Fire Dash",
+  "Position_x": 0.0,
+  "Position_y": 0.0,
+  "Size": 24.0,
   "Description": "Dash forward, leaving a trail of fire that damages enemies.",
   "Tag": [ "attack", "movement", "fire" ],
   "ImagePath": "Assets/GameData/Images/Perks/fireDash.png",
@@ -10,19 +13,19 @@
       "Modifiers": [
         {
           "StatType": "Damage",
-          "Value": 10
+          "Value": 10.0
         },
         {
           "StatType": "TrailDamage",
-          "Value": 2
+          "Value": 2.0
         },
         {
           "StatType": "Duration",
-          "Value": 3
+          "Value": 3.0
         },
         {
           "StatType": "Cooldown",
-          "Value": 5
+          "Value": 5.0
         }
       ]
     },
@@ -32,19 +35,19 @@
       "Modifiers": [
         {
           "StatType": "Damage",
-          "Value": 15
+          "Value": 15.0
         },
         {
           "StatType": "TrailDamage",
-          "Value": 3
+          "Value": 3.0
         },
         {
           "StatType": "Duration",
-          "Value": 4
+          "Value": 4.0
         },
         {
           "StatType": "Cooldown",
-          "Value": 4
+          "Value": 4.0
         }
       ]
     },
@@ -54,19 +57,19 @@
       "Modifiers": [
         {
           "StatType": "Damage",
-          "Value": 20
+          "Value": 20.0
         },
         {
           "StatType": "TrailDamage",
-          "Value": 4
+          "Value": 4.0
         },
         {
           "StatType": "Duration",
-          "Value": 5
+          "Value": 5.0
         },
         {
           "StatType": "Cooldown",
-          "Value": 3
+          "Value": 3.0
         }
       ]
     }

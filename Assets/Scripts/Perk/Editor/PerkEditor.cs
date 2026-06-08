@@ -22,12 +22,11 @@ namespace Services
                 }
                 if (GUILayout.Button("Activate "))
                 {
-                    var tmpPerkTree = script.GetPlayerPerkTree();
-                    if (tmpPerkTree.PerkExist(script.PerkNameToUnlock, out Perk.Perk perk))
+                    if (script.PerkExist(script.PerkNameToUnlock, out Perk.Perk perk))
                     {
                         if (perk.Excutor != null)
                         {
-                            perk.Excutor.OnActive(script.PerkNameToUnlock);
+                            perk.Excutor.OnActive();
                         }
                         else
                         {
@@ -41,12 +40,11 @@ namespace Services
                 }
                 if(GUILayout.Button("Equip"))
                 {
-                    var tmpPerkTree = script.GetPlayerPerkTree();
-                    if (tmpPerkTree.PerkExist(script.PerkNameToUnlock, out Perk.Perk perk))
+                    if (script.PerkExist(script.PerkNameToUnlock, out Perk.Perk perk))
                     {
                         if (perk.Excutor != null)
                         {
-                            perk.Excutor.OnEquipped(script.PerkNameToUnlock);
+                            perk.Excutor.OnEquipped();
                         }
                         else
                         {
@@ -63,12 +61,18 @@ namespace Services
                     script.TryEnhancePerk(script.PerkNameToUnlock);
                 }
 
-                if(GUILayout.Button("Show Perk Stats"))
+                if (GUILayout.Button("Show Perk Stats"))
                 {
-                    var tmpPerkTree = script.GetPlayerPerkTree();
-                    if (tmpPerkTree.PerkExist(script.PerkNameToUnlock, out Perk.Perk perk))
+                    if (script.PerkExist(script.PerkNameToUnlock, out Perk.Perk perk))
                     {
-                        Debug.Log(perk.Excutor.GetStatValue());    
+                        if (perk.Excutor != null)
+                        {
+                            Debug.Log(perk.Excutor.GetStatValue());
+                        }
+                        else
+                        {
+                            Debug.LogError($"{script.PerkNameToUnlock} has an invalid or null executor!");
+                        }
                     }
                     else
                     {
@@ -77,8 +81,7 @@ namespace Services
                 }
                 if (GUILayout.Button("Show All Unlocked Perks"))
                 {
-                    var tmpPerkTree = script.GetPlayerPerkTree();
-                    Debug.Log(tmpPerkTree.WhatPerkIsUnlocked());
+                    Debug.Log(script.WhatPerkIsUnlocked());
                 }
             }
         }

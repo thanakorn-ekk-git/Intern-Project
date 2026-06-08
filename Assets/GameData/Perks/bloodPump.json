@@ -1,9 +1,7 @@
 {
   "Name": "Blood Pump",
-  "Position": {
-    "x": 0,
-    "y": 0
-  },
+  "Position_x": 0.0,
+  "Position_y": 0.0,
   "Size": 24.0,
   "Description": "Buff user overall performance by consuming health points.",
   "Tag": [ "buff", "blood" ],
@@ -15,7 +13,7 @@
       "Modifiers": [
         {
           "StatType": "Cooldown",
-          "Value": 12
+          "Value": 12.0
         },
         {
           "StatType": "Duration",
@@ -37,7 +35,7 @@
       "Modifiers": [
         {
           "StatType": "Cooldown",
-          "Value": 12
+          "Value": 12.0
         },
         {
           "StatType": "Duration",
@@ -59,7 +57,7 @@
       "Modifiers": [
         {
           "StatType": "Cooldown",
-          "Value": 12
+          "Value": 12.0
         },
         {
           "StatType": "Duration",

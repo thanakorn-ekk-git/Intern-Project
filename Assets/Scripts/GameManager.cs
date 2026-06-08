@@ -8,7 +8,6 @@ namespace GameManagement
     {
         public static GameManager Instance;
 
-
         private FileHandler fileHandler;
         public GameData.GameData GameData { get; private set; }
         public UI.UIManager UIManager { get; private set; }
@@ -17,6 +16,9 @@ namespace GameManagement
 
         private CharacterGameData characterData;
         private GameSceneManager sceneManager;
+
+        public GameObject Player => player;
+        [SerializeField] private GameObject player;
 
         public LayerMask LayerEntity => entity;
         public LayerMask LayerGround => ground;
