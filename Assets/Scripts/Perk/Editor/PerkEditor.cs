@@ -24,9 +24,9 @@ namespace Services
                 {
                     if (script.PerkExist(script.PerkNameToUnlock, out Perk.Perk perk))
                     {
-                        if (perk.Excutor != null)
+                        if (perk.Executor != null)
                         {
-                            perk.Excutor.OnActive();
+                            perk.Executor.OnActive();
                         }
                         else
                         {
@@ -42,9 +42,9 @@ namespace Services
                 {
                     if (script.PerkExist(script.PerkNameToUnlock, out Perk.Perk perk))
                     {
-                        if (perk.Excutor != null)
+                        if (perk.Executor != null)
                         {
-                            perk.Excutor.OnEquipped();
+                            perk.Executor.OnEquipped();
                         }
                         else
                         {
@@ -65,9 +65,9 @@ namespace Services
                 {
                     if (script.PerkExist(script.PerkNameToUnlock, out Perk.Perk perk))
                     {
-                        if (perk.Excutor != null)
+                        if (perk.Executor != null)
                         {
-                            Debug.Log(perk.Excutor.GetStatValue());
+                            Debug.Log(perk.Executor.GetStatValue());
                         }
                         else
                         {

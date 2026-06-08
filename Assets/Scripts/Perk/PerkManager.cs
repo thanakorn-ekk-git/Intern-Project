@@ -30,7 +30,7 @@ namespace Perk
                 if(excutor != null)
                 {
                     newPerk.SetExcutor(excutor, owner);
-                    newPerk.Excutor.OnUnlocked();
+                    newPerk.Executor.OnUnlocked();
                 }
                 ActivatePerk(newPerk);
                 return true;
@@ -64,14 +64,14 @@ namespace Perk
         { 
             if (perk != null)
             {
-                if (perk.Excutor != null)
+                if (perk.Executor != null)
                 {
                     if (perk.Data.Levels.Count >= 2)
                     {
                         if(perk.CurrentLevel < perk.Data.Levels.Count)
                         {
                             perk.LevelUp();
-                            perk.Excutor.OnEnhance();
+                            perk.Executor.OnEnhance();
                             return true;
                         }
                         Debug.LogWarning($"{perk.Data.Name} is already at max level!");
@@ -128,7 +128,7 @@ namespace Perk
                 {
                     if (perk.Data != null)
                     {
-                        string tags = perk.Data.Tag != null ? string.Join(", ", perk.Data.Tag) : "<no_tags>";
+                        string tags = perk.Data.Tags != null ? string.Join(", ", perk.Data.Tags) : "<no_tags>";
                         str.AppendLine($"- {perk.Data.Name} (Level: {perk.CurrentLevel})");
                         str.AppendLine($"Tags: [{tags}]");
                         str.AppendLine($"Description: {perk.Data.Description}");

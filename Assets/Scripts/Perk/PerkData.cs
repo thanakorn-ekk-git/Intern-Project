@@ -14,7 +14,7 @@ namespace Perk
         [JsonProperty] public float Position_y { get; private set; }
         [JsonProperty] public float Size { get; private set; }
         [JsonProperty] public string Description { get; private set; } = "<Perk_Description>";
-        [JsonProperty] public List<string> Tag { get; private set; } = new List<string>();
+        [JsonProperty] public List<Perk.PerkTag> Tags { get; private set; }
         [JsonProperty] public string ImagePath { get; private set; } = "<Image_Path_Error>";
         [JsonProperty] public string[] RequiredPerk { get; private set; } = Array.Empty<string>();
         [JsonProperty] public List<PerkLevel> Levels { get; private set; } = new List<PerkLevel>();

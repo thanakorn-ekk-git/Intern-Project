@@ -1,5 +1,6 @@
 using Player;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Perk
@@ -11,7 +12,7 @@ namespace Perk
 
         public bool isUnlocked => CurrentLevel >= 0;
         public int CurrentLevel { get; private set; } = 1;
-        public PerkExecutor Excutor { get; private set; }
+        public PerkExecutor Executor { get; private set; }
 
         public enum StatType 
         { 
@@ -36,7 +37,14 @@ namespace Perk
             DamageTakenDuration,
             DamageTakenPercentage
         }
-        public StatType type { get; private set; }
+        public StatType Type { get; private set; }
+
+        public enum PerkTag 
+        { 
+            none, movement, attack, defense, buff, utility, blood, ice, fire, stone
+        }
+
+        public PerkTag Tag { get; private set; }
 
         public Perk(PerkData data)
         {
@@ -44,10 +52,10 @@ namespace Perk
             this.data.Cache();
         }
 
-        public void SetExcutor(PerkExecutor excutor, PlayerController owner)
+        public void SetExcutor(PerkExecutor executor, PlayerController owner)
         {
-            Excutor = excutor;
-            Excutor.Initialize(this, owner);
+            Executor = executor;
+            Executor.Initialize(this, owner);
         }
         
         public void Unlock()
@@ -90,15 +98,11 @@ namespace Perk
         }
         public string GetTag()
         {
-            string[] perkTags = Array.Empty<string>();
-            if (data == null || data.Tag == null || data.Tag.Count == 0)
+            if (data == null || data.Tags == null || data.Tags.Count == 0)
             {
                 return string.Empty;
             }
-            foreach ( var tag in data.Tag ) {
-                perkTags = perkTags.Append(tag).ToArray();
-            }
-            return perkTags.Length > 0 ? perkTags[0] : string.Empty;
+            return string.Join(", ", data.Tags);
         }
     }
 }
