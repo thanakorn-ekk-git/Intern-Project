@@ -36,6 +36,8 @@ namespace GameManagement
             {
                 DontDestroyOnLoad(gameObject);
             }
+            UIManager = GetComponent<UI.UIManager>();
+
             LoadGameData();
         }
 

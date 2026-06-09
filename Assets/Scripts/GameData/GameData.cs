@@ -47,6 +47,7 @@ namespace GameData
         }
 
         public bool TryGetPerk(string name, out Perk.PerkData perk) => perkData.TryGetValue(name, out perk);
+        public IEnumerable<Perk.PerkData> GetAllPerkData() => perkData.Values;
         public void LoadPerkData()
         {
             perkData = new();

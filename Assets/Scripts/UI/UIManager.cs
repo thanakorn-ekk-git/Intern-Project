@@ -1,4 +1,6 @@
 using MainMenu;
+using Perk;
+using Perk.UI;
 using UnityEngine;
 
 namespace UI
@@ -9,5 +11,11 @@ namespace UI
 
         private GameplayUI gameplayUI;
         private MainMenuUI mainMenuUI;
+        [SerializeField] private PerkMenuUI perkMenuUI;
+
+        private void Start()
+        {
+            perkMenuUI.Setup();
+        }
     }
 }

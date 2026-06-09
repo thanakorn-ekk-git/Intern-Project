@@ -1,8 +1,8 @@
 {
   "Name": "Fire Dash",
-  "Position_x": 0.0,
+  "Position_x": 300.0,
   "Position_y": 0.0,
-  "Size": 24.0,
+  "Size": 120.0,
   "Description": "Dash forward, leaving a trail of fire that damages enemies.",
   "Tags": [ "attack", "movement", "fire" ],
   "ImagePath": "Assets/GameData/Images/Perks/fireDash.png",

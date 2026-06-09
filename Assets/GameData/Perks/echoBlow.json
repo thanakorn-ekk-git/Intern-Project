@@ -1,8 +1,8 @@
 {
   "Name": "Echo Blow",
-  "Position_x": 0.0,
-  "Position_y": 0.0,
-  "Size": 24.0,
+  "Position_x": -100.0,
+  "Position_y": 100.0,
+  "Size": 120.0,
   "Description": "A strike that creates an echo effect, damaging nearby enemies.",
   "Tags": [ "attack" ],
   "ImagePath": "Assets/GameData/Images/Perks/echoBlow.png",

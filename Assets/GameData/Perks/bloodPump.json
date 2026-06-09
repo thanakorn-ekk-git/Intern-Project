@@ -1,8 +1,8 @@
 {
   "Name": "Blood Pump",
-  "Position_x": 0.0,
-  "Position_y": 0.0,
-  "Size": 24.0,
+  "Position_x": -500.0,
+  "Position_y": 200.0,
+  "Size": 120.0,
   "Description": "Buff user overall performance by consuming health points.",
   "Tags": [ "buff", "blood" ],
   "ImagePath": "Assets/GameData/Images/Perks/bloodPump.png",
