@@ -1,9 +1,8 @@
-using Perk;
 using UnityEditor;
 using UnityEngine;
 using Player;
 
-namespace Services
+namespace Perk
 {
     [CustomEditor(typeof(PlayerController))]
     public class PerkSystemTester : Editor
@@ -26,7 +25,7 @@ namespace Services
                 }
                 if (GUILayout.Button("Activate "))
                 {
-                    if (script.PerkExist(player.PerkNameToUnlock, out Perk.Perk perk))
+                    if (script.PerkExist(player.PerkNameToUnlock, out Perk perk))
                     {
                         if (perk.Executor != null)
                         {
@@ -44,7 +43,7 @@ namespace Services
                 }
                 if(GUILayout.Button("Equip"))
                 {
-                    if (script.PerkExist(player.PerkNameToUnlock, out Perk.Perk perk))
+                    if (script.PerkExist(player.PerkNameToUnlock, out Perk perk))
                     {
                         if (perk.Executor != null)
                         {
@@ -67,11 +66,11 @@ namespace Services
 
                 if (GUILayout.Button("Show Perk Stats"))
                 {
-                    if (script.PerkExist(player.PerkNameToUnlock, out Perk.Perk perk))
+                    if (script.PerkExist(player.PerkNameToUnlock, out Perk perk))
                     {
                         if (perk.Executor != null)
                         {
-                            Debug.Log(perk.Executor.GetStatValue());
+                            Debug.Log(perk.Executor.GetDebugStatString());
                         }
                         else
                         {
@@ -85,7 +84,7 @@ namespace Services
                 }
                 if (GUILayout.Button("Show All Unlocked Perks"))
                 {
-                    Debug.Log(script.WhatPerkIsUnlocked());
+                    Debug.Log(script.GetUnlockedPerk());
                 }
             }
         }

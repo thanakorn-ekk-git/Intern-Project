@@ -9,18 +9,21 @@ namespace Perk.UI
 {
     public class PerkMenuUI : MonoBehaviour
     {
-        [SerializeField] private GameObject perkButtonPrefab;
-        [SerializeField] private Transform buttonArea;
+        [SerializeField] private PerkButtonUI perkButtonPrefab;
+        [SerializeField] private RectTransform buttonArea;
 
         [Header("Detail")]
-        [SerializeField] private GameObject perkName, bigImage, description, perkStats, unlockPerkBtn, unlockPerkTxt;
+        [SerializeField] private TextMeshProUGUI perkName, description, perkStats, unlockPerkTxt;
+        [SerializeField] private Image bigImage;
+        [SerializeField] private Button unlockPerkBtn;
 
-        private List<GameObject> spawnedButtons = new List<GameObject>();
+        private List<PerkButtonUI> spawnedButtons = new List<PerkButtonUI>();
         private PerkData selectedData;
 
+        private PlayerController player;
         public void Setup()
         {
-            foreach(var button in spawnedButtons)
+            foreach (var button in spawnedButtons)
             {
                 Destroy(button.gameObject);
             }
@@ -30,66 +33,53 @@ namespace Perk.UI
 
             foreach (var data in allPerks)
             {
-                GameObject newButton = Instantiate(perkButtonPrefab, buttonArea);
-                spawnedButtons.Add(newButton);
-
-                if (newButton.TryGetComponent<PerkButtonUI>(out var btnScript))
+                GameObject perkButton = Instantiate(perkButtonPrefab.gameObject, buttonArea);
+                if (perkButton.TryGetComponent<PerkButtonUI>(out var scriptPerkButton))
                 {
-                    btnScript.Setup(data, this);
+                    spawnedButtons.Add(scriptPerkButton);
                 }
+            }
+
+            if (GameManager.Instance.Player.TryGetComponent<PlayerController>(out var playerController))
+            {
+                this.player = playerController;
             }
 
         }
 
         public void Unlock(PerkData data)
         {
-            if (GameManager.Instance.Player.TryGetComponent<PlayerController>(out var player))
-            {
-                bool success = player.PerkManager.TryUnlockPerk(data.Name);
-            }
+            player.PerkManager.TryUnlockPerk(data.Name);
         }
         public void Select(PerkData data)
         {
             selectedData = data;
-            if (perkName != null)
-            {
-                perkName.GetComponent<TextMeshProUGUI>().text = data.Name;
-            }
-            if (description != null)
-            {
-                description.GetComponent<TextMeshProUGUI>().text = data.Description;
-            }
-            if (bigImage != null && bigImage.TryGetComponent<Image>(out var img))
-            {
-                img.sprite = Resources.Load<Sprite>(data.ImagePath);
-            }
+            perkName.text = data.Name;
+            description.text = data.Description;
+            
+            bigImage.sprite = Resources.Load<Sprite>(data.ImagePath);
 
-            if (GameManager.Instance.Player.TryGetComponent<PlayerController>(out var player))
-            {
-                Debug.Log(data.Name);
-                bool isUnlocked = player.PerkManager.PerkExist(data.Name, out Perk outPerk);
-                Debug.Log(outPerk); // out -> null
+            Debug.Log(data.Name);
+            bool isUnlocked = player.PerkManager.PerkExist(data.Name, out Perk outPerk);
+            Debug.Log(outPerk); // out -> null
 
-                if (perkStats != null)
+            perkStats.text = outPerk.Executor.GetDebugStatString();
+
+            if (isUnlocked)
+            {
+
+                if (unlockPerkBtn != null)
                 {
-                    perkStats.GetComponent<TextMeshProUGUI>().text = outPerk.Executor.GetStatValue();
+                    unlockPerkBtn.GetComponent<Image>().color = Color.black;
+                    unlockPerkTxt.text = data.Name + "is unlocked";
                 }
-                if (isUnlocked)
+            }
+            else if (!isUnlocked)
+            {
+                if (unlockPerkBtn != null)
                 {
-
-                    if (unlockPerkBtn != null)
-                    {
-                        unlockPerkBtn.GetComponent<Image>().color = Color.black;
-                        unlockPerkTxt.GetComponent<TextMeshProUGUI>().text = data.Name + "is unlocked";
-                    }
-                }
-                else if (!isUnlocked)
-                {
-                    if (unlockPerkBtn != null)
-                    {
-                        unlockPerkBtn.GetComponent<Image>().color = Color.white;
-                        unlockPerkTxt.GetComponent<TextMeshProUGUI>().text = "Unlock" + data.Name;
-                    }
+                    unlockPerkBtn.GetComponent<Image>().color = Color.white;
+                    unlockPerkTxt.text = "Unlock" + data.Name;
                 }
             }
         }

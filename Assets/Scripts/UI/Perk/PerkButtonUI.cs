@@ -1,5 +1,3 @@
-using GameManagement;
-using Player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +7,7 @@ namespace Perk.UI
     {
         [SerializeField] private Image icon;
         [SerializeField] private Button button;
+        [SerializeField] private RectTransform rectangle;
 
         private PerkData data;
         private PerkMenuUI menu;
@@ -20,14 +19,10 @@ namespace Perk.UI
 
             gameObject.name = "Button_" + data.Name;
             Sprite perkIcon = Resources.Load<Sprite>(data.ImagePath);
-            if(icon != null)
-            {
-                icon.sprite = perkIcon;
-            }
+            icon.sprite = perkIcon;
 
-            RectTransform rect = GetComponent<RectTransform>();
-            rect.sizeDelta = new Vector2(data.Size, data.Size);
-            rect.anchoredPosition= new Vector2(data.Position_x, data.Position_y);
+            rectangle.sizeDelta = new Vector2(data.Size, data.Size);
+            rectangle.anchoredPosition= new Vector2(data.Position_x, data.Position_y);
 
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(OnClick);

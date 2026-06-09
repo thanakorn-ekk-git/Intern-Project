@@ -17,32 +17,29 @@ namespace Perk
         [JsonProperty] public List<Perk.PerkTag> Tags { get; private set; }
         [JsonProperty] public string ImagePath { get; private set; } = "<Image_Path_Error>";
         [JsonProperty] public string[] RequiredPerk { get; private set; } = Array.Empty<string>();
-        [JsonProperty] public List<PerkLevel> Levels { get; private set; } = new List<PerkLevel>();
+        [JsonProperty] public List<Level> Levels { get; private set; } = new List<Level>();
 
 
-        private Dictionary<int, PerkLevel> cacheLevel;
-        private bool isCached = false;
+        private Dictionary<int, Level> cacheLevels;
 
         public void Cache()
         {
-            if (isCached) return;
             
-            cacheLevel = new Dictionary<int, PerkLevel>();
+            cacheLevels = new Dictionary<int, Level>();
             if(Levels != null)
             {
                 foreach(var level in Levels)
                 {
-                    cacheLevel.Add(level.Level, level);
+                    cacheLevels.Add(level.PerkLevel, level);
                 }
             }
-            isCached = true;
         }
 
-        public PerkLevel GetLevelData(int level)
+        public Level GetLevelData(int level)
         {
             Cache();
 
-            if(cacheLevel!=null && cacheLevel.TryGetValue(level, out var levelData))
+            if(cacheLevels!=null && cacheLevels.TryGetValue(level, out var levelData))
             {
                 return levelData;
             }
@@ -50,15 +47,15 @@ namespace Perk
         }
 
 
-        public class PerkLevel
+        public class Level
         {
-            [JsonProperty] public int Level { get; private set; } = 0;
+            [JsonProperty("Level")] public int PerkLevel { get; private set; } = 0;
             [JsonProperty] public int EnhancementCost { get; private set; } = 1;
-            [JsonProperty] public List<PerkModifier> Modifiers { get; private set; } = new List<PerkModifier>();
+            [JsonProperty] public List<Modifier> Modifiers { get; private set; } = new List<Modifier>();
         }
-        public class PerkModifier
+        public class Modifier
         {
-            [JsonProperty] public Perk.StatType StatType { get; private set; } 
+            [JsonProperty] public Perk.Modifier StatType { get; private set; } 
             [JsonProperty] public float Value { get; private set; } = 0f;
         }
     }

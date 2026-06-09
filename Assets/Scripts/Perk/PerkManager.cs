@@ -6,11 +6,11 @@ namespace Perk
 {
     public class PerkManager
     {
-        [SerializeField] private PlayerController owner;
+        private PlayerController owner;
         private List<Perk> perks = new List<Perk>();
 
         public string PerkNameToUnlock => perkNameToUnlock;
-        [SerializeField] private string perkNameToUnlock;
+        private string perkNameToUnlock;
 
         public PerkManager(PlayerController owner)
         {
@@ -28,13 +28,13 @@ namespace Perk
             if (GameData.GameData.Instance.TryGetPerk(perkName, out PerkData outData))
             {
                 Perk newPerk = new Perk(outData);
-                newPerk.Unlock();
+                newPerk.LevelUp();
 
                 PerkExecutor excutor = BindExcutor(perkName);
 
                 if(excutor != null)
                 {
-                    newPerk.SetExcutor(excutor, owner);
+                    newPerk.SetExecutor(excutor, owner);
                     newPerk.Executor.OnUnlocked();
                 }
                 ActivatePerk(newPerk);
@@ -66,39 +66,27 @@ namespace Perk
             return false;
         }
         public bool TryEnhancePerk(Perk perk) 
-        { 
-            if (perk != null)
-            {
-                if (perk.Executor != null)
-                {
-                    if (perk.Data.Levels.Count >= 2)
-                    {
-                        if(perk.CurrentLevel < perk.Data.Levels.Count)
-                        {
-                            perk.LevelUp();
-                            perk.Executor.OnEnhance();
-                            return true;
-                        }
-                        Debug.LogWarning($"{perk.Data.Name} is already at max level!");
-                        return false;
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"{perk.Data.Name} can not be enhanced!");
-                        return false;
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning($"{perk.Data.Name} has invalid executor!");
-                    return false;
-                }
+        {
+            if (perk == null)
+            { 
+                return false;            
             }
-            else
+            if (perk.Executor == null)
             {
-                Debug.LogWarning($"{perk.Data.Name} is not unlocked!");
                 return false;
             }
+            if (perk.Data.Levels.Count >= 2)
+            {
+                return false;
+            }
+            if (perk.CurrentLevel >= perk.Data.Levels.Count)
+            {
+                return false;
+            }
+
+            perk.LevelUp();
+            perk.Executor.OnEnhance();
+            return true;
         }
 
         public void ActivatePerk(Perk perk)
@@ -118,33 +106,22 @@ namespace Perk
             perkOut = null;
             return false;
         }
-        public string WhatPerkIsUnlocked()
-        {
-            System.Text.StringBuilder str = new System.Text.StringBuilder();
-            str.AppendLine($"[PerkTree Debug] unlocked: {perks.Count} perk(s)");
 
-            if (perks.Count == 0)
+        public IReadOnlyDictionary<string, Perk> GetUnlockedPerk()
+        {
+            Dictionary<string, Perk> unlockedPerksDict = new Dictionary<string, Perk>();
+
+            if (perks != null)
             {
-                str.AppendLine("No perks unlocked.");
-            }
-            else
-            {
-                foreach (Perk perk in perks)
+                foreach(Perk perk in perks)
                 {
-                    if (perk.Data != null)
+                    if (perk != null && perk.Data != null) 
                     {
-                        string tags = perk.Data.Tags != null ? perk.GetTag() : "<no_tags>";
-                        str.AppendLine($"- {perk.Data.Name} (Level: {perk.CurrentLevel})");
-                        str.AppendLine($"Tags: [{tags}]");
-                        str.AppendLine($"Description: {perk.Data.Description}");
-                        if (perks.Count >= 2)
-                        {
-                            str.AppendLine("-----");
-                        }
+                        unlockedPerksDict.Add(perk.Data.Name, perk);
                     }
                 }
             }
-            return str.ToString();
+            return unlockedPerksDict;
         }
     }
 }

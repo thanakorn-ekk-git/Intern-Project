@@ -14,7 +14,7 @@ namespace Perk
         public int CurrentLevel { get; private set; } = 1;
         public PerkExecutor Executor { get; private set; }
 
-        public enum StatType 
+        public enum Modifier 
         { 
             Cooldown,
             Duration,
@@ -37,7 +37,7 @@ namespace Perk
             DamageTakenDuration,
             DamageTakenPercentage
         }
-        public StatType Type { get; private set; }
+        public Modifier Type { get; private set; }
 
         public enum PerkTag 
         { 
@@ -49,60 +49,53 @@ namespace Perk
         public Perk(PerkData data)
         {
             this.data = data;
-            this.data.Cache();
         }
 
-        public void SetExcutor(PerkExecutor executor, PlayerController owner)
+        public void SetExecutor(PerkExecutor executor, PlayerController owner)
         {
             Executor = executor;
             Executor.Initialize(this, owner);
         }
         
-        public void Unlock()
-        {
-            CurrentLevel = 1;
-        }
         public void LevelUp()
         {
             CurrentLevel++;
         }
 
-        public int GetLevel(out int maxLevel)
+        public (int current, int max) GetLevel()
         {
             if (data != null && data.Levels != null)
             {
-                maxLevel = data.Levels.Count;
                 var curLevel = data.GetLevelData(CurrentLevel);
                 if (curLevel != null)
                 {
-                    return curLevel.Level;
+                    return (curLevel.PerkLevel, data.Levels.Count);
                 }
             }
-            maxLevel = 0;
-            return 0;
+            return (0, 0);
         }
-        public float GetModifierValue(PerkData.PerkLevel level, StatType statType)
+        public float GetModifierValue(PerkData.Level level, Modifier statType)
         {
             if (level == null || level.Modifiers == null)
             {
                 return 0f;
             }
 
-            var modifier = level.Modifiers.Find(m => m.StatType == statType);
+            var modifier = level.Modifiers.ToDictionary(m => m.StatType);
 
-            if(modifier != null)
+            if(modifier.TryGetValue(statType,out var outModifier))
             {
-                return modifier.Value;
+                return outModifier.Value;
             }
             return 0f;
         }
-        public string GetTag()
+        public PerkTag GetTag()
         {
             if (data == null || data.Tags == null || data.Tags.Count == 0)
             {
-                return string.Empty;
+                return Tag;
             }
-            return string.Join(", ", data.Tags);
+            return PerkTag.none;
         }
     }
 }

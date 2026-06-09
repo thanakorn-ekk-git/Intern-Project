@@ -13,7 +13,7 @@ namespace UI
         private MainMenuUI mainMenuUI;
         [SerializeField] private PerkMenuUI perkMenuUI;
 
-        private void Start()
+        public void OpenPerkMenu()
         {
             perkMenuUI.Setup();
         }

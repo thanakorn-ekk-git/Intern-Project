@@ -7,27 +7,28 @@ namespace Perk
     public class PerkExecutor
     {
         [SerializeField] private PlayerController owner;
-        protected Perk parentPerk;
+        protected Perk perk;
 
         public void Initialize(Perk perk, PlayerController owner)
         {
-            this.parentPerk = perk;
+            this.perk = perk;
             this.owner = owner;
         }
 
-        public string GetStatValue()
+        public string GetDebugStatString()
         {
-            if(parentPerk == null||parentPerk.Data== null)
+            if(perk == null||perk.Data== null)
             {
                 return string.Empty;
             }
 
-            int maxLevel = 0;
-            int currentLevel = parentPerk.GetLevel(out  maxLevel);
-            var currentLevelData = parentPerk.Data.GetLevelData(parentPerk.CurrentLevel);
+            int currentLevel, maxLevel;
+            (currentLevel, maxLevel) = perk.GetLevel();
+
+            var currentLevelData = perk.Data.GetLevelData(perk.CurrentLevel);
 
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            sb.AppendLine($"{parentPerk.Data.Name} Modifiers (Level: {currentLevelData.Level}/{maxLevel}");
+            sb.AppendLine($"{perk.Data.Name} Modifiers (Level: {currentLevelData.PerkLevel}/{maxLevel}");
 
             if (currentLevelData != null && currentLevelData.Modifiers != null)
             {
@@ -46,23 +47,23 @@ namespace Perk
 
         public void OnUnlocked()
         {
-            Debug.Log(parentPerk.Data.Name + " unlocked");
+            Debug.Log(perk.Data.Name + " unlocked");
         }
         public void OnEquipped()
         {
-            Debug.Log(parentPerk.Data.Name + " equipped");
+            Debug.Log(perk.Data.Name + " equipped");
         }
         public void OnUnequipped()
         {
-            Debug.Log(parentPerk.Data.Name + " unequipped");
+            Debug.Log(perk.Data.Name + " unequipped");
         }
         public void OnActive()
         {
-            Debug.Log(parentPerk.Data.Name + " is active");
+            Debug.Log(perk.Data.Name + " is active");
         }
         public void OnEnhance()
         {
-            Debug.Log(parentPerk.Data.Name + " enhanced");
+            Debug.Log(perk.Data.Name + " enhanced");
         }
     }
 }
