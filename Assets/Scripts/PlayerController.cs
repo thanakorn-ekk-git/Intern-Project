@@ -12,9 +12,6 @@ namespace Player
         public PerkManager PerkManager => perkManager;
         [SerializeField] private PerkManager perkManager;
 
-        public string PerkNameToUnlock => perkNameToUnlock;
-        [SerializeField] private string perkNameToUnlock;
-
         private void Start()
         {
             attacker = GetComponent<Attacker>();

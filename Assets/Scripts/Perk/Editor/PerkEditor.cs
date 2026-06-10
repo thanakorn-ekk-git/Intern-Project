@@ -7,9 +7,11 @@ namespace Perk
     [CustomEditor(typeof(PlayerController))]
     public class PerkSystemTester : Editor
     {
+        string text = "Perk ID to Unlock";
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
+            text = GUILayout.TextArea(text);
 
             var player = target as PlayerController;
             if (player == null) return;
@@ -21,70 +23,33 @@ namespace Perk
 
                 if (GUILayout.Button("Unlock "))
                 {
-                    script.TryUnlockPerk(player.PerkNameToUnlock);
+                    script.TryUnlockPerk(text);
                 }
                 if (GUILayout.Button("Activate "))
                 {
-                    if (script.PerkExist(player.PerkNameToUnlock, out Perk perk))
-                    {
-                        if (perk.Executor != null)
-                        {
-                            perk.Executor.OnActive();
-                        }
-                        else
-                        {
-                            Debug.LogError($"{player.PerkNameToUnlock} has invalid executor!");
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogError($"{player.PerkNameToUnlock} is not unlocked!");
-                    }
+                    if(script.Unlocked.TryGetValue(text, out var perk))
+                        perk.OnActive();
                 }
                 if(GUILayout.Button("Equip"))
                 {
-                    if (script.PerkExist(player.PerkNameToUnlock, out Perk perk))
-                    {
-                        if (perk.Executor != null)
-                        {
-                            perk.Executor.OnEquipped();
-                        }
-                        else
-                        {
-                            Debug.LogError($"{player.PerkNameToUnlock} has invalid executor!");
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogError($"{player.PerkNameToUnlock} is not unlocked!");
-                    }
+                    if (script.Unlocked.TryGetValue(text, out var perk))
+
+                        perk.OnEquipped();
                 }
                 if (GUILayout.Button("Enhance "))
                 {
-                    script.TryEnhancePerk(player.PerkNameToUnlock);
+                    script.TryEnhancePerk(text);
                 }
 
                 if (GUILayout.Button("Show Perk Stats"))
                 {
-                    if (script.PerkExist(player.PerkNameToUnlock, out Perk perk))
-                    {
-                        if (perk.Executor != null)
-                        {
-                            Debug.Log(perk.Executor.GetDebugStatString());
-                        }
-                        else
-                        {
-                            Debug.LogError($"{player.PerkNameToUnlock} has an invalid or null executor!");
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogError($"{player.PerkNameToUnlock} is not unlocked!");
-                    }
+                    if (script.Unlocked.TryGetValue(text, out var perk))
+                        Debug.Log(perk.Data.GetDebugStatString());
                 }
                 if (GUILayout.Button("Show All Unlocked Perks"))
                 {
-                    Debug.Log(script.GetUnlockedPerk());
+                    foreach( var (_,perk) in script.Unlocked)
+                    Debug.Log(perk.Data.ID);
                 }
             }
         }

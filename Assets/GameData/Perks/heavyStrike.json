@@ -5,7 +5,7 @@
   "Size": 120.0,
   "Description": "A powerful strike that deals significant damage to a single enemy.",
   "Tags": [ "attack" ],
-  "ImagePath": "Assets/GameData/Images/Perks/heavyStrike.png",
+  "ImagePath": "Images\\Perks\\HeavyStrikeIcon",
   "Levels": [
     {
       "Level": 1,

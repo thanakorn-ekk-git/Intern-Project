@@ -135,3 +135,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Perk.UI.PerkButtonUI
   icon: {fileID: 3896116340333998057}
   button: {fileID: 3279352881566317335}
+  rectangle: {fileID: 3188239833870563697}

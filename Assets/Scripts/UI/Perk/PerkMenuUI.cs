@@ -16,6 +16,7 @@ namespace Perk.UI
         [SerializeField] private TextMeshProUGUI perkName, description, perkStats, unlockPerkTxt;
         [SerializeField] private Image bigImage;
         [SerializeField] private Button unlockPerkBtn;
+        [SerializeField] private Image unlockPerkBtnImg;
 
         private List<PerkButtonUI> spawnedButtons = new List<PerkButtonUI>();
         private PerkData selectedData;
@@ -23,6 +24,8 @@ namespace Perk.UI
         private PlayerController player;
         public void Setup()
         {
+            this.player = GameManager.Instance.Player;
+
             foreach (var button in spawnedButtons)
             {
                 Destroy(button.gameObject);
@@ -33,23 +36,14 @@ namespace Perk.UI
 
             foreach (var data in allPerks)
             {
-                GameObject perkButton = Instantiate(perkButtonPrefab.gameObject, buttonArea);
-                if (perkButton.TryGetComponent<PerkButtonUI>(out var scriptPerkButton))
-                {
-                    spawnedButtons.Add(scriptPerkButton);
-                }
+                var perkButton = Instantiate(perkButtonPrefab, buttonArea);
+                spawnedButtons.Add(perkButton);
+                perkButton.Setup(data, this);
             }
-
-            if (GameManager.Instance.Player.TryGetComponent<PlayerController>(out var playerController))
-            {
-                this.player = playerController;
-            }
-
         }
-
         public void Unlock(PerkData data)
         {
-            player.PerkManager.TryUnlockPerk(data.Name);
+            player.PerkManager.TryUnlockPerk(data);
         }
         public void Select(PerkData data)
         {
@@ -59,28 +53,20 @@ namespace Perk.UI
             
             bigImage.sprite = Resources.Load<Sprite>(data.ImagePath);
 
-            Debug.Log(data.Name);
-            bool isUnlocked = player.PerkManager.PerkExist(data.Name, out Perk outPerk);
-            Debug.Log(outPerk); // out -> null
+            bool isUnlocked = player.PerkManager.IsUnlockable(data);
 
-            perkStats.text = outPerk.Executor.GetDebugStatString();
+            perkStats.text = data.GetDebugStatString();
 
             if (isUnlocked)
             {
 
-                if (unlockPerkBtn != null)
-                {
-                    unlockPerkBtn.GetComponent<Image>().color = Color.black;
-                    unlockPerkTxt.text = data.Name + "is unlocked";
-                }
+                unlockPerkBtnImg.color = Color.black;
+                unlockPerkTxt.text = data.Name + "is unlocked";
             }
-            else if (!isUnlocked)
+            else
             {
-                if (unlockPerkBtn != null)
-                {
-                    unlockPerkBtn.GetComponent<Image>().color = Color.white;
-                    unlockPerkTxt.text = "Unlock" + data.Name;
-                }
+                unlockPerkBtnImg.color = Color.white;
+                unlockPerkTxt.text = "Unlock" + data.Name;
             }
         }
     }

@@ -5,7 +5,7 @@
   "Size": 120.0,
   "Description": "Dash forward, leaving a trail of fire that damages enemies.",
   "Tags": [ "attack", "movement", "fire" ],
-  "ImagePath": "Assets/GameData/Images/Perks/fireDash.png",
+  "ImagePath": "Images\\Perks\\FireDashIcon",
   "Levels": [
     {
       "Level": 1,

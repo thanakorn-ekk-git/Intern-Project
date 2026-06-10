@@ -1,4 +1,5 @@
 using Character;
+using Player;
 using Services;
 using UnityEngine;
 
@@ -16,8 +17,8 @@ namespace GameManagement
         private CharacterGameData characterData;
         private GameSceneManager sceneManager;
 
-        public GameObject Player => player;
-        [SerializeField] private GameObject player;
+        public PlayerController Player => player;
+        [SerializeField] private PlayerController player;
 
         public LayerMask LayerEntity => entity;
         public LayerMask LayerGround => ground;

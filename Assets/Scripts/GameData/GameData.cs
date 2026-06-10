@@ -50,13 +50,16 @@ namespace GameData
         public IEnumerable<Perk.PerkData> GetAllPerkData() => perkData.Values;
         public void LoadPerkData()
         {
+
             perkData = new();
             var log = new System.Text.StringBuilder();
-            foreach (var fileName in FileHandler.GetAllFileNames(global::Perk.PerkData.Path, FileHandler.JsonExtension))
+            foreach (var fullFileName in FileHandler.GetAllFileNames(global::Perk.PerkData.Path, FileHandler.JsonExtension))
             {
-                FileHandler.LoadPerkJson(fileName, out var perk);
-                log.AppendLine($"Loaded perk ID {perk.Name} at {fileName}");
-                perkData.Add(perk.Name, perk);
+                FileHandler.LoadPerkJson(fullFileName, out var perk);
+                var fileName = Path.GetFileName(fullFileName).Split('.')[0];
+                perk.Setup(fileName);
+                log.AppendLine($"Loaded perk ID {perk.Name} at {fullFileName}");
+                perkData.Add(perk.ID, perk);
             }
             Debug.Log("Load perk data completed");
         }

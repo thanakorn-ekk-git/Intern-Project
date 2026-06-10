@@ -1,7 +1,4 @@
-using Player;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using UnityEngine;
 
 namespace Perk
 {
@@ -12,7 +9,6 @@ namespace Perk
 
         public bool isUnlocked => CurrentLevel >= 0;
         public int CurrentLevel { get; private set; } = 1;
-        public PerkExecutor Executor { get; private set; }
 
         public enum Modifier 
         { 
@@ -39,22 +35,16 @@ namespace Perk
         }
         public Modifier Type { get; private set; }
 
-        public enum PerkTag 
+        public enum Tag 
         { 
             none, movement, attack, defense, buff, utility, blood, ice, fire, stone
         }
 
-        public PerkTag Tag { get; private set; }
+        public Tag _Tag { get; private set; }
 
         public Perk(PerkData data)
         {
             this.data = data;
-        }
-
-        public void SetExecutor(PerkExecutor executor, PlayerController owner)
-        {
-            Executor = executor;
-            Executor.Initialize(this, owner);
         }
         
         public void LevelUp()
@@ -64,38 +54,58 @@ namespace Perk
 
         public (int current, int max) GetLevel()
         {
-            if (data != null && data.Levels != null)
+            var curLevel = data.GetLevelData(CurrentLevel);
+            if (curLevel != null)
             {
-                var curLevel = data.GetLevelData(CurrentLevel);
-                if (curLevel != null)
-                {
-                    return (curLevel.PerkLevel, data.Levels.Count);
-                }
+                return (curLevel.PerkLevel, data.Levels.Length);
             }
-            return (0, 0);
+            return (0, data.Levels.Length);
         }
         public float GetModifierValue(PerkData.Level level, Modifier statType)
         {
-            if (level == null || level.Modifiers == null)
+            if (level == null)
             {
                 return 0f;
             }
 
-            var modifier = level.Modifiers.ToDictionary(m => m.StatType);
-
-            if(modifier.TryGetValue(statType,out var outModifier))
+            if(level.ModifiersByID.TryGetValue(statType,out var outModifier))
             {
                 return outModifier.Value;
             }
             return 0f;
         }
-        public PerkTag GetTag()
+        public Tag GetTag()
         {
-            if (data == null || data.Tags == null || data.Tags.Count == 0)
+            if (data.Tags.Count == 0)
             {
-                return Tag;
+                return _Tag;
             }
-            return PerkTag.none;
+            return Tag.none;
+        }
+        public void OnUpdate()
+        {
+
+        }
+
+        public void OnUnlocked()
+        {
+            Debug.Log(data.ID + " unlocked");
+        }
+        public void OnEquipped()
+        {
+            Debug.Log(data.ID + " equipped");
+        }
+        public void OnUnequipped()
+        {
+            Debug.Log(data.ID + " unequipped");
+        }
+        public void OnActive()
+        {
+            Debug.Log(data.ID + " is active");
+        }
+        public void OnEnhance()
+        {
+            Debug.Log(data.ID + " enhanced");
         }
     }
 }

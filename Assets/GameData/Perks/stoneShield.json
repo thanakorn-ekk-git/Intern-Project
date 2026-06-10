@@ -5,7 +5,7 @@
   "Size": 120.0,
   "Description": "Create shields of stone floating around user that blocks incoming attacks.",
   "Tags": [ "defense", "stone" ],
-  "ImagePath": "Assets/GameData/Images/Perks/stoneShield.png",
+  "ImagePath": "Images\\Perks\\StoneShieldIcon",
   "Levels": [
     {
       "Level": 1,

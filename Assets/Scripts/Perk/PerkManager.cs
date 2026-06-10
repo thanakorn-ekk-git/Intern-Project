@@ -1,13 +1,13 @@
 using Player;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Perk
 {
     public class PerkManager
     {
         private PlayerController owner;
-        private List<Perk> perks = new List<Perk>();
+        private Dictionary<string, Perk> perks = new Dictionary<string, Perk>();
+        public IReadOnlyDictionary<string, Perk> Unlocked => perks;
 
         public string PerkNameToUnlock => perkNameToUnlock;
         private string perkNameToUnlock;
@@ -17,111 +17,64 @@ namespace Perk
             this.owner = owner;
         }
 
-        public bool TryUnlockPerk(string perkName)
+        public bool TryUnlockPerk(PerkData data)
         {
-            if (PerkExist(perkName, out Perk outPerk))
+            Perk newPerk = new Perk(data);
+            newPerk.LevelUp();
+
+            AddPerk(newPerk);
+            return true;
+        }
+        public bool TryUnlockPerk(string perkID)
+        {
+            if(GameData.GameData.Instance.TryGetPerk(perkID, out var data))
             {
-                Debug.Log($"{perkName} is already unlocked!");
-                return false;
-            }
-
-            if (GameData.GameData.Instance.TryGetPerk(perkName, out PerkData outData))
-            {
-                Perk newPerk = new Perk(outData);
-                newPerk.LevelUp();
-
-                PerkExecutor excutor = BindExcutor(perkName);
-
-                if(excutor != null)
-                {
-                    newPerk.SetExecutor(excutor, owner);
-                    newPerk.Executor.OnUnlocked();
-                }
-                ActivatePerk(newPerk);
+                TryUnlockPerk(data);
                 return true;
             }
-            Debug.LogWarning($"{perkName} is invalid");
             return false;
         }
 
-        private PerkExecutor BindExcutor(string perkName)
+        public bool TryEnhancePerk(string perkID)
         {
-            GameData.GameData.Instance.TryGetPerk(perkName, out PerkData perkData);
-            if (perkData == null)
-            {
-                Debug.LogWarning($"No data found for perk: {perkName}");
-                return null;
-            }
-            PerkExecutor executor = new PerkExecutor();
-
-            return executor;
-        }
-        public bool TryEnhancePerk(string perkName)
-        {
-            if (PerkExist(perkName, out Perk perk))
+            if (perks.TryGetValue(perkID, out Perk perk))
             {
                 TryEnhancePerk(perk);
                 return true;
             }
             return false;
         }
-        public bool TryEnhancePerk(Perk perk) 
+        public bool TryEnhancePerk(Perk perk)
         {
             if (perk == null)
-            { 
-                return false;            
-            }
-            if (perk.Executor == null)
             {
                 return false;
             }
-            if (perk.Data.Levels.Count >= 2)
+            if (perk.Data.Levels.Length >= 2)
             {
                 return false;
             }
-            if (perk.CurrentLevel >= perk.Data.Levels.Count)
+            if (perk.CurrentLevel >= perk.Data.Levels.Length)
             {
                 return false;
             }
 
             perk.LevelUp();
-            perk.Executor.OnEnhance();
             return true;
         }
 
-        public void ActivatePerk(Perk perk)
+        public void AddPerk(Perk perk)
         {
-            perks.Add(perk);
+            perks.Add(perk.Data.ID, perk);
         }
-        public bool PerkExist(string perkName, out Perk perkOut)
+        public bool IsUnlockable(PerkData data)
         {
-            foreach (Perk perk in perks)
+            if (data.RequiredPerks.Length == 0) return true;
+            foreach (var req in data.RequiredPerks)
             {
-                if (perkName.Equals(perk.Data.Name))
-                {
-                    perkOut = perk;
-                    return true;
-                }
+                if (!perks.ContainsKey(req)) return false;
             }
-            perkOut = null;
-            return false;
-        }
-
-        public IReadOnlyDictionary<string, Perk> GetUnlockedPerk()
-        {
-            Dictionary<string, Perk> unlockedPerksDict = new Dictionary<string, Perk>();
-
-            if (perks != null)
-            {
-                foreach(Perk perk in perks)
-                {
-                    if (perk != null && perk.Data != null) 
-                    {
-                        unlockedPerksDict.Add(perk.Data.Name, perk);
-                    }
-                }
-            }
-            return unlockedPerksDict;
+            return true;
         }
     }
 }

@@ -5,8 +5,8 @@
   "Size": 120.0,
   "Description": "Consume health points to reset all perk cooldowns.",
   "Tags": [ "utility", "blood" ],
-  "ImagePath": "Assets/GameData/Images/Perks/bloodRecharge.png",
-  "RequiredPerk": [ "Blood Pump" ],
+  "ImagePath": "BloodRechargeIcon",
+  "RequiredPerks": [ "Blood Pump" ],
   "Levels": [
     {
       "Level": 1,

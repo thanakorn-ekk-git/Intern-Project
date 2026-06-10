@@ -17,12 +17,12 @@ namespace Perk.UI
             this.data = data;
             this.menu = menu;
 
-            gameObject.name = "Button_" + data.Name;
+            gameObject.name = "Button_" + data.ID;
             Sprite perkIcon = Resources.Load<Sprite>(data.ImagePath);
             icon.sprite = perkIcon;
 
             rectangle.sizeDelta = new Vector2(data.Size, data.Size);
-            rectangle.anchoredPosition= new Vector2(data.Position_x, data.Position_y);
+            rectangle.localPosition = new Vector2(data.Position_x, data.Position_y);
 
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(OnClick);
