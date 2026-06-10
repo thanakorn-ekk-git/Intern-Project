@@ -1,4 +1,5 @@
 using Character;
+using Player;
 using Services;
 using UnityEngine;
 
@@ -8,14 +9,16 @@ namespace GameManagement
     {
         public static GameManager Instance;
 
-
         private FileHandler fileHandler;
         public GameData.GameData GameData { get; private set; }
         public UI.UIManager UIManager { get; private set; }
-        public EnemyPrefabManager enemyPrefabManager { get; private set; }
+        public EnemyPrefabManager EnemyPrefabManager { get; private set; }
 
         private CharacterGameData characterData;
         private GameSceneManager sceneManager;
+
+        public PlayerController Player => player;
+        [SerializeField] private PlayerController player;
 
         public LayerMask LayerEntity => entity;
         public LayerMask LayerGround => ground;
@@ -34,6 +37,7 @@ namespace GameManagement
             {
                 DontDestroyOnLoad(gameObject);
             }
+            UIManager = GetComponent<UI.UIManager>();
 
             LoadGameData();
         }
@@ -43,7 +47,7 @@ namespace GameManagement
             GameData = new GameData.GameData();
             GameData.LoadItemGameData();
             GameData.LoadCharacterGameData();
-
+            GameData.LoadPerkData();
         }
 
         public void NewGame()

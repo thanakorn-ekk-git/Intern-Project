@@ -1,0 +1,63 @@
+{
+  "Name": "Frost Beam",
+  "Position_x": 100.0,
+  "Position_y": 0.0,
+  "Size": 120.0,
+  "Description": "Fire a beam of frost that freeze first hit enemy and slows nearby enemies",
+  "Tags": [ "attack", "ice" ],
+  "ImagePath": "Images\\Perks\\FrostBreamIcon",
+  "Levels": [
+    {
+      "Level": 1,
+      "EnhancementCost": 1,
+      "Modifiers": [
+        {
+          "StatType": "Cooldown",
+          "Value": 6.0
+        },
+        {
+          "StatType": "FreezeDuration",
+          "Value": 5.0
+        },
+        {
+          "StatType": "SlowDuration",
+          "Value": 5.0
+        },
+        {
+          "StatType": "SlowPercentage",
+          "Value": 0.4
+        },
+        {
+          "StatType": "Range",
+          "Value": 10.0
+        }
+      ]
+    },
+    {
+      "Level": 2,
+      "EnhancementCost": 2,
+      "Modifiers": [
+        {
+          "StatType": "Cooldown",
+          "Value": 5.0
+        },
+        {
+          "StatType": "FreezeDuration",
+          "Value": 7.0
+        },
+        {
+          "StatType": "SlowDuration",
+          "Value": 7.0
+        },
+        {
+          "StatType": "SlowPercentage",
+          "Value": 0.6
+        },
+        {
+          "StatType": "Range",
+          "Value": 14.0
+        }
+      ]
+    }
+  ]
+}

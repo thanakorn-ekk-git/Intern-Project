@@ -121,5 +121,12 @@ namespace Services
             character = obj as CharacterGameData;
             return result;
         }
+
+        public static bool LoadPerkJson(string filePath, out Perk.PerkData perk)
+        {
+            var result = LoadGameData<Perk.PerkData>(filePath, out var obj);
+            perk = obj as Perk.PerkData;
+            return result;
+        }
     }
 }
