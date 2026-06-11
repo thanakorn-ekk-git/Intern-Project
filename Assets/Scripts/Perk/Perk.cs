@@ -31,7 +31,8 @@ namespace Perk
             Amount,
             Layer,
             DamageTakenDuration,
-            DamageTakenPercentage
+            DamageTakenPercentage,
+            RotationSpeed
         }
         public Modifier Type { get; private set; }
 
