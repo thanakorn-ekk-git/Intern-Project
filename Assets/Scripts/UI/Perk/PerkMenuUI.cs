@@ -44,6 +44,7 @@ namespace Perk.UI
         public void Unlock(PerkData data)
         {
             player.PerkManager.TryUnlockPerk(data);
+            Select(data);
         }
         public void Select(PerkData data)
         {
@@ -53,20 +54,26 @@ namespace Perk.UI
             
             bigImage.sprite = Resources.Load<Sprite>(data.ImagePath);
 
-            bool isUnlocked = player.PerkManager.IsUnlockable(data);
 
             perkStats.text = data.GetDebugStatString();
+
+            unlockPerkBtn.onClick.RemoveAllListeners();
+            unlockPerkBtn.onClick.AddListener(() => Unlock(selectedData)); 
+
+            bool isUnlocked = player.PerkManager.Unlocked.ContainsKey(data.ID);
 
             if (isUnlocked)
             {
 
                 unlockPerkBtnImg.color = Color.black;
                 unlockPerkTxt.text = data.Name + "is unlocked";
+                unlockPerkBtn.gameObject.SetActive(false);
             }
             else
             {
                 unlockPerkBtnImg.color = Color.white;
                 unlockPerkTxt.text = "Unlock" + data.Name;
+                unlockPerkBtn.gameObject.SetActive(true);
             }
         }
     }

@@ -9,16 +9,28 @@ namespace GameManagement
     {
         public static GameManager Instance;
 
-        private FileHandler fileHandler;
+        [SerializeField] private GameConfigs gameConfigs;
+        public GameConfigs GameConfigs => gameConfigs;
         public GameData.GameData GameData { get; private set; }
+        public PlayerData PlayerData { get; private set; }
+
         public UI.UIManager UIManager { get; private set; }
         public EnemyPrefabManager EnemyPrefabManager { get; private set; }
 
         private CharacterGameData characterData;
-        private GameSceneManager sceneManager;
 
-        public PlayerController Player => player;
-        [SerializeField] private PlayerController player;
+        public PlayerController Player
+        {
+            get
+            {
+                if (player == null)
+                {
+                    player = FindFirstObjectByType<PlayerController>();
+                }
+                return player;
+            }
+        }
+        private PlayerController player;
 
         public LayerMask LayerEntity => entity;
         public LayerMask LayerGround => ground;
@@ -50,20 +62,21 @@ namespace GameManagement
             GameData.LoadPerkData();
         }
 
-        public void NewGame()
+        public void NewGame(bool isTesting = false)
         {
-            // TODO : load game scene with new player data
-            sceneManager.EnterGameplayScene();
-            // TODO : initialize new player data and game state
+            PlayerData = new();
+            if (!isTesting)
+                GameSceneManager.EnterGameplayScene();
         }
         public void LoadGame()
         {
-            // TODO : load game scene where player saved with saved player data
-            sceneManager.EnterGameplayScene();
-            fileHandler.LoadSaveData();
+            PlayerData = FileHandler.LoadSaveData();
+            GameSceneManager.EnterGameplayScene();
+            OnGameLoaded();
         }
         public void SaveGame()
         {
+            FileHandler.Save(PlayerData);
             // TODO : save player and game state data(current level, player stats)
         }
         public void RestartGame()
@@ -92,13 +105,14 @@ namespace GameManagement
             // TODO : resume time and hide pause menu
         }
 
-        public void LoadGameData(string loadResult, CharacterGameData charData)
-        {
-            characterData.Load(charData);
-        }
-        public void LoadSaveData(CharacterGameData charData)
+        public void OnGameLoaded()
         {
 
+        }
+
+        public void CleanUpWhenSceneChange()
+        {
+            player = null;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Perk
         [JsonProperty] public float Position_y { get; private set; }
         [JsonProperty] public float Size { get; private set; }
         [JsonProperty] public string Description { get; private set; } = "<Perk_Description>";
-        [JsonProperty] public List<Perk.Tag> Tags { get; private set; }
+        [JsonProperty] public Perk.Tag[] Tags { get; private set; }
         [JsonProperty] public string ImagePath { get; private set; } = "<Image_Path_Error>";
         [JsonProperty] public string[] RequiredPerks { get; private set; } = Array.Empty<string>();
         [JsonProperty] public Level[] Levels { get; private set; } = Array.Empty<Level>();
@@ -84,6 +84,26 @@ namespace Perk
         {
             [JsonProperty] public Perk.Modifier StatType { get; private set; } 
             [JsonProperty] public float Value { get; private set; } = 0f;
+        }
+
+    }
+    public static class PerkModifierHelper 
+    {
+        public static float GetValueOrDefault(this IReadOnlyDictionary<Perk.Modifier, PerkData.Modifier> modifiers, Perk.Modifier mod, float defaultValue = 1f)
+        {
+            if (modifiers.TryGetValue(mod, out var v))
+            {
+                return v.Value;
+            }
+            return defaultValue;
+        }
+        public static int GetIntOrDefault(this IReadOnlyDictionary<Perk.Modifier, PerkData.Modifier> modifiers, Perk.Modifier mod, int defaultValue = 1)
+        {
+            if (modifiers.TryGetValue(mod, out var v))
+            {
+                return UnityEngine.Mathf.RoundToInt(v.Value);
+            }
+            return defaultValue;
         }
     }
 }

@@ -1,3 +1,4 @@
+using GameManagement;
 using Player;
 using System.Collections.Generic;
 
@@ -5,29 +6,41 @@ namespace Perk
 {
     public class PerkManager
     {
-        private PlayerController owner;
+        public PlayerController Owner { get; private set; }
         private Dictionary<string, Perk> perks = new Dictionary<string, Perk>();
         public IReadOnlyDictionary<string, Perk> Unlocked => perks;
 
         public string PerkNameToUnlock => perkNameToUnlock;
         private string perkNameToUnlock;
 
+        public Perk[] Slot { get; private set; } = new Perk[4];
+        
+
         public PerkManager(PlayerController owner)
         {
-            this.owner = owner;
+            this.Owner = owner;
+        }
+
+        public bool CastPerk(int perkIndex)
+        {
+            var selectedPerk = Slot[perkIndex];
+            if (selectedPerk == null) return false;
+            if (!selectedPerk.CanCast(this)) return false;
+
+            selectedPerk.Cast(this);
+            return true;
         }
 
         public bool TryUnlockPerk(PerkData data)
         {
             Perk newPerk = new Perk(data);
-            newPerk.LevelUp();
 
             AddPerk(newPerk);
             return true;
         }
         public bool TryUnlockPerk(string perkID)
         {
-            if(GameData.GameData.Instance.TryGetPerk(perkID, out var data))
+            if (GameData.GameData.Instance.TryGetPerk(perkID, out var data))
             {
                 TryUnlockPerk(data);
                 return true;
@@ -60,12 +73,23 @@ namespace Perk
             }
 
             perk.LevelUp();
+            GameManager.Instance.PlayerData.UpdateValue(this);
             return true;
         }
 
         public void AddPerk(Perk perk)
         {
             perks.Add(perk.Data.ID, perk);
+            perk.LevelUp();
+            for(int i = 0; i < Slot.Length; i++)
+            {
+                if(Slot[i] == null)
+                {
+                    Slot[i] = perk;
+                    break;
+                }
+            }
+            GameManager.Instance.PlayerData.UpdateValue(this);
         }
         public bool IsUnlockable(PerkData data)
         {

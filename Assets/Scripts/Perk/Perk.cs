@@ -1,3 +1,5 @@
+using GameManagement;
+using System;
 using UnityEngine;
 
 namespace Perk
@@ -9,6 +11,8 @@ namespace Perk
 
         public bool isUnlocked => CurrentLevel >= 0;
         public int CurrentLevel { get; private set; } = 1;
+
+        private int cooldown = 0;
 
         public enum Modifier 
         { 
@@ -32,7 +36,9 @@ namespace Perk
             Layer,
             DamageTakenDuration,
             DamageTakenPercentage,
-            RotationSpeed
+            Speed,
+            Projectile,
+            RotateAround
         }
         public Modifier Type { get; private set; }
 
@@ -41,11 +47,47 @@ namespace Perk
             none, movement, attack, defense, buff, utility, blood, ice, fire, stone
         }
 
-        public Tag _Tag { get; private set; }
+        public Tag[] _Tag => data.Tags;
 
         public Perk(PerkData data)
         {
             this.data = data;
+        }
+
+        public bool CanCast(PerkManager manager)
+        {
+            return cooldown < Time.frameCount;
+        }
+
+        public void Cast(PerkManager manager)
+        {
+            var level = Data.GetLevelData(CurrentLevel);
+            Debug.Log(level);
+            var amount = 1;
+            if (level.ModifiersByID.TryGetValue(Modifier.Amount, out var modifier))
+            {
+                amount = Mathf.RoundToInt(modifier.Value);
+            }
+            foreach (var mod in level.Modifiers)
+            {
+                switch (mod.StatType)
+                {
+                    case Modifier.Projectile:
+                        foreach (var tag in _Tag)
+                        {
+                            if (GameManager.Instance.GameConfigs.Projectiles.TryGetProjectile(tag, out var prefab))
+                            {
+                                for (int i = 0; i < amount; i++)
+                                {
+                                    GameObject.Instantiate(prefab, manager.Owner.transform.position, manager.Owner.transform.rotation, manager.Owner.transform).Setup(level.ModifiersByID);
+                                }
+                                cooldown = Time.frameCount + Mathf.RoundToInt(level.ModifiersByID.GetValueOrDefault(Modifier.Cooldown, 1f) * Application.targetFrameRate);
+                                break;
+                            }
+                        }
+                        break;
+                }
+            }
         }
         
         public void LevelUp()
@@ -74,14 +116,6 @@ namespace Perk
                 return outModifier.Value;
             }
             return 0f;
-        }
-        public Tag GetTag()
-        {
-            if (data.Tags.Count == 0)
-            {
-                return _Tag;
-            }
-            return Tag.none;
         }
         public void OnUpdate()
         {

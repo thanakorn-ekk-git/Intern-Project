@@ -32,8 +32,14 @@
           "Value": 1.0
         },
         {
-          "StatType": "RotationSpeed",
+          "StatType": "Speed",
           "Value": 60.0
+        },
+        {
+          "StatType": "Projectile"
+        },
+        {
+          "StatType": "RotateAround"
         }
       ]
     },
@@ -62,8 +68,14 @@
           "Value": 1.0
         },
         {
-          "StatType": "RotationSpeed",
+          "StatType": "Speed",
           "Value": 120.0
+        },
+        {
+          "StatType": "Projectile"
+        },
+        {
+          "StatType": "RotateAround"
         }
       ]
     },
@@ -92,8 +104,14 @@
           "Value": 2.0
         },
         {
-          "StatType": "RotationSpeed",
+          "StatType": "Speed",
           "Value": 180.0
+        },
+        {
+          "StatType": "Projectile"
+        },
+        {
+          "StatType": "RotateAround"
         }
       ]
     }
