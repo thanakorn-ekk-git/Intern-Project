@@ -32,6 +32,7 @@ namespace Perk
             {
                 foreach (var level in Levels)
                 {
+                    level.Setup();
                     cacheLevels.Add(level.PerkLevel, level);
                 }
             }

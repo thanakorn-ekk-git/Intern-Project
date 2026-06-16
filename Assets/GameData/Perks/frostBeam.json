@@ -30,6 +30,12 @@
         {
           "StatType": "Range",
           "Value": 10.0
+        },
+        {
+          "StatType": "Projectile"
+        },
+        {
+          "StatType": "LinearAttack"
         }
       ]
     },
@@ -56,6 +62,12 @@
         {
           "StatType": "Range",
           "Value": 14.0
+        },
+        {
+          "StatType": "Projectile"
+        },
+        {
+          "StatType": "LinearAttack"
         }
       ]
     }

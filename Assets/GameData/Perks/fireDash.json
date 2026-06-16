@@ -26,6 +26,17 @@
         {
           "StatType": "Cooldown",
           "Value": 5.0
+        },
+        {
+          "StatType": "SpawnDuration",
+          "Value": 1.0
+        },
+        {
+          "StatType": "SpawnInterval",
+          "Value": 0.1
+        },
+        {
+          "StatType": "AOE"
         }
       ]
     },
@@ -48,6 +59,17 @@
         {
           "StatType": "Cooldown",
           "Value": 4.0
+        },
+        {
+          "StatType": "SpawnDuration",
+          "Value": 1.0
+        },
+        {
+          "StatType": "SpawnInterval",
+          "Value": 0.1
+        },
+        {
+          "StatType": "AOE"
         }
       ]
     },
@@ -70,6 +92,17 @@
         {
           "StatType": "Cooldown",
           "Value": 3.0
+        },
+        {
+          "StatType": "SpawnDuration",
+          "Value": 1.0
+        },
+        {
+          "StatType": "SpawnInterval",
+          "Value": 0.1
+        },
+        {
+          "StatType": "AOE"
         }
       ]
     }

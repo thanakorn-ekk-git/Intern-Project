@@ -49,6 +49,8 @@ namespace GameManagement
             {
                 DontDestroyOnLoad(gameObject);
             }
+            Application.targetFrameRate = 60;
+
             UIManager = GetComponent<UI.UIManager>();
 
             LoadGameData();

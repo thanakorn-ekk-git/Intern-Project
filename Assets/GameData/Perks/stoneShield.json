@@ -21,7 +21,7 @@
         },
         {
           "StatType": "Radius",
-          "Value": 5.0
+          "Value": 2.0
         },
         {
           "StatType": "Amount",
@@ -57,7 +57,7 @@
         },
         {
           "StatType": "Radius",
-          "Value": 5.0
+          "Value": 2.0
         },
         {
           "StatType": "Amount",
@@ -93,7 +93,7 @@
         },
         {
           "StatType": "Radius",
-          "Value": 7.0
+          "Value": 4.0
         },
         {
           "StatType": "Amount",

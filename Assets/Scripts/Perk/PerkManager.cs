@@ -63,7 +63,7 @@ namespace Perk
             {
                 return false;
             }
-            if (perk.Data.Levels.Length >= 2)
+            if (perk.Data.Levels.Length <= 1)
             {
                 return false;
             }

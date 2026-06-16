@@ -28,5 +28,3 @@ public class ProjectileByTag : ScriptableObject
         return tagToProjectile.TryGetValue(tag, out projectile);
     }
 }
-
-

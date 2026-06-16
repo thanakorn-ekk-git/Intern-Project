@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileByTag
   elements:
   - tag: 9
-    prefab: {fileID: 5711220641206075925, guid: 1619e6b274557b34da9823df61345e90, type: 3}
+    prefab: {fileID: 8148940488271412664, guid: 1619e6b274557b34da9823df61345e90, type: 3}
+  - tag: 7
+    prefab: {fileID: 4928487180369743998, guid: bb7014ce7b2b89046b3e9e7296ab5c1c, type: 3}
