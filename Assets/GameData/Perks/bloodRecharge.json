@@ -1,0 +1,30 @@
+{
+  "Name": "Blood Recharge",
+  "Position_x": -500.0,
+  "Position_y": 0.0,
+  "Size": 120.0,
+  "Description": "Consume health points to reset all perk cooldowns.",
+  "Tags": [ "utility", "blood" ],
+  "ImagePath": "BloodRechargeIcon",
+  "RequiredPerks": [ "Blood Pump" ],
+  "Levels": [
+    {
+      "Level": 1,
+      "EnhancementCost": 1,
+      "Modifiers": [
+        {
+          "StatType": "BloodCost",
+          "Value": 0.5
+        },
+        {
+          "StatType": "CostThreshold",
+          "Value": 5.0
+        },
+        {
+          "StatType": "Cooldown",
+          "Value": 1.0
+        }
+      ]
+    }
+  ]
+}

@@ -4,10 +4,11 @@ using SaveGame;
 using System.IO;
 using UnityEngine;
 using System.Linq;
+using GameManagement;
 
 namespace Services
 {
-    public class FileHandler : MonoBehaviour
+    public static class FileHandler
     {
         public const string GameDataFolderName = "GameData";
         public const string GameDataFileName = "main_data";
@@ -19,7 +20,7 @@ namespace Services
 
         public const string JsonExtension = ".json";
 
-        public void Save()
+        public static void Save(PlayerData data)
         {
             try
             {
@@ -31,7 +32,8 @@ namespace Services
                 if (Directory.Exists(fullPath))
                     Directory.Delete(fullPath);
                 
-                JsonSaveHandler.JsonSave(fullPath, new CharacterGameData());
+                JsonSaveHandler.JsonSave(fullPath, data);
+                Debug.Log("Save complete at " +  fullPath);
             } 
             catch (IOException error)
             { 
@@ -39,7 +41,7 @@ namespace Services
                 throw error;
             }
         }
-        public void LoadSaveData()
+        public static PlayerData LoadSaveData()
         {
             var result = string.Empty;
 
@@ -49,17 +51,17 @@ namespace Services
 
                 if (File.Exists(fullPath))
                 {
-                    JsonSaveHandler.JsonLoad(fullPath, out var charData);
+                    JsonSaveHandler.JsonLoad(fullPath, out var data);
                     result = File.ReadAllText(fullPath);
-                    GameManagement.GameManager.Instance.LoadSaveData(charData);
+                    return data;
                 }
+                throw new IOException("no file to load");
             }
             catch (IOException error)
             {
                 Debug.LogError(error);
                 throw error;
             }
-            Debug.Log($"Loaded data: {result}");
         }
 
         public static string[] GetAllFileNames(string directoryPath, string extension)
@@ -119,6 +121,13 @@ namespace Services
         {
             var result = LoadGameData<CharacterGameData>(filePath, out var obj);
             character = obj as CharacterGameData;
+            return result;
+        }
+
+        public static bool LoadPerkJson(string filePath, out Perk.PerkData perk)
+        {
+            var result = LoadGameData<Perk.PerkData>(filePath, out var obj);
+            perk = obj as Perk.PerkData;
             return result;
         }
     }

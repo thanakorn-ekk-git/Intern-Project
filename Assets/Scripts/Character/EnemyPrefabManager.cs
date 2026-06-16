@@ -5,7 +5,7 @@ namespace Character
 {
     public class EnemyPrefabManager : MonoBehaviour
     {
-        public static EnemyPrefabManager Instance => GameManagement.GameManager.Instance.enemyPrefabManager;
+        public static EnemyPrefabManager Instance => GameManagement.GameManager.Instance.EnemyPrefabManager;
 
         [SerializeField] private List<Enemy> prefabs;
 

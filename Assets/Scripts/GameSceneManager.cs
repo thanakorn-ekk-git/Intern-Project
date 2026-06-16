@@ -3,12 +3,13 @@ using UnityEngine.SceneManagement;
 
 namespace GameManagement
 {
-    public class GameSceneManager : MonoBehaviour
+    public static class GameSceneManager
     {
-        [SerializeField] private string gameplayScene = "HubRoomScene";
+        private const string gameplayScene = "HubRoomScene";
 
-        public void EnterGameplayScene()
+        public static void EnterGameplayScene()
         {
+            GameManager.Instance.CleanUpWhenSceneChange();
             SceneManager.LoadScene(gameplayScene);
         }
     }

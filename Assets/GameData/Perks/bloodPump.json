@@ -1,0 +1,77 @@
+{
+  "Name": "Blood Pump",
+  "Position_x": -500.0,
+  "Position_y": 200.0,
+  "Size": 120.0,
+  "Description": "Buff user overall performance by consuming health points.",
+  "Tags": [ "buff", "blood" ],
+  "ImagePath": "BloodPumpIcon",
+  "Levels": [
+    {
+      "Level": 1,
+      "EnhancementCost": 1,
+      "Modifiers": [
+        {
+          "StatType": "Cooldown",
+          "Value": 12.0
+        },
+        {
+          "StatType": "Duration",
+          "Value": 8.0
+        },
+        {
+          "StatType": "StatBuffPercentage",
+          "Value": 0.2
+        },
+        {
+          "StatType": "BloodCost",
+          "Value": 0.5
+        }
+      ]
+    },
+    {
+      "Level": 2,
+      "EnhancementCost": 2,
+      "Modifiers": [
+        {
+          "StatType": "Cooldown",
+          "Value": 12.0
+        },
+        {
+          "StatType": "Duration",
+          "Value": 8.0
+        },
+        {
+          "StatType": "StatBuffPercentage",
+          "Value": 0.25
+        },
+        {
+          "StatType": "BloodCost",
+          "Value": 0.5
+        }
+      ]
+    },
+    {
+      "Level": 3,
+      "EnhancementCost": 3,
+      "Modifiers": [
+        {
+          "StatType": "Cooldown",
+          "Value": 12.0
+        },
+        {
+          "StatType": "Duration",
+          "Value": 8.0
+        },
+        {
+          "StatType": "StatBuffPercentage",
+          "Value": 0.35
+        },
+        {
+          "StatType": "BloodCost",
+          "Value": 0.5
+        }
+      ]
+    }
+  ]
+}
